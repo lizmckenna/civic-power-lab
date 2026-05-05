@@ -68,9 +68,9 @@
                 </div>
               </div>
               <p style="max-width:42ch;font-size:14px;line-height:1.6;color:rgba(241,234,215,0.78);">
-                A mixed-methods research lab studying democratic practice, civic
-                perception, and the organizational fabric that makes collective
-                power possible — or fragile.
+                A mixed-methods research lab studying democracy, civil society,
+                and the organizational practices that make collective action
+                powerful (or fragile).
               </p>
             </div>
             <div>

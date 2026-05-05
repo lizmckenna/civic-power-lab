@@ -439,22 +439,36 @@
   /* === RESEARCH TEASER === */
   .research-teaser .proj-row {
     display: grid;
-    grid-template-columns: 80px 1fr 2fr;
-    gap: 32px;
-    align-items: baseline;
-    padding: 28px 0;
+    grid-template-columns: 100px minmax(220px, 1.1fr) 2.4fr;
+    gap: 40px;
+    align-items: start;
+    padding: 32px 0;
     border-bottom: 1px solid var(--rule);
     transition: background .15s;
     cursor: pointer;
   }
   .research-teaser .proj-row:first-of-type { border-top: 1px solid var(--rule); }
   .research-teaser .proj-row:hover { background: var(--cream-2); }
-  .research-teaser .proj-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--cobalt); }
-  .research-teaser .proj-name { font-family: var(--font-display); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; }
-  .research-teaser .proj-desc { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .research-teaser .proj-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--cobalt);
+    padding-top: 6px;
+  }
+  .research-teaser .proj-name {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.0vw, 26px);
+    line-height: 1.2;
+  }
+  .research-teaser .proj-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
   @media (max-width: 800px) {
-    .research-teaser .proj-row { grid-template-columns: 60px 1fr; gap: 16px; }
-    .research-teaser .proj-desc { grid-column: 2; }
+    .research-teaser .proj-row { grid-template-columns: 60px 1fr; gap: 16px; padding: 24px 0; }
+    .research-teaser .proj-desc { grid-column: 1 / -1; }
   }
 
   /* === MANIFESTO === */
@@ -670,9 +684,7 @@
         <div class="hero-flag">
           <span class="flag-label">Research &middot; POLIS</span>
           The data and measurement infrastructure that lets organizers see,
-          track, and learn from the work as it happens. Five years, ten
-          states, a network of organizing groups whose longitudinal practice
-          we can finally see at event- and participant-level resolution.
+          track, and learn from the work as it happens.
           <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SCLKL7" target="_blank" rel="noopener">View on Harvard Dataverse &rarr;</a>
         </div>
         <div class="hero-flag warm">
@@ -772,7 +784,7 @@
     </div>
     <div class="ph-grid">
       <div>
-        <h2>Most CRMs reward mobilizing. <em>Groundwork rewards organizing.</em></h2>
+        <h2>Most civic CRMs are designed for mobilizing. <em>Groundwork is designed for organizing.</em></h2>
         <p class="lede">
           An opinionated, open-source organizing platform built around the
           practices that turn participation into power: one-to-ones,
@@ -786,9 +798,10 @@
       </div>
       <ul class="ph-bullets">
         <li><span class="num">01</span><span><b>Built for the phase you're in.</b> What the dashboards amplify depends on what the org is trying to do: recruit a foundational base, convert an upsurge, deepen leadership, or move leaders into strategy and governance.</span></li>
-        <li><span class="num">02</span><span><b>Leadership is data, not a tag.</b> Who recruited whom, who's developing others, where the ladder is thin.</span></li>
-        <li><span class="num">03</span><span><b>Owned by the orgs that use it.</b> Their data, exportable, on their terms. No lock-in, no extraction.</span></li>
-        <li><span class="num">04</span><span><b>Comes with people, not just code.</b> Embedded engineering and practitioner training, not a license you buy and figure out alone.</span></li>
+        <li><span class="num">02</span><span><b>Leadership is data, not a tag.</b> Who recruited whom, who's developing others, where you have capacity, and where the pipeline is thin.</span></li>
+        <li><span class="num">03</span><span><b>Owned by the orgs that use it.</b> Their data, exportable, on their terms. Open-source core, no lock-in, no extraction.</span></li>
+        <li><span class="num">04</span><span><b>Comes with people, not just code.</b> Embedded engineering and practitioner training. Groundwork isn't a license you buy and figure out alone.</span></li>
+        <li><span class="num">05</span><span><b>Governed by the people using it.</b> A standing board of partner organization leaders, practitioners, and researchers reviews how Groundwork handles member data, what gets built next, and how acceptable use is defined. As far as we know, no civic-tech platform has been governed this way before.</span></li>
       </ul>
     </div>
   </div>
@@ -979,12 +992,12 @@
       <a href="press.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">All press →</a>
     </div>
     <div class="press-items">
-      <a href="https://www.newyorker.com/news/the-political-scene/what-maga-can-teach-democrats-about-organizing" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
+      <a href="https://www.newyorker.com/magazine/2026/02/02/what-maga-can-teach-democrats-about-organizing-and-infighting" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
         <div class="outlet">The New Yorker</div>
         <div class="headline">What MAGA can teach Democrats about organizing. <em style="color:var(--mute);font-size:13px;">Charles Duhigg</em></div>
         <div class="date">Feb 2026</div>
       </a>
-      <a href="https://www.bostonglobe.com" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
+      <a href="https://www.bostonglobe.com/2025/10/22/opinion/democrats-no-kings-protest/" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
         <div class="outlet">Boston Globe</div>
         <div class="headline">The Left knows how to have huge protests. The Right keeps winning elections.</div>
         <div class="date">Oct 2025</div>
@@ -994,7 +1007,7 @@
         <div class="headline">Pro-Democracy Campaign report. <em style="color:var(--mute);font-size:13px;">Analyst Institute Expy Award</em></div>
         <div class="date">2025</div>
       </a>
-      <a href="https://news.harvard.edu/gazette" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
+      <a href="https://news.harvard.edu/gazette/story/newsplus/professors-win-carnegie-fellowship-to-study-polarization-advancing-solidarity/" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
         <div class="outlet">Harvard Gazette</div>
         <div class="headline">McKenna awarded Andrew Carnegie Fellowship.</div>
         <div class="date">2024</div>
@@ -1031,9 +1044,9 @@
       <div class="mono">For organizations</div>
       <h3>Propose a partnership</h3>
       <p>
-        We work with movements, unions, and civic organizations on focused
-        research questions. We ask partners to submit a written spec, not
-        book a meeting, so we can say yes or no with real clarity.
+        We work with movements, campaigns, unions, and civic organizations
+        on focused research questions. We ask partners to submit a research
+        spec.
       </p>
       <span class="arrow">Submit a research spec →</span>
     </a>
