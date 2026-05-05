@@ -1,0 +1,36 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Pretty URLs: /about → about.html
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+[[redirects]]
+  from = "/research"
+  to = "/research.html"
+  status = 200
+[[redirects]]
+  from = "/practice"
+  to = "/practice.html"
+  status = 200
+[[redirects]]
+  from = "/teaching"
+  to = "/teaching.html"
+  status = 200
+[[redirects]]
+  from = "/press"
+  to = "/press.html"
+  status = 200
+[[redirects]]
+  from = "/connect"
+  to = "/connect.html"
+  status = 200
