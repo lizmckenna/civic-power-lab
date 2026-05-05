@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Logo Exploration — Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css?v=2">
+<style>
+  body { background: var(--cream); }
+  .page-head { padding: 72px 0 40px; border-bottom: 1px solid var(--rule); }
+  .page-head h1 { font-size: clamp(40px, 5vw, 72px); line-height: .95; max-width: 18ch; }
+  .page-head h1 em { color: var(--cobalt); font-style: italic; }
+  .lede { font-family: var(--font-display); font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 64ch; margin-top: 24px; }
+
+  .advice { background: var(--cream-2); padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  .advice-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  @media (max-width: 900px) { .advice-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .advice-grid { grid-template-columns: 1fr; } }
+  .advice-card { border-top: 2px solid var(--cobalt); padding-top: 16px; }
+  .advice-card .mono { color: var(--cobalt); margin-bottom: 10px; }
+  .advice-card h3 { font-size: 18px; line-height: 1.25; margin-bottom: 8px; }
+  .advice-card p { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin: 0; }
+
+  .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-bottom: 1px solid var(--rule); }
+  @media (max-width: 800px) { .logo-grid { grid-template-columns: 1fr; } }
+
+  .logo-card {
+    padding: 48px 40px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+    background: var(--cream);
+  }
+  .logo-card:nth-child(even) { border-right: none; }
+  .logo-card.alt { background: var(--cream-2); }
+
+  .logo-card-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+  }
+  .logo-card-head .idx { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--cobalt); }
+  .logo-card-head .kind { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+
+  .logo-card h3 { font-size: 26px; line-height: 1.1; margin-bottom: 8px; }
+  .logo-card .summary { font-family: var(--font-display); font-size: 15.5px; line-height: 1.5; color: var(--ink-2); margin-bottom: 28px; }
+
+  /* Hero mark stage */
+  .mark-stage {
+    aspect-ratio: 16/9;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .mark-stage svg { width: 55%; height: 55%; display: block; }
+
+  /* Scale row: 16/24/48/96 */
+  .scale-row {
+    display: grid;
+    grid-template-columns: 32px 48px 72px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+  .scale-row .cell { display: flex; align-items: center; justify-content: center; }
+  .scale-row .cell svg { display: block; }
+  .scale-row .lockup {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-size: 16px;
+    padding-left: 12px; border-left: 1px solid var(--rule);
+  }
+  .scale-row .lockup small {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mute); display: block; margin-top: 2px;
+  }
+
+  /* Color variants */
+  .color-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .color-swatch {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+  .color-swatch svg { width: 50%; height: 50%; }
+  .color-swatch small {
+    position: absolute; bottom: 4px; right: 6px;
+    font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .sw-cream { background: var(--paper); color: var(--cobalt); }
+  .sw-cobalt { background: var(--cobalt-deep); color: var(--cream); }
+  .sw-terra   { background: var(--terracotta); color: var(--cream); }
+  .sw-ink    { background: var(--ink); color: var(--cream); }
+
+  .pros-cons {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    font-size: 13px; line-height: 1.55;
+    padding-top: 20px; border-top: 1px dashed var(--rule);
+  }
+  .pros-cons h4 {
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 6px; font-weight: 500;
+  }
+  .pros-cons .pros h4 { color: var(--olive); }
+  .pros-cons .cons h4 { color: var(--terracotta); }
+  .pros-cons ul { margin: 0; padding-left: 16px; }
+  .pros-cons li { margin-bottom: 4px; color: var(--ink-2); }
+
+  /* Pick section */
+  .pick {
+    background: var(--cobalt-deep); color: var(--cream);
+    padding: 72px 0; border-bottom: 1px solid var(--rule);
+  }
+  .pick h2 { color: var(--cream); font-size: clamp(30px, 3.6vw, 48px); margin-bottom: 16px; }
+  .pick p { color: #d8dfee; font-family: var(--font-display); font-size: 17px; line-height: 1.55; max-width: 62ch; }
+  .pick .eyebrow { color: #f4c58a; }
+  .pick-grid { display: grid; grid-template-columns: 2fr 3fr; gap: 56px; align-items: center; margin-top: 40px; }
+  @media (max-width: 800px) { .pick-grid { grid-template-columns: 1fr; } }
+  .pick-stage {
+    background: var(--cream); border-radius: 0;
+    aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  }
+  .pick-stage svg { width: 60%; height: 60%; }
+</style>
+</head>
+<body>
+
+<div data-nav></div>
+
+<header class="page-head">
+  <div class="container">
+    <div class="eyebrow">Brand · Exploration</div>
+    <h1>Logo options — <em>network</em> as identity.</h1>
+    <p class="lede">
+      Eight snowflake- and network-inspired marks for the Civic Power Lab.
+      The snowflake model is a beautiful fit for what the lab studies —
+      distributed nodes, peer-to-peer ties, power that radiates outward
+      from organized relationships — but it's also the <em>most common</em>
+      civic-tech metaphor, so the job is to do it with enough specificity
+      that it's ours.
+    </p>
+  </div>
+</header>
+
+<!-- DESIGN ADVICE -->
+<section class="advice">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--terracotta);margin-bottom:16px;">What makes a network mark work</div>
+    <div class="advice-grid">
+      <div class="advice-card">
+        <span class="mono">01 · Symmetry</span>
+        <h3>Radial &gt; axial</h3>
+        <p>6-fold radial symmetry reads as snowflake, hub, star, and mandala at once. Keep the node count odd or six-fold — four nodes reads as "plus sign / medical."</p>
+      </div>
+      <div class="advice-card">
+        <span class="mono">02 · Weight</span>
+        <h3>One stroke to rule them all</h3>
+        <p>A single, consistent stroke weight across nodes and edges is what separates "logo" from "diagram." Thickness roughly 1/10th of the circumscribed diameter.</p>
+      </div>
+      <div class="advice-card">
+        <span class="mono">03 · Anchor</span>
+        <h3>One memorable detail</h3>
+        <p>A filled center dot, a second ring, a missing arc, a doubled spoke. Without one specific detail, any network logo dissolves into every other network logo.</p>
+      </div>
+      <div class="advice-card">
+        <span class="mono">04 · Scale</span>
+        <h3>Survives the 16px test</h3>
+        <p>Test every candidate at favicon size first. If you can't tell it apart from a generic asterisk at 16×16, it won't work in the nav bar either. Simplify until it does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO CARDS -->
+<section class="logo-grid">
+
+  <!-- 01 — Six-node snowflake -->
+  <article class="logo-card">
+    <div class="logo-card-head">
+      <span class="idx">Option 01</span>
+      <span class="kind">Snowflake · 6-fold</span>
+    </div>
+    <h3>Canonical six-node.</h3>
+    <p class="summary">The purest snowflake read. Six nodes connected to a central hub via single edges. Calm, balanced, zero friction.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 01">
+        <g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-34"/>
+          <line x1="0" y1="0" x2="29.4" y2="-17"/>
+          <line x1="0" y1="0" x2="29.4" y2="17"/>
+          <line x1="0" y1="0" x2="0" y2="34"/>
+          <line x1="0" y1="0" x2="-29.4" y2="17"/>
+          <line x1="0" y1="0" x2="-29.4" y2="-17"/>
+        </g>
+        <g fill="#1a3a8f">
+          <circle cx="0" cy="-34" r="5.5"/>
+          <circle cx="29.4" cy="-17" r="5.5"/>
+          <circle cx="29.4" cy="17" r="5.5"/>
+          <circle cx="0" cy="34" r="5.5"/>
+          <circle cx="-29.4" cy="17" r="5.5"/>
+          <circle cx="-29.4" cy="-17" r="5.5"/>
+          <circle cx="0" cy="0" r="7"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell"><svg width="16" height="16" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="5" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="8"/><circle cx="29.4" cy="-17" r="8"/><circle cx="29.4" cy="17" r="8"/><circle cx="0" cy="34" r="8"/><circle cx="-29.4" cy="17" r="8"/><circle cx="-29.4" cy="-17" r="8"/><circle cx="0" cy="0" r="10"/></g></svg></div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/><circle cx="0" cy="0" r="9"/></g></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3.5" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/><circle cx="0" cy="0" r="8"/></g></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/><circle cx="0" cy="0" r="9"/></g></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="color-row">
+      <div class="color-swatch sw-cream"><svg viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/><circle cx="0" cy="0" r="8"/></g></svg><small>cream</small></div>
+      <div class="color-swatch sw-cobalt"><svg viewBox="-50 -50 100 100"><g stroke="#f1e9d8" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#f1e9d8"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/><circle cx="0" cy="0" r="8"/></g></svg><small>cobalt</small></div>
+      <div class="color-swatch sw-terra"><svg viewBox="-50 -50 100 100"><g stroke="#f1e9d8" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#f1e9d8"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/><circle cx="0" cy="0" r="8"/></g></svg><small>terra</small></div>
+      <div class="color-swatch sw-ink"><svg viewBox="-50 -50 100 100"><g stroke="#f1e9d8" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#f1e9d8"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/><circle cx="0" cy="0" r="8"/></g></svg><small>ink</small></div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Reads instantly</li><li>Survives 16px</li><li>Clean at any color</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>Most generic option</li><li>Reads "network" not "Civic Power Lab" specifically</li></ul></div>
+    </div>
+  </article>
+
+  <!-- 02 — Six-node + outer ring -->
+  <article class="logo-card alt">
+    <div class="logo-card-head">
+      <span class="idx">Option 02</span>
+      <span class="kind">Snowflake · Anchored</span>
+    </div>
+    <h3>Snowflake with a ring.</h3>
+    <p class="summary">Option 01 with an outer ring connecting the outer nodes. Now it reads as a boundary — a network <em>around</em> something, not just from a center.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 02">
+        <circle cx="0" cy="0" r="34" stroke="#1a3a8f" stroke-width="3" fill="none"/>
+        <g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-34"/>
+          <line x1="0" y1="0" x2="29.4" y2="-17"/>
+          <line x1="0" y1="0" x2="29.4" y2="17"/>
+          <line x1="0" y1="0" x2="0" y2="34"/>
+          <line x1="0" y1="0" x2="-29.4" y2="17"/>
+          <line x1="0" y1="0" x2="-29.4" y2="-17"/>
+        </g>
+        <g fill="#1a3a8f">
+          <circle cx="0" cy="-34" r="5.5"/>
+          <circle cx="29.4" cy="-17" r="5.5"/>
+          <circle cx="29.4" cy="17" r="5.5"/>
+          <circle cx="0" cy="34" r="5.5"/>
+          <circle cx="-29.4" cy="17" r="5.5"/>
+          <circle cx="-29.4" cy="-17" r="5.5"/>
+          <circle cx="0" cy="0" r="7" fill="#c24e2a"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell"><svg width="16" height="16" viewBox="-50 -50 100 100"><circle cx="0" cy="0" r="34" stroke="#1a3a8f" stroke-width="5" fill="none"/><g stroke="#1a3a8f" stroke-width="5" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><circle cx="0" cy="0" r="10" fill="#c24e2a"/></svg></div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><circle cx="0" cy="0" r="34" stroke="#1a3a8f" stroke-width="4" fill="none"/><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/></g><circle cx="0" cy="0" r="9" fill="#c24e2a"/></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><circle cx="0" cy="0" r="34" stroke="#1a3a8f" stroke-width="3.5" fill="none"/><g stroke="#1a3a8f" stroke-width="3.5" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/></g><circle cx="0" cy="0" r="8" fill="#c24e2a"/></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><circle cx="0" cy="0" r="34" stroke="#1a3a8f" stroke-width="4" fill="none"/><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/></g><circle cx="0" cy="0" r="9" fill="#c24e2a"/></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Two-tone: center is "the lab," ring is "the field"</li><li>Distinctive silhouette</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>Ring crowds at 16px</li><li>Two-color needs one-color fallback</li></ul></div>
+    </div>
+  </article>
+
+  <!-- 03 — Hex nodes with inter-node edges (no hub) -->
+  <article class="logo-card">
+    <div class="logo-card-head">
+      <span class="idx">Option 03</span>
+      <span class="kind">Peer network · No hub</span>
+    </div>
+    <h3>Distributed, no center.</h3>
+    <p class="summary">Six nodes connected only to each other — no central hub. This is what a truly peer network <em>actually</em> looks like. A subtle political statement in the mark.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 03">
+        <g stroke="#1a3a8f" stroke-width="2.5" fill="none" stroke-linecap="round">
+          <polygon points="0,-34 29.4,-17 29.4,17 0,34 -29.4,17 -29.4,-17" fill="none" stroke-linejoin="round"/>
+          <line x1="0" y1="-34" x2="29.4" y2="17"/>
+          <line x1="0" y1="-34" x2="-29.4" y2="17"/>
+          <line x1="29.4" y1="-17" x2="-29.4" y2="17"/>
+          <line x1="29.4" y1="-17" x2="0" y2="34"/>
+          <line x1="29.4" y1="-17" x2="-29.4" y2="-17"/>
+          <line x1="29.4" y1="17" x2="0" y2="-34"/>
+          <line x1="29.4" y1="17" x2="-29.4" y2="-17"/>
+          <line x1="29.4" y1="17" x2="-29.4" y2="17"/>
+        </g>
+        <g fill="#1a3a8f">
+          <circle cx="0" cy="-34" r="5.5"/>
+          <circle cx="29.4" cy="-17" r="5.5"/>
+          <circle cx="29.4" cy="17" r="5.5"/>
+          <circle cx="0" cy="34" r="5.5"/>
+          <circle cx="-29.4" cy="17" r="5.5"/>
+          <circle cx="-29.4" cy="-17" r="5.5"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell">
+        <!-- at 16px, simplified to just hex + dots -->
+        <svg width="16" height="16" viewBox="-50 -50 100 100"><polygon points="0,-34 29.4,-17 29.4,17 0,34 -29.4,17 -29.4,-17" fill="none" stroke="#1a3a8f" stroke-width="6" stroke-linejoin="round"/><g fill="#1a3a8f"><circle cx="0" cy="-34" r="10"/><circle cx="29.4" cy="-17" r="10"/><circle cx="29.4" cy="17" r="10"/><circle cx="0" cy="34" r="10"/><circle cx="-29.4" cy="17" r="10"/><circle cx="-29.4" cy="-17" r="10"/></g></svg>
+      </div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3.5" fill="none" stroke-linecap="round"><polygon points="0,-34 29.4,-17 29.4,17 0,34 -29.4,17 -29.4,-17" stroke-linejoin="round"/><line x1="0" y1="-34" x2="29.4" y2="17"/><line x1="0" y1="-34" x2="-29.4" y2="17"/><line x1="29.4" y1="-17" x2="-29.4" y2="17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/></g></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round"><polygon points="0,-34 29.4,-17 29.4,17 0,34 -29.4,17 -29.4,-17" stroke-linejoin="round"/><line x1="0" y1="-34" x2="29.4" y2="17"/><line x1="0" y1="-34" x2="-29.4" y2="17"/><line x1="29.4" y1="-17" x2="-29.4" y2="17"/><line x1="29.4" y1="-17" x2="0" y2="34"/><line x1="29.4" y1="-17" x2="-29.4" y2="-17"/><line x1="29.4" y1="17" x2="0" y2="-34"/><line x1="29.4" y1="17" x2="-29.4" y2="-17"/><line x1="29.4" y1="17" x2="-29.4" y2="17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/></g></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3.5" fill="none" stroke-linecap="round"><polygon points="0,-34 29.4,-17 29.4,17 0,34 -29.4,17 -29.4,-17" stroke-linejoin="round"/><line x1="0" y1="-34" x2="29.4" y2="17"/><line x1="0" y1="-34" x2="-29.4" y2="17"/><line x1="29.4" y1="-17" x2="-29.4" y2="17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/></g></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Conceptually strongest — power is horizontal</li><li>Reads different from every civic-tech mark</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>Gets busy at small sizes — must simplify</li><li>Loses the snowflake read</li></ul></div>
+    </div>
+  </article>
+
+  <!-- 04 — Twelve node snowflake (richer) -->
+  <article class="logo-card alt">
+    <div class="logo-card-head">
+      <span class="idx">Option 04</span>
+      <span class="kind">Snowflake · Layered</span>
+    </div>
+    <h3>Two rings, growing out.</h3>
+    <p class="summary">Six inner nodes + six outer nodes, staggered. A literal read of "leadership density" — power grows in rings outward from organized cores.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 04">
+        <g stroke="#1a3a8f" stroke-width="2" fill="none" stroke-linecap="round">
+          <!-- inner spokes -->
+          <line x1="0" y1="0" x2="0" y2="-20"/>
+          <line x1="0" y1="0" x2="17.3" y2="-10"/>
+          <line x1="0" y1="0" x2="17.3" y2="10"/>
+          <line x1="0" y1="0" x2="0" y2="20"/>
+          <line x1="0" y1="0" x2="-17.3" y2="10"/>
+          <line x1="0" y1="0" x2="-17.3" y2="-10"/>
+          <!-- inner to outer (staggered 30°) -->
+          <line x1="0" y1="-20" x2="20" y2="-34.6"/>
+          <line x1="17.3" y1="-10" x2="34.6" y2="-20"/>
+          <line x1="17.3" y1="10" x2="40" y2="0"/>
+          <line x1="17.3" y1="10" x2="34.6" y2="20"/>
+          <line x1="0" y1="20" x2="20" y2="34.6"/>
+          <line x1="0" y1="20" x2="-20" y2="34.6"/>
+          <line x1="-17.3" y1="10" x2="-34.6" y2="20"/>
+          <line x1="-17.3" y1="10" x2="-40" y2="0"/>
+          <line x1="-17.3" y1="-10" x2="-34.6" y2="-20"/>
+          <line x1="-17.3" y1="-10" x2="-20" y2="-34.6"/>
+          <line x1="0" y1="-20" x2="-20" y2="-34.6"/>
+          <line x1="17.3" y1="-10" x2="20" y2="-34.6"/>
+        </g>
+        <g fill="#1a3a8f">
+          <circle cx="0" cy="-20" r="3.5"/>
+          <circle cx="17.3" cy="-10" r="3.5"/>
+          <circle cx="17.3" cy="10" r="3.5"/>
+          <circle cx="0" cy="20" r="3.5"/>
+          <circle cx="-17.3" cy="10" r="3.5"/>
+          <circle cx="-17.3" cy="-10" r="3.5"/>
+        </g>
+        <g fill="#c24e2a">
+          <circle cx="20" cy="-34.6" r="4"/>
+          <circle cx="34.6" cy="-20" r="4"/>
+          <circle cx="40" cy="0" r="4"/>
+          <circle cx="34.6" cy="20" r="4"/>
+          <circle cx="20" cy="34.6" r="4"/>
+          <circle cx="-20" cy="34.6" r="4"/>
+          <circle cx="-34.6" cy="20" r="4"/>
+          <circle cx="-40" cy="0" r="4"/>
+          <circle cx="-34.6" cy="-20" r="4"/>
+          <circle cx="-20" cy="-34.6" r="4"/>
+        </g>
+        <circle cx="0" cy="0" r="5" fill="#1a3a8f"/>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell"><!-- simplified 16px -->
+        <svg width="16" height="16" viewBox="-50 -50 100 100"><g fill="#1a3a8f"><circle cx="0" cy="0" r="12"/><circle cx="0" cy="-36" r="8"/><circle cx="31" cy="-18" r="8"/><circle cx="31" cy="18" r="8"/><circle cx="0" cy="36" r="8"/><circle cx="-31" cy="18" r="8"/><circle cx="-31" cy="-18" r="8"/></g></svg>
+      </div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-20"/><line x1="0" y1="0" x2="17.3" y2="-10"/><line x1="0" y1="0" x2="17.3" y2="10"/><line x1="0" y1="0" x2="0" y2="20"/><line x1="0" y1="0" x2="-17.3" y2="10"/><line x1="0" y1="0" x2="-17.3" y2="-10"/></g><g fill="#1a3a8f"><circle cx="0" cy="-20" r="5"/><circle cx="17.3" cy="-10" r="5"/><circle cx="17.3" cy="10" r="5"/><circle cx="0" cy="20" r="5"/><circle cx="-17.3" cy="10" r="5"/><circle cx="-17.3" cy="-10" r="5"/></g><g fill="#c24e2a"><circle cx="20" cy="-34.6" r="5"/><circle cx="34.6" cy="-20" r="5"/><circle cx="40" cy="0" r="5"/><circle cx="34.6" cy="20" r="5"/><circle cx="20" cy="34.6" r="5"/><circle cx="-20" cy="34.6" r="5"/><circle cx="-34.6" cy="20" r="5"/><circle cx="-40" cy="0" r="5"/><circle cx="-34.6" cy="-20" r="5"/><circle cx="-20" cy="-34.6" r="5"/></g></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="2" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-20"/><line x1="0" y1="0" x2="17.3" y2="-10"/><line x1="0" y1="0" x2="17.3" y2="10"/><line x1="0" y1="0" x2="0" y2="20"/><line x1="0" y1="0" x2="-17.3" y2="10"/><line x1="0" y1="0" x2="-17.3" y2="-10"/><line x1="0" y1="-20" x2="20" y2="-34.6"/><line x1="17.3" y1="-10" x2="34.6" y2="-20"/><line x1="17.3" y1="10" x2="40" y2="0"/><line x1="17.3" y1="10" x2="34.6" y2="20"/><line x1="0" y1="20" x2="20" y2="34.6"/><line x1="0" y1="20" x2="-20" y2="34.6"/><line x1="-17.3" y1="10" x2="-34.6" y2="20"/><line x1="-17.3" y1="10" x2="-40" y2="0"/><line x1="-17.3" y1="-10" x2="-34.6" y2="-20"/><line x1="-17.3" y1="-10" x2="-20" y2="-34.6"/><line x1="0" y1="-20" x2="-20" y2="-34.6"/><line x1="17.3" y1="-10" x2="20" y2="-34.6"/></g><g fill="#1a3a8f"><circle cx="0" cy="-20" r="3.5"/><circle cx="17.3" cy="-10" r="3.5"/><circle cx="17.3" cy="10" r="3.5"/><circle cx="0" cy="20" r="3.5"/><circle cx="-17.3" cy="10" r="3.5"/><circle cx="-17.3" cy="-10" r="3.5"/></g><g fill="#c24e2a"><circle cx="20" cy="-34.6" r="4"/><circle cx="34.6" cy="-20" r="4"/><circle cx="40" cy="0" r="4"/><circle cx="34.6" cy="20" r="4"/><circle cx="20" cy="34.6" r="4"/><circle cx="-20" cy="34.6" r="4"/><circle cx="-34.6" cy="20" r="4"/><circle cx="-40" cy="0" r="4"/><circle cx="-34.6" cy="-20" r="4"/><circle cx="-20" cy="-34.6" r="4"/></g><circle cx="0" cy="0" r="5" fill="#1a3a8f"/></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-20"/><line x1="0" y1="0" x2="17.3" y2="-10"/><line x1="0" y1="0" x2="17.3" y2="10"/><line x1="0" y1="0" x2="0" y2="20"/><line x1="0" y1="0" x2="-17.3" y2="10"/><line x1="0" y1="0" x2="-17.3" y2="-10"/></g><g fill="#1a3a8f"><circle cx="0" cy="-20" r="5"/><circle cx="17.3" cy="-10" r="5"/><circle cx="17.3" cy="10" r="5"/><circle cx="0" cy="20" r="5"/><circle cx="-17.3" cy="10" r="5"/><circle cx="-17.3" cy="-10" r="5"/></g></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Feels like a real organizing snowflake diagram</li><li>Great for hero + pattern use</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>Breaks at 16px — needs a glyph version</li><li>Potentially too "research-poster"</li></ul></div>
+    </div>
+  </article>
+
+  <!-- 05 — Asymmetric: one node filled (the lab in the network) -->
+  <article class="logo-card">
+    <div class="logo-card-head">
+      <span class="idx">Option 05</span>
+      <span class="kind">Snowflake · Anchored asymmetry</span>
+    </div>
+    <h3>The lab is one node.</h3>
+    <p class="summary">Five open nodes and one filled terracotta node. A quiet statement that the lab is part of — not apart from — the field it studies.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 05">
+        <circle cx="0" cy="0" r="34" stroke="#1a3a8f" stroke-width="2.5" fill="none" opacity="0.3"/>
+        <g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-34"/>
+          <line x1="0" y1="0" x2="29.4" y2="-17"/>
+          <line x1="0" y1="0" x2="29.4" y2="17"/>
+          <line x1="0" y1="0" x2="0" y2="34"/>
+          <line x1="0" y1="0" x2="-29.4" y2="17"/>
+          <line x1="0" y1="0" x2="-29.4" y2="-17"/>
+        </g>
+        <!-- outer nodes: 5 open rings + 1 filled terracotta -->
+        <g stroke="#1a3a8f" stroke-width="3" fill="#f7f1e3">
+          <circle cx="0" cy="-34" r="6"/>
+          <circle cx="29.4" cy="-17" r="6"/>
+          <circle cx="29.4" cy="17" r="6"/>
+          <circle cx="0" cy="34" r="6"/>
+          <circle cx="-29.4" cy="17" r="6"/>
+        </g>
+        <circle cx="-29.4" cy="-17" r="7" fill="#c24e2a"/>
+        <circle cx="0" cy="0" r="4" fill="#1a3a8f"/>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell"><svg width="16" height="16" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="5" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="8"/><circle cx="29.4" cy="-17" r="8"/><circle cx="29.4" cy="17" r="8"/><circle cx="0" cy="34" r="8"/><circle cx="-29.4" cy="17" r="8"/></g><circle cx="-29.4" cy="-17" r="10" fill="#c24e2a"/></svg></div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g stroke="#1a3a8f" stroke-width="3" fill="#f7f1e3"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/></g><circle cx="-29.4" cy="-17" r="8" fill="#c24e2a"/></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g stroke="#1a3a8f" stroke-width="3" fill="#f7f1e3"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/></g><circle cx="-29.4" cy="-17" r="7" fill="#c24e2a"/><circle cx="0" cy="0" r="4" fill="#1a3a8f"/></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g stroke="#1a3a8f" stroke-width="3" fill="#f7f1e3"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="-17" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/></g><circle cx="-29.4" cy="-17" r="8" fill="#c24e2a"/></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Most conceptually specific to <em>this</em> lab</li><li>Single point of asymmetry = memorable</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>Asymmetry needs to land in the same place every time — strict usage</li></ul></div>
+    </div>
+  </article>
+
+  <!-- 06 — Six-petal (organic, azulejo-aware) -->
+  <article class="logo-card alt">
+    <div class="logo-card-head">
+      <span class="idx">Option 06</span>
+      <span class="kind">Organic snowflake · Tile-aware</span>
+    </div>
+    <h3>Curves, not lines.</h3>
+    <p class="summary">Same six-fold symmetry but edges are <em>quarter-arcs</em> instead of straight lines. Echoes the Bulcão-inspired tile system already in the site; quietly softens the technical read.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 06">
+        <g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round">
+          <path d="M 0 -34 Q 15 -17 0 0 Q -15 -17 0 -34"/>
+          <path d="M 29.4 -17 Q 15 0 0 0 Q 15 -17 29.4 -17"/>
+          <path d="M 29.4 17 Q 15 0 0 0 Q 15 17 29.4 17"/>
+          <path d="M 0 34 Q -15 17 0 0 Q 15 17 0 34"/>
+          <path d="M -29.4 17 Q -15 0 0 0 Q -15 17 -29.4 17"/>
+          <path d="M -29.4 -17 Q -15 0 0 0 Q -15 -17 -29.4 -17"/>
+        </g>
+        <circle cx="0" cy="0" r="6" fill="#c24e2a"/>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell"><svg width="16" height="16" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="6" fill="none" stroke-linecap="round"><path d="M 0 -34 Q 15 -17 0 0 Q -15 -17 0 -34"/><path d="M 29.4 -17 Q 15 0 0 0 Q 15 -17 29.4 -17"/><path d="M 29.4 17 Q 15 0 0 0 Q 15 17 29.4 17"/><path d="M 0 34 Q -15 17 0 0 Q 15 17 0 34"/><path d="M -29.4 17 Q -15 0 0 0 Q -15 17 -29.4 17"/><path d="M -29.4 -17 Q -15 0 0 0 Q -15 -17 -29.4 -17"/></g></svg></div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><path d="M 0 -34 Q 15 -17 0 0 Q -15 -17 0 -34"/><path d="M 29.4 -17 Q 15 0 0 0 Q 15 -17 29.4 -17"/><path d="M 29.4 17 Q 15 0 0 0 Q 15 17 29.4 17"/><path d="M 0 34 Q -15 17 0 0 Q 15 17 0 34"/><path d="M -29.4 17 Q -15 0 0 0 Q -15 17 -29.4 17"/><path d="M -29.4 -17 Q -15 0 0 0 Q -15 -17 -29.4 -17"/></g><circle cx="0" cy="0" r="7" fill="#c24e2a"/></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round"><path d="M 0 -34 Q 15 -17 0 0 Q -15 -17 0 -34"/><path d="M 29.4 -17 Q 15 0 0 0 Q 15 -17 29.4 -17"/><path d="M 29.4 17 Q 15 0 0 0 Q 15 17 29.4 17"/><path d="M 0 34 Q -15 17 0 0 Q 15 17 0 34"/><path d="M -29.4 17 Q -15 0 0 0 Q -15 17 -29.4 17"/><path d="M -29.4 -17 Q -15 0 0 0 Q -15 -17 -29.4 -17"/></g><circle cx="0" cy="0" r="6" fill="#c24e2a"/></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><path d="M 0 -34 Q 15 -17 0 0 Q -15 -17 0 -34"/><path d="M 29.4 -17 Q 15 0 0 0 Q 15 -17 29.4 -17"/><path d="M 29.4 17 Q 15 0 0 0 Q 15 17 29.4 17"/><path d="M 0 34 Q -15 17 0 0 Q 15 17 0 34"/><path d="M -29.4 17 Q -15 0 0 0 Q -15 17 -29.4 17"/><path d="M -29.4 -17 Q -15 0 0 0 Q -15 -17 -29.4 -17"/></g><circle cx="0" cy="0" r="7" fill="#c24e2a"/></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Ties directly to the site's Bulcão tile DNA</li><li>Warmer — feels human, not clinical</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>Reads more "flower" than "network"</li><li>Loses the graph-y specificity</li></ul></div>
+    </div>
+  </article>
+
+  <!-- 07 — Hybrid: snowflake that reads as C -->
+  <article class="logo-card">
+    <div class="logo-card-head">
+      <span class="idx">Option 07</span>
+      <span class="kind">Hybrid · Mark + letterform</span>
+    </div>
+    <h3>Five-sixths — a "C" in the network.</h3>
+    <p class="summary">Six-fold snowflake with the top-right connection removed. The silhouette quietly carries a <strong>C</strong> — for Civic — without ever being a letterform. A visual wink rather than a logo-mark pun.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 07">
+        <g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round">
+          <line x1="0" y1="0" x2="0" y2="-34"/>
+          <!-- missing: 0,0 to 29.4,-17 -->
+          <line x1="0" y1="0" x2="29.4" y2="17"/>
+          <line x1="0" y1="0" x2="0" y2="34"/>
+          <line x1="0" y1="0" x2="-29.4" y2="17"/>
+          <line x1="0" y1="0" x2="-29.4" y2="-17"/>
+        </g>
+        <g fill="#1a3a8f">
+          <circle cx="0" cy="-34" r="5.5"/>
+          <circle cx="29.4" cy="17" r="5.5"/>
+          <circle cx="0" cy="34" r="5.5"/>
+          <circle cx="-29.4" cy="17" r="5.5"/>
+          <circle cx="-29.4" cy="-17" r="5.5"/>
+          <circle cx="0" cy="0" r="7"/>
+        </g>
+        <!-- orphaned node, unconnected -->
+        <circle cx="29.4" cy="-17" r="5.5" fill="none" stroke="#c24e2a" stroke-width="2.5"/>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell"><svg width="16" height="16" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="5" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="8"/><circle cx="29.4" cy="17" r="8"/><circle cx="0" cy="34" r="8"/><circle cx="-29.4" cy="17" r="8"/><circle cx="-29.4" cy="-17" r="8"/><circle cx="0" cy="0" r="10"/></g></svg></div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/><circle cx="0" cy="0" r="9"/></g><circle cx="29.4" cy="-17" r="6" fill="none" stroke="#c24e2a" stroke-width="3"/></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3.5" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/><circle cx="-29.4" cy="-17" r="6"/><circle cx="0" cy="0" r="8"/></g><circle cx="29.4" cy="-17" r="5.5" fill="none" stroke="#c24e2a" stroke-width="2.5"/></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="4" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g fill="#1a3a8f"><circle cx="0" cy="-34" r="7"/><circle cx="29.4" cy="17" r="7"/><circle cx="0" cy="34" r="7"/><circle cx="-29.4" cy="17" r="7"/><circle cx="-29.4" cy="-17" r="7"/><circle cx="0" cy="0" r="9"/></g></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Meaning layered into the silhouette</li><li>The un-connected node is a quiet story: "there's a node we haven't reached yet"</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>Asymmetry takes longer to read</li><li>Requires explanation — risk of being "clever"</li></ul></div>
+    </div>
+  </article>
+
+  <!-- 08 — Minimal: just dots, no lines -->
+  <article class="logo-card alt">
+    <div class="logo-card-head">
+      <span class="idx">Option 08</span>
+      <span class="kind">Implied network · Dots only</span>
+    </div>
+    <h3>The mark is the gap.</h3>
+    <p class="summary">Six dots arranged at hexagon points — no lines drawn. The network is implied, not declared. Quiet, confident, and deeply flexible; you can reveal the edges when you want to.</p>
+
+    <div class="mark-stage">
+      <svg viewBox="-50 -50 100 100" aria-label="Option 08">
+        <g fill="#1a3a8f">
+          <circle cx="0" cy="-34" r="8"/>
+          <circle cx="29.4" cy="-17" r="8"/>
+          <circle cx="29.4" cy="17" r="8"/>
+          <circle cx="0" cy="34" r="8"/>
+          <circle cx="-29.4" cy="17" r="8"/>
+          <circle cx="-29.4" cy="-17" r="8"/>
+        </g>
+        <circle cx="0" cy="0" r="4" fill="#c24e2a"/>
+      </svg>
+    </div>
+
+    <div class="scale-row">
+      <div class="cell"><svg width="16" height="16" viewBox="-50 -50 100 100"><g fill="#1a3a8f"><circle cx="0" cy="-34" r="11"/><circle cx="29.4" cy="-17" r="11"/><circle cx="29.4" cy="17" r="11"/><circle cx="0" cy="34" r="11"/><circle cx="-29.4" cy="17" r="11"/><circle cx="-29.4" cy="-17" r="11"/></g><circle cx="0" cy="0" r="6" fill="#c24e2a"/></svg></div>
+      <div class="cell"><svg width="24" height="24" viewBox="-50 -50 100 100"><g fill="#1a3a8f"><circle cx="0" cy="-34" r="9"/><circle cx="29.4" cy="-17" r="9"/><circle cx="29.4" cy="17" r="9"/><circle cx="0" cy="34" r="9"/><circle cx="-29.4" cy="17" r="9"/><circle cx="-29.4" cy="-17" r="9"/></g><circle cx="0" cy="0" r="5" fill="#c24e2a"/></svg></div>
+      <div class="cell"><svg width="48" height="48" viewBox="-50 -50 100 100"><g fill="#1a3a8f"><circle cx="0" cy="-34" r="8"/><circle cx="29.4" cy="-17" r="8"/><circle cx="29.4" cy="17" r="8"/><circle cx="0" cy="34" r="8"/><circle cx="-29.4" cy="17" r="8"/><circle cx="-29.4" cy="-17" r="8"/></g><circle cx="0" cy="0" r="4" fill="#c24e2a"/></svg></div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="-50 -50 100 100"><g fill="#1a3a8f"><circle cx="0" cy="-34" r="9"/><circle cx="29.4" cy="-17" r="9"/><circle cx="29.4" cy="17" r="9"/><circle cx="0" cy="34" r="9"/><circle cx="-29.4" cy="17" r="9"/><circle cx="-29.4" cy="-17" r="9"/></g><circle cx="0" cy="0" r="5" fill="#c24e2a"/></svg>
+        <div><b>Civic Power Lab</b><small>Harvard Kennedy School</small></div>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros"><h4>Pros</h4><ul><li>Survives at every size, effortlessly</li><li>Can be animated — lines appear/disappear to tell a story</li><li>Confident restraint</li></ul></div>
+      <div class="cons"><h4>Cons</h4><ul><li>May read as "loading indicator" until paired with wordmark</li></ul></div>
+    </div>
+  </article>
+
+</section>
+
+<!-- MY PICK -->
+<section class="pick">
+  <div class="container">
+    <div class="eyebrow">Recommendation</div>
+    <h2>My pick: <em style="color:#f4c58a;">Option 05</em> for primary, <em style="color:#f4c58a;">Option 08</em> for favicon.</h2>
+    <div class="pick-grid">
+      <div class="pick-stage">
+        <svg viewBox="-50 -50 100 100"><g stroke="#1a3a8f" stroke-width="3" fill="none" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-34"/><line x1="0" y1="0" x2="29.4" y2="-17"/><line x1="0" y1="0" x2="29.4" y2="17"/><line x1="0" y1="0" x2="0" y2="34"/><line x1="0" y1="0" x2="-29.4" y2="17"/><line x1="0" y1="0" x2="-29.4" y2="-17"/></g><g stroke="#1a3a8f" stroke-width="3" fill="#f1e9d8"><circle cx="0" cy="-34" r="6"/><circle cx="29.4" cy="-17" r="6"/><circle cx="29.4" cy="17" r="6"/><circle cx="0" cy="34" r="6"/><circle cx="-29.4" cy="17" r="6"/></g><circle cx="-29.4" cy="-17" r="7" fill="#c24e2a"/><circle cx="0" cy="0" r="4" fill="#1a3a8f"/></svg>
+      </div>
+      <div>
+        <p>
+          Option 05 does the most work per pixel. It <em>is</em> a snowflake,
+          it's clearly a network, and the single terracotta node says
+          something specific about the lab's relationship to the field —
+          not the hub, not outside it, one node among peers. The single
+          asymmetry gives it the "anchor detail" generic network marks lack.
+        </p>
+        <p style="margin-top:16px;">
+          For the 16×16 favicon, 05's asymmetry gets muddy — so switch to
+          Option 08 at favicon size. Same palette, same six-dot skeleton,
+          zero lines to crowd the pixels. A two-mark system where the big
+          version is complex and the tiny version is radically simple is
+          how most strong identities actually work.
+        </p>
+        <p style="margin-top:16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:#b8c5e8;">
+          Next step: pick two or three to iterate. I can do stroke-weight
+          studies, animated variants, or pattern extensions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-footer></div>
+
+<script src="assets/tiles.js?v=2"></script>
+<script src="assets/chrome.js?v=2"></script>
+</body>
+</html>

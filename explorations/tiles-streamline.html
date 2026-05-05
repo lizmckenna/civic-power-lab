@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bulcão tile study — Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1ead7;
+    --cream-2: #e5dcc0;
+    --ink: #141c1f;
+    --ink-2: #23333a;
+    --mute: #5e6f74;
+    --rule: #ccbf9f;
+    --teal: #15616d;
+    --teal-deep: #0d3d45;
+    --terracotta: #b84a2e;
+    --gold: #d9a636;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 56px 40px 80px;
+    background: var(--paper); color: var(--ink);
+    font-family: 'Work Sans', sans-serif; font-size: 15px; line-height: 1.55;
+  }
+  .wrap { max-width: 1340px; margin: 0 auto; }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 54px; line-height: 1.0; font-weight: 400; letter-spacing: -0.02em; margin: 0 0 12px;
+  }
+  h1 em { color: var(--teal); font-style: italic; }
+  .lede { font-family: 'Source Serif 4', serif; font-size: 19px; max-width: 62ch; color: var(--ink-2); }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 18px;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+
+  .back {
+    display: inline-flex; gap: 8px; color: var(--teal);
+    border-bottom: 1px solid currentColor; padding-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; margin-bottom: 32px;
+  }
+
+  .variants { margin-top: 48px; }
+
+  .variant {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    padding: 28px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .variant:last-child { border-bottom: none; }
+  .variant .v-meta .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 10px;
+  }
+  .variant .v-meta h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px; font-weight: 400; letter-spacing: -0.015em;
+    line-height: 1.1; margin: 0 0 10px;
+  }
+  .variant .v-meta p {
+    margin: 0 0 16px;
+    color: var(--ink-2);
+    font-family: 'Source Serif 4', serif; font-size: 15.5px;
+  }
+  .variant .v-meta .params {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--mute);
+    line-height: 1.7;
+    border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 10px;
+  }
+  .variant .v-meta .params b { color: var(--ink); font-weight: 500; }
+  .variant .v-meta .verdict {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 14px;
+  }
+  .variant .v-meta .verdict.good { color: var(--teal); }
+  .variant .v-meta .verdict.meh { color: var(--mute); }
+
+  .variant .v-band {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .band-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; color: var(--mute);
+    text-transform: uppercase;
+  }
+
+  /* horizontal tile strip (like research.html project-tiles) */
+  .strip {
+    width: 100%;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .strip svg { display: block; width: 100%; height: auto; }
+
+  /* with-logo comparison — show hero-style preview */
+  .preview {
+    background: var(--cream-2);
+    border: 1px solid var(--rule);
+    padding: 40px 36px;
+    display: grid;
+    grid-template-columns: 80px 1fr 200px;
+    gap: 28px;
+    align-items: center;
+  }
+  .preview .headline {
+    font-family: 'Source Serif 4', serif;
+    font-size: 22px; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink);
+    font-weight: 400;
+  }
+  .preview .headline em { color: var(--teal); font-style: italic; }
+  .preview .right-strip {
+    width: 200px; height: 56px;
+    overflow: hidden; border-radius: 2px;
+    background: var(--paper);
+  }
+  .preview .right-strip svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a href="../index.html" class="back">← Back to site</a>
+
+<section>
+  <div class="eyebrow">Exploration · tile streamline</div>
+  <h1>Fewer tiles, <em>more pattern</em>.</h1>
+  <p class="lede">
+    The current Bulcão bands mix four to five motifs per strip with two or
+    three colors at 0.85–0.92 density. Next to a dense logo, that reads as
+    noise. Below are six alternatives that keep the modular-tile feel while
+    turning the volume down. Each is shown in a strip and in a with-logo
+    preview so you can see it next to the mark.
+  </p>
+</section>
+
+<div class="variants">
+
+  <!-- 00 CURRENT -->
+  <div class="variant">
+    <div class="v-meta">
+      <div class="tag">00 · baseline</div>
+      <h2>What's shipping now.</h2>
+      <p>
+        Five motifs (arc, disc, tri, squiggle, banana), two colors, 0.9 density.
+        This is the current research.html strip.
+      </p>
+      <div class="params">
+        <div><b>motifs</b> · arc, disc, tri, squiggle, banana</div>
+        <div><b>colors</b> · 2 (teal + terracotta)</div>
+        <div><b>density</b> · 0.90</div>
+      </div>
+      <div class="verdict meh">— Busy. Hard to scan.</div>
+    </div>
+    <div class="v-band">
+      <div class="band-label">18 × 2 strip</div>
+      <div class="strip" id="s-00"></div>
+      <div class="band-label" style="margin-top:8px;">With logo</div>
+      <div class="preview">
+        <span id="logo-00"></span>
+        <div class="headline">The R&amp;D arm of <em>democracy</em>.</div>
+        <div class="right-strip" id="sm-00"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 ARC ONLY -->
+  <div class="variant">
+    <div class="v-meta">
+      <div class="tag">01 · one motif</div>
+      <h2>Arc only, one color.</h2>
+      <p>
+        The quarter-arc is the most archetypal Bulcão motif. Used alone, the
+        random 90° rotations become the whole vocabulary — fullness emerges
+        from orientation, not from variety.
+      </p>
+      <div class="params">
+        <div><b>motifs</b> · arc (only)</div>
+        <div><b>colors</b> · 1 (teal)</div>
+        <div><b>density</b> · 0.85</div>
+      </div>
+      <div class="verdict good">+ Clean, rhythmic, very Bulcão.</div>
+    </div>
+    <div class="v-band">
+      <div class="band-label">18 × 2 strip</div>
+      <div class="strip" id="s-01"></div>
+      <div class="band-label" style="margin-top:8px;">With logo</div>
+      <div class="preview">
+        <span id="logo-01"></span>
+        <div class="headline">The R&amp;D arm of <em>democracy</em>.</div>
+        <div class="right-strip" id="sm-01"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 ARC ONLY, SPARSE -->
+  <div class="variant">
+    <div class="v-meta">
+      <div class="tag">02 · one motif · sparse</div>
+      <h2>Arc only, breathing room.</h2>
+      <p>
+        Same vocabulary as 01 but density dropped to 0.55. The strip reads as
+        pattern <em>and</em> negative space — quieter, more editorial.
+      </p>
+      <div class="params">
+        <div><b>motifs</b> · arc (only)</div>
+        <div><b>colors</b> · 1 (teal)</div>
+        <div><b>density</b> · 0.55</div>
+      </div>
+      <div class="verdict good">+ Quietest option. Best for page sections.</div>
+    </div>
+    <div class="v-band">
+      <div class="band-label">18 × 2 strip</div>
+      <div class="strip" id="s-02"></div>
+      <div class="band-label" style="margin-top:8px;">With logo</div>
+      <div class="preview">
+        <span id="logo-02"></span>
+        <div class="headline">The R&amp;D arm of <em>democracy</em>.</div>
+        <div class="right-strip" id="sm-02"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 DISC ONLY -->
+  <div class="variant">
+    <div class="v-meta">
+      <div class="tag">03 · one motif · solid</div>
+      <h2>Quarter-disc only.</h2>
+      <p>
+        Solid quarter-circles, no outlines. The pattern feels architectural,
+        like the Brasília facades Bulcão designed for Niemeyer. More weight,
+        less delicacy.
+      </p>
+      <div class="params">
+        <div><b>motifs</b> · disc (only)</div>
+        <div><b>colors</b> · 1 (teal)</div>
+        <div><b>density</b> · 0.80</div>
+      </div>
+      <div class="verdict good">+ Most graphic. Great for headers.</div>
+    </div>
+    <div class="v-band">
+      <div class="band-label">18 × 2 strip</div>
+      <div class="strip" id="s-03"></div>
+      <div class="band-label" style="margin-top:8px;">With logo</div>
+      <div class="preview">
+        <span id="logo-03"></span>
+        <div class="headline">The R&amp;D arm of <em>democracy</em>.</div>
+        <div class="right-strip" id="sm-03"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 ARC + DISC -->
+  <div class="variant">
+    <div class="v-meta">
+      <div class="tag">04 · two motifs</div>
+      <h2>Arc + disc. Hollow &amp; filled.</h2>
+      <p>
+        A binary vocabulary: one stroke, one fill. Two motifs feels calmer
+        than five because the rhythm is legible — you can read it as a
+        composition rather than noise.
+      </p>
+      <div class="params">
+        <div><b>motifs</b> · arc, disc</div>
+        <div><b>colors</b> · 1 (teal)</div>
+        <div><b>density</b> · 0.75</div>
+      </div>
+      <div class="verdict good">+ Best compromise between rhythm and restraint.</div>
+    </div>
+    <div class="v-band">
+      <div class="band-label">18 × 2 strip</div>
+      <div class="strip" id="s-04"></div>
+      <div class="band-label" style="margin-top:8px;">With logo</div>
+      <div class="preview">
+        <span id="logo-04"></span>
+        <div class="headline">The R&amp;D arm of <em>democracy</em>.</div>
+        <div class="right-strip" id="sm-04"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 ARC + DISC, 2 COLOR -->
+  <div class="variant">
+    <div class="v-meta">
+      <div class="tag">05 · two motifs · two colors</div>
+      <h2>Arc + disc. Teal &amp; terracotta.</h2>
+      <p>
+        Same as 04 but reintroduces the terracotta accent. The color contrast
+        carries rhythm; we lean harder on chromatic interest and keep the
+        shapes minimal.
+      </p>
+      <div class="params">
+        <div><b>motifs</b> · arc, disc</div>
+        <div><b>colors</b> · 2 (teal + terracotta)</div>
+        <div><b>density</b> · 0.70</div>
+      </div>
+      <div class="verdict good">+ Warmest. Best when you want the band to lead.</div>
+    </div>
+    <div class="v-band">
+      <div class="band-label">18 × 2 strip</div>
+      <div class="strip" id="s-05"></div>
+      <div class="band-label" style="margin-top:8px;">With logo</div>
+      <div class="preview">
+        <span id="logo-05"></span>
+        <div class="headline">The R&amp;D arm of <em>democracy</em>.</div>
+        <div class="right-strip" id="sm-05"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 ARC, ALIGNED GRID -->
+  <div class="variant">
+    <div class="v-meta">
+      <div class="tag">06 · one motif · aligned</div>
+      <h2>Arc only, fixed rotation.</h2>
+      <p>
+        No random rotations. Every arc points the same way, 100% density. You
+        get a uniform "wave" pattern like a scalloped border. Reads as
+        ornament rather than composition.
+      </p>
+      <div class="params">
+        <div><b>motifs</b> · arc (only)</div>
+        <div><b>colors</b> · 1 (teal)</div>
+        <div><b>density</b> · 1.0 · no random rotation</div>
+      </div>
+      <div class="verdict meh">− Too uniform. Loses Bulcão's modular-chance feel.</div>
+    </div>
+    <div class="v-band">
+      <div class="band-label">18 × 2 strip</div>
+      <div class="strip" id="s-06"></div>
+      <div class="band-label" style="margin-top:8px;">With logo</div>
+      <div class="preview">
+        <span id="logo-06"></span>
+        <div class="headline">The R&amp;D arm of <em>democracy</em>.</div>
+        <div class="right-strip" id="sm-06"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</section>
+
+<section style="margin-top:64px; padding: 32px 36px; background: var(--ink); color: var(--paper); border: 1px solid var(--rule);">
+  <div class="mono" style="color: var(--gold); margin-bottom:10px;">Recommendation</div>
+  <h1 style="color: var(--paper); font-size: 36px; margin: 0 0 14px;">Go with <em style="color: var(--gold); font-style: italic;">01 · Arc only</em> as the site-wide default.</h1>
+  <p style="font-family: 'Source Serif 4', serif; font-size: 18px; max-width: 70ch; color: #d8cdb0; margin: 0;">
+    Pair it with <b style="color:var(--paper);">02 (sparse arc)</b> for quiet section dividers,
+    and pull out <b style="color:var(--paper);">04 (arc + disc)</b> only where the band needs
+    more density (press-feature backgrounds, research project headers). Save
+    multi-color combinations for one or two hero moments, not every strip.
+  </p>
+</section>
+
+</div>
+
+<!-- Real tile renderer -->
+<script src="../assets/tiles.js?v=11"></script>
+<script>
+  const TEAL = '#15616d';
+  const TERRA = '#b84a2e';
+  const CREAM = '#f1ead7';
+  const DEEP = '#0d3d45';
+
+  // Override random to be deterministic via seed so each variant is stable.
+  // bulcaoTiles already accepts a `seed`; we call it directly and inject SVG.
+
+  const strip = (opts) => {
+    return window.bulcaoTiles(opts.cols, opts.rows, {
+      cols: opts.cols, rows: opts.rows,
+      seed: opts.seed,
+      density: opts.density,
+      bg: opts.bg,
+      colors: opts.colors,
+      motifs: opts.motifs,
+      rotateRandom: opts.rotateRandom !== false,
+    });
+  };
+
+  const BANDS = {
+    '00': { cols: 18, rows: 2, seed: 11, density: 0.90, bg: CREAM, colors: [TEAL, TERRA], motifs: ['arc','disc','tri','squiggle','banana'] },
+    '01': { cols: 18, rows: 2, seed: 21, density: 0.85, bg: CREAM, colors: [TEAL], motifs: ['arc'] },
+    '02': { cols: 18, rows: 2, seed: 22, density: 0.55, bg: CREAM, colors: [TEAL], motifs: ['arc'] },
+    '03': { cols: 18, rows: 2, seed: 23, density: 0.80, bg: CREAM, colors: [TEAL], motifs: ['disc'] },
+    '04': { cols: 18, rows: 2, seed: 24, density: 0.75, bg: CREAM, colors: [TEAL], motifs: ['arc','disc'] },
+    '05': { cols: 18, rows: 2, seed: 25, density: 0.70, bg: CREAM, colors: [TEAL, TERRA], motifs: ['arc','disc'] },
+    '06': { cols: 18, rows: 2, seed: 26, density: 1.0, bg: CREAM, colors: [TEAL], motifs: ['arc'], rotateRandom: false },
+  };
+
+  // Small strip for the "with logo" preview — 12 × 2
+  const SMALL = {
+    '00': { ...BANDS['00'], cols: 8, rows: 2 },
+    '01': { ...BANDS['01'], cols: 8, rows: 2 },
+    '02': { ...BANDS['02'], cols: 8, rows: 2 },
+    '03': { ...BANDS['03'], cols: 8, rows: 2 },
+    '04': { ...BANDS['04'], cols: 8, rows: 2 },
+    '05': { ...BANDS['05'], cols: 8, rows: 2 },
+    '06': { ...BANDS['06'], cols: 8, rows: 2 },
+  };
+
+  for (const k of Object.keys(BANDS)) {
+    document.getElementById('s-' + k).innerHTML = strip(BANDS[k]);
+    document.getElementById('sm-' + k).innerHTML = strip(SMALL[k]);
+    // logo next to each preview — Full tier at 64px
+    document.getElementById('logo-' + k).innerHTML = window.labMark(64, TEAL, TERRA);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Practice, Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css?v=11">
+<style>
+  .p-head { padding: 88px 0; border-bottom: 1px solid var(--rule); position: relative; }
+  .p-head.alt { background: var(--cream-2); }
+  .p-head.cobalt { background: var(--cobalt-deep); color: var(--cream); }
+  .p-head.cobalt h2 { color: var(--cream); }
+  .p-head.cobalt .p-lede { color: #d8dfee; }
+  .p-head.cobalt .p-body { color: #d8dfee; }
+  .p-head.cobalt .p-body h3 { color: #f4c58a; }
+  .p-head.cobalt .p-idx { color: #f4c58a; border-color: #f4c58a; }
+
+  .p-row { display: grid; grid-template-columns: 180px 1fr; gap: 32px; align-items: start; margin-bottom: 40px; }
+  @media (max-width: 800px) { .p-row { grid-template-columns: 1fr; gap: 8px; } }
+  .p-idx { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cobalt); padding-top: 14px; border-top: 2px solid var(--cobalt); }
+  .p-title h2 { font-size: clamp(34px, 4.2vw, 58px); line-height: 1; margin-bottom: 20px; }
+  .p-lede { font-family: var(--font-display); font-size: 19px; line-height: 1.45; color: var(--ink-2); max-width: 60ch; }
+
+  .p-body-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; }
+  @media (max-width: 900px) { .p-body-grid { grid-template-columns: 1fr; } }
+  .p-body { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+  .p-body h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); font-weight: 400; margin: 24px 0 8px; }
+  .p-body h3:first-child { margin-top: 0; }
+  .p-body p { margin: 0 0 16px; }
+  .p-body ul { padding-left: 18px; margin: 0 0 16px; }
+  .p-body li { margin-bottom: 6px; }
+
+  .p-side { background: var(--paper); border: 1px solid var(--rule); padding: 24px; font-size: 14px; }
+  .p-side.cobalt { background: #081d4e; color: var(--cream); border-color: #081d4e; }
+  .p-side.cobalt .mono { color: #b8c5e8; }
+  .p-side dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+  .p-side dt { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 4px; }
+  .p-side.cobalt dt { color: #b8c5e8; }
+  .p-side dd { margin: 0; font-family: var(--font-display); font-size: 16px; line-height: 1.3; }
+
+  .p-tiles { height: 100px; margin-top: 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; }
+
+  .ethos { background: var(--cream-2); padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  .ethos-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
+  @media (max-width: 800px) { .ethos-grid { grid-template-columns: 1fr; gap: 16px; } }
+  .ethos h2 { font-size: clamp(28px, 3.4vw, 46px); line-height: 1.05; }
+  .ethos-cols p { font-family: var(--font-display); font-size: 17px; line-height: 1.5; color: var(--ink-2); margin: 0 0 18px; }
+
+  .placeholder-stripe {
+    padding: 4px 10px; font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+    background: repeating-linear-gradient(-45deg, transparent 0 8px, rgba(0,0,0,.05) 8px 10px);
+    border: 1px solid var(--rule); display: inline-block; margin-bottom: 16px;
+  }
+</style>
+</head>
+<body>
+<div data-nav></div>
+
+<header class="page-head">
+  <div class="container">
+    <div class="page-head-inner">
+      <div>
+        <div class="eyebrow">Practice</div>
+        <h1>Research is one half. Building is the other.</h1>
+      </div>
+      <p class="lede">
+        Practice at the lab means the tools, trainings, and field
+        collaborations we ship alongside the research. The R&amp;D arm
+        of democracy needs an arm, this is it.
+      </p>
+    </div>
+  </div>
+</header>
+
+<section class="ethos">
+  <div class="container">
+    <div class="ethos-grid">
+      <div>
+        <div class="eyebrow" style="color:var(--terracotta);">Why a practice tab</div>
+        <h2>The field already learns. We're trying to help it learn faster.</h2>
+      </div>
+      <div class="ethos-cols">
+        <p>
+          The dominant civic-tech platforms are investor-owned, expensive,
+          and designed to retain users rather than develop their practice.
+          When organizations can't systematically capture or learn from
+          their relational data, field-wide learning is impossible.
+        </p>
+        <p>
+          We want to change that, with open-source infrastructure, shared
+          measurement, training that meets organizers where they are, and
+          collaboration with the funders and intermediaries already working
+          on the same problem.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROUNDWORK -->
+<section class="p-head cobalt" id="groundwork">
+  <div class="container">
+    <div class="p-row">
+      <div class="p-idx">Tool 01 · Headliner<br>Alpha in 2026</div>
+      <div class="p-title">
+        <h2>Groundwork.</h2>
+        <p class="p-lede">
+          An open-source relational organizing platform, built by and for
+          the field. Structured records of recruitment channels, one-on-ones,
+          commitment follow-through, leadership development, team formation,
+          and event participation, all linked to individual contacts and
+          organizational outcomes over time.
+        </p>
+      </div>
+    </div>
+
+    <div class="p-body-grid">
+      <div class="p-body">
+        <h3>Why now</h3>
+        <p>
+          AI-assisted tooling now makes it feasible to build production-quality
+          alternatives to incumbent civic tech at a fraction of prior cost.
+          That's a time-limited window to reclaim this infrastructure from
+          the private sector and place it in the hands of the people using
+          it.
+        </p>
+        <h3>What it captures</h3>
+        <ul>
+          <li>One-on-one conversations &amp; commitment follow-through</li>
+          <li>Leadership development trajectories over time</li>
+          <li>Weekly organizer reports &amp; coach responses</li>
+          <li>Team formation and dissolution</li>
+          <li>Event participation linked to individual contact records</li>
+          <li>Cross-organizational benchmarks (with partner consent)</li>
+        </ul>
+        <h3>How it ships</h3>
+        <p>
+          Staggered rollout across the POLIS network, alpha with 1–2 orgs,
+          beta with 5–10, then full network, producing both the field-wide
+          evidence base and the exogenous variation in adoption timing we use
+          to identify effects. Infrastructure costs land around $50 – 200/month
+          per organization, a fraction of incumbent alternatives.
+        </p>
+        <h3>Who's building it</h3>
+        <p>
+          A small forward-deployed engineering team, embedded with partner
+          organizers, and shaped by prototype jams with collaborators including
+          Cortico, Lumoviz, and Solidarity.tech. The platform is
+          democratically governed, not investor-owned.
+        </p>
+      </div>
+      <aside class="p-side cobalt">
+        <div class="mono" style="margin-bottom:16px;">Tool Brief</div>
+        <dl>
+          <dt>Kind</dt><dd>Open-source platform</dd>
+          <dt>Status</dt><dd>Alpha 2026</dd>
+          <dt>Rollout</dt><dd>Alpha → Beta → Network</dd>
+          <dt>Cost to orgs</dt><dd>$50 – 200 / mo</dd>
+          <dt>Governance</dt><dd>Field-owned, democratically governed</dd>
+          <dt>Built with</dt><dd>POLIS partners · DPI Fund · Organizing Lab</dd>
+        </dl>
+        <div style="border-top:1px solid rgba(255,255,255,.22);margin-top:20px;padding-top:16px;">
+          <a href="connect.html#partner" style="color:#f4c58a;border-bottom:1px solid #f4c58a;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Inquire about a prototype jam →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div class="p-tiles" data-tiles data-cols="18" data-rows="1" data-seed="601" data-density="0.92" data-bg="#0f2a6b" data-colors="#f1e9d8,#f4c58a" data-motifs="arc,doubleArc,dots,disc,squiggle"></div>
+</section>
+
+<!-- WORKSHOPS -->
+<section class="p-head" id="workshops">
+  <div class="container">
+    <div class="p-row">
+      <div class="p-idx">Program 02<br>Running · Cohort-based</div>
+      <div class="p-title">
+        <h2>Organizing workshops.</h2>
+        <p class="p-lede">
+          A structured training arc delivered across the POLIS network in
+          collaboration with the Organizing Lab, building leadership
+          density in real time while producing the data that lets us
+          measure what training does.
+        </p>
+      </div>
+    </div>
+    <div class="p-body-grid">
+      <div class="p-body">
+        <h3>Curriculum spine</h3>
+        <ul>
+          <li>Public narrative &amp; the organizer's story of self</li>
+          <li>One-on-ones as a research method</li>
+          <li>Leadership teams and shared accountability</li>
+          <li>Strategy and the strategic chart</li>
+          <li>Measurement: what to count, and why</li>
+        </ul>
+        <h3>Phased delivery</h3>
+        <p>
+          Workshop timing is staggered across the network, letting us
+          compare leadership-density trajectories across cohorts. Combined
+          with Groundwork adoption, the 2 × 2 design (platform × training)
+          lets us separately identify the effect of data infrastructure
+          from the effect of training.
+        </p>
+        <h3>Built with</h3>
+        <p>
+          The <span class="placeholder-stripe" style="padding:2px 6px;">Organizing Lab</span>, with public-narrative and organizing-pedagogy lineage that has trained tens of thousands of organizers internationally.
+        </p>
+      </div>
+      <aside class="p-side">
+        <div class="mono" style="margin-bottom:16px;">Program Brief</div>
+        <dl>
+          <dt>Format</dt><dd>Cohort-based workshop arc</dd>
+          <dt>Partner</dt><dd>Organizing Lab</dd>
+          <dt>Delivery</dt><dd>In-person + virtual follow-ups</dd>
+          <dt>Cohorts</dt><dd>Staggered across POLIS orgs</dd>
+          <dt>Measurement</dt><dd>Pre/post, longitudinal</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+  <div class="p-tiles" data-tiles data-cols="18" data-rows="1" data-seed="611" data-density="0.88" data-bg="#f1e9d8" data-colors="#c24e2a,#1a3a8f" data-motifs="arc,banana,squiggle,tri"></div>
+</section>
+
+<!-- POWER METRICS -->
+<section class="p-head alt" id="metrics">
+  <div class="container">
+    <div class="p-row">
+      <div class="p-idx" style="color:var(--terracotta);border-color:var(--terracotta);">Program 03<br>Emerging standard</div>
+      <div class="p-title">
+        <h2>Power metrics.</h2>
+        <p class="p-lede">
+          A small set of indicators that let organizations see their own
+          power-building as clearly as they see their turnout, measured at
+          the level of practice, not just output.
+        </p>
+      </div>
+    </div>
+    <div class="p-body-grid">
+      <div class="p-body">
+        <h3>What we measure</h3>
+        <ul>
+          <li><b>Leadership density.</b> The ratio of people taking durable leadership roles to the total membership engaged.</li>
+          <li><b>Commitment follow-through.</b> The gap between what volunteers say yes to and what they do.</li>
+          <li><b>Relational network density.</b> How connected the organization's base is to itself.</li>
+          <li><b>Coach-to-organizer ratio.</b> A staff measure that predicts downstream leadership development.</li>
+          <li><b>Turf depth.</b> The concentration of leaders in a given geography.</li>
+        </ul>
+        <h3>How orgs use it</h3>
+        <p>
+          Partner organizations receive quarterly benchmarks (anonymized
+          across the network) and longitudinal tracking for their own
+          practice. The goal is not a scoreboard, it's a language.
+        </p>
+      </div>
+      <aside class="p-side">
+        <div class="mono" style="margin-bottom:16px;">Program Brief</div>
+        <dl>
+          <dt>Status</dt><dd>Emerging field standard</dd>
+          <dt>Draws on</dt><dd>Prisms of the People thresholds</dd>
+          <dt>Feeds into</dt><dd>POLIS research · Groundwork analytics</dd>
+          <dt>Delivery</dt><dd>Quarterly partner benchmarks</dd>
+        </dl>
+      </aside>
+    </div>
+  </div>
+  <div class="p-tiles" data-tiles data-cols="18" data-rows="1" data-seed="621" data-density="0.9" data-bg="#ebe1cb" data-colors="#c24e2a,#5a6b34" data-motifs="dots,half,doubleArc,arc"></div>
+</section>
+
+<!-- DPI / CIVIC POWER COLLABORATIONS -->
+<section class="p-head" id="dpi">
+  <div class="container">
+    <div class="p-row">
+      <div class="p-idx">Program 04<br>Ongoing · Field-facing</div>
+      <div class="p-title">
+        <h2>Civic power &amp; field collaborations.</h2>
+        <p class="p-lede">
+          The lab doesn't work alone. Our practice arm runs through a set of
+          long-standing collaborations, with intermediaries, funders, and
+          civic-tech peers, to build the field-owned infrastructure the
+          moment demands.
+        </p>
+      </div>
+    </div>
+    <div class="p-body-grid">
+      <div class="p-body">
+        <h3>Anchor collaborations</h3>
+        <ul>
+          <li><b>Democracy &amp; Power Innovation Fund (DPI).</b> Shared work on field-wide infrastructure, civic-tech governance, and funder practice. A primary partner on the Groundwork platform vision.</li>
+          <li><b>Organizing Lab.</b> Workshop design and delivery; shared pedagogical spine; joint measurement of training effects.</li>
+          <li><b>Cortico · Lumoviz · Solidarity.tech.</b> Peer civic-tech organizations with whom we convene open-source "prototype jams" to stress-test field tools.</li>
+        </ul>
+        <h3>Convenings</h3>
+        <ul>
+          <li><span class="placeholder-stripe" style="padding:2px 6px;">Prototype jams</span>, Open working sessions with peer civic-tech orgs.</li>
+          <li><span class="placeholder-stripe" style="padding:2px 6px;">Learning circles</span>, Cross-org reflection for POLIS partners.</li>
+          <li><span class="placeholder-stripe" style="padding:2px 6px;">Annual field meeting</span>, Researchers, organizers, funders, together.</li>
+        </ul>
+      </div>
+      <aside class="p-side">
+        <div class="mono" style="margin-bottom:16px;">Collaborations</div>
+        <dl>
+          <dt>Primary</dt><dd>DPI Fund · Organizing Lab</dd>
+          <dt>Civic tech peers</dt><dd>Cortico · Lumoviz · Solidarity.tech</dd>
+          <dt>Convenings</dt><dd>Jams · learning circles · field meeting</dd>
+        </dl>
+        <div style="border-top:1px solid var(--rule);margin-top:20px;padding-top:16px;">
+          <a href="connect.html#partner" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">Collaborate with us →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div class="p-tiles" data-tiles data-cols="18" data-rows="1" data-seed="631" data-density="0.88" data-bg="#f1e9d8" data-colors="#5a6b34,#1a3a8f" data-motifs="arc,dots,tri,banana"></div>
+</section>
+
+<!-- CTA -->
+<section class="section cream-2">
+  <div class="container" style="text-align:center;">
+    <div class="eyebrow" style="justify-content:center;color:var(--terracotta);">Build with us</div>
+    <h2 style="max-width:22ch;margin:0 auto 16px;">Organizing groups, funders, peer engineers, we want to hear from you.</h2>
+    <p style="font-family:var(--font-display);font-size:18px;line-height:1.5;color:var(--ink-2);max-width:56ch;margin:0 auto 32px;">
+      Groundwork is being built in the open and shaped by the people using
+      it. If your organization wants a seat at the table, start with a
+      written spec.
+    </p>
+    <a href="connect.html#partner" class="btn cobalt">Submit a research or tooling spec →</a>
+  </div>
+</section>
+
+<div data-footer></div>
+<script src="assets/tiles.js?v=11"></script>
+<script src="assets/chrome.js?v=11"></script>
+</body>
+</html>

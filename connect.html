@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Work with us, Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css?v=11">
+<style>
+  .intake-hero {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .intake-hero h1 {
+    font-size: clamp(44px, 6vw, 88px);
+    line-height: 0.95;
+    margin-bottom: 20px;
+  }
+  .intake-hero .lede {
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+
+  /* Path selector */
+  .path-select {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) { .path-select { grid-template-columns: 1fr; } }
+  .path {
+    padding: 32px;
+    border-right: 1px solid var(--rule);
+    cursor: pointer;
+    background: var(--cream);
+    transition: background .15s;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: none;
+    border-right: 1px solid var(--rule);
+    font-family: var(--font-body);
+    color: inherit;
+    position: relative;
+  }
+  .path:last-child { border-right: none; }
+  .path:hover { background: var(--cream-2); }
+  .path.active { background: var(--cobalt-deep); color: var(--cream); }
+  .path.active .mono { color: #b8c5e8; }
+  .path.active h3 { color: var(--cream); }
+  .path.active p { color: #d8dfee; }
+
+  .path .mono { color: var(--cobalt); margin-bottom: 14px; font-size: 11px; letter-spacing:0.14em; }
+  .path h3 { font-size: 26px; margin-bottom: 8px; }
+  .path p { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+  .path .check {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--rule);
+    border-radius: 50%;
+  }
+  .path.active .check {
+    background: var(--cream);
+    border-color: var(--cream);
+  }
+  .path.active .check::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--cobalt-deep);
+    margin: 4.5px;
+  }
+
+  /* Forms */
+  .form-wrap {
+    padding: 64px 0 96px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+  }
+  @media (max-width: 900px) { .form-wrap { grid-template-columns: 1fr; gap: 32px; } }
+
+  .form-sidebar { position: sticky; top: 100px; align-self: start; }
+  .form-sidebar h2 { font-size: clamp(26px, 2.4vw, 36px); margin-bottom: 14px; }
+  .form-sidebar p {
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+  }
+  .form-sidebar ul {
+    padding-left: 18px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+  }
+  .form-sidebar .callout {
+    background: var(--paper);
+    border-left: 3px solid var(--cobalt);
+    padding: 16px 20px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin-top: 20px;
+  }
+  .form-sidebar .callout b { font-family: var(--font-display); font-weight: 500; }
+
+  .form-body { display: none; }
+  .form-body.active { display: block; }
+
+  .form-section {
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .form-section:last-of-type { border-bottom: none; }
+  .form-section-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cobalt);
+    margin-bottom: 4px;
+  }
+  .form-section-title span { color: var(--mute); margin-left: 8px; }
+  .form-section-desc {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--mute);
+    line-height: 1.5;
+    margin: 4px 0 24px;
+    max-width: 54ch;
+  }
+
+  .field { margin-bottom: 22px; }
+  .field label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .field .hint {
+    display: block;
+    font-size: 13px;
+    color: var(--mute);
+    margin-bottom: 8px;
+    font-family: var(--font-body);
+    line-height: 1.5;
+  }
+  .field input[type=text],
+  .field input[type=email],
+  .field input[type=url],
+  .field select,
+  .field textarea {
+    width: 100%;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    color: var(--ink);
+    border-radius: 0;
+    transition: border-color .15s, background .15s;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 96px;
+    font-family: var(--font-body);
+    line-height: 1.5;
+  }
+  .field textarea.tall { min-height: 160px; }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none;
+    border-color: var(--cobalt);
+    background: #fff;
+  }
+  .field .chars {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .field-grid { grid-template-columns: 1fr; } }
+
+  .checks { display: flex; flex-direction: column; gap: 8px; }
+  .checks label {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .checks label:hover { border-color: var(--cobalt); }
+  .checks input[type=checkbox], .checks input[type=radio] { margin-top: 3px; accent-color: var(--cobalt); }
+  .checks label.selected { border-color: var(--cobalt); background: #fff; }
+  .checks label small { display: block; color: var(--mute); font-size: 12.5px; margin-top: 2px; }
+
+  .submit-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 16px;
+  }
+  .submit-row .note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  .success-msg {
+    display: none;
+    background: var(--cobalt-deep);
+    color: var(--cream);
+    padding: 32px;
+    border-radius: 0;
+  }
+  .success-msg.active { display: block; }
+  .success-msg h3 { color: var(--cream); font-size: 26px; margin-bottom: 10px; }
+  .success-msg p { font-size: 15px; line-height: 1.5; color: #d8dfee; margin: 0; }
+
+  /* Why-this-way note */
+  .intake-note {
+    background: var(--cream-2);
+    padding: 56px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .intake-note-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+  }
+  @media (max-width: 800px) { .intake-note-inner { grid-template-columns: 1fr; gap: 16px; } }
+  .intake-note h2 { font-size: clamp(26px, 3vw, 38px); max-width: 16ch; line-height: 1.1; }
+  .intake-note h2 em { color: var(--terracotta); font-style: italic; }
+  .intake-note p {
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 14px;
+  }
+</style>
+</head>
+<body>
+
+<div data-nav></div>
+
+<section class="intake-hero">
+  <div class="container">
+    <div class="eyebrow">Work with the lab</div>
+    <h1>One form. Three kinds of "hello."</h1>
+    <p class="lede">
+      Pick the door that fits. Whether you're an organization proposing a
+      research partnership, a researcher hoping to join the lab, or someone
+      who just wants to stay in touch, start here.
+    </p>
+  </div>
+</section>
+
+<!-- PATH SELECT -->
+<div class="path-select" role="tablist">
+  <button class="path active" data-path="partner" id="partner">
+    <span class="check"></span>
+    <span class="mono">Option 01</span>
+    <h3>Propose a partnership</h3>
+    <p>For organizations with a research question they want us to take seriously. You'll be asked to write a spec.</p>
+  </button>
+  <button class="path" data-path="ra" id="ra">
+    <span class="check"></span>
+    <span class="mono">Option 02</span>
+    <h3>Join as RA / postdoc / visitor</h3>
+    <p>For researchers at any stage looking to work in the lab. We read everything; we hire most years.</p>
+  </button>
+  <button class="path" data-path="list" id="list">
+    <span class="check"></span>
+    <span class="mono">Option 03</span>
+    <h3>Stay in touch</h3>
+    <p>A short quarterly note from the lab. No pitches, no funnels. Takes 30 seconds.</p>
+  </button>
+</div>
+
+<!-- THE WHY (only for partner path, emphasized) -->
+<section class="intake-note" id="why-spec">
+  <div class="container">
+    <div class="intake-note-inner">
+      <div>
+        <div class="eyebrow" style="color:var(--terracotta);">Why a written spec?</div>
+        <h2>A small act of <em>reciprocity</em>.</h2>
+      </div>
+      <div>
+        <p>
+          We used to offer "let's schedule a call." It meant we said yes to
+          every meeting and no to most of the work, and the bar for asking
+          was effectively zero.
+        </p>
+        <p>
+          A written spec flips that. You take 30, 60 minutes to tell us what
+          you'd like us to study, why, and how you'd know it worked.
+          We take the same 30 – 60 minutes to read it carefully and give you
+          a real yes or no within two weeks. It's more respectful of your
+          time, and ours, and the partners already in the queue.
+        </p>
+        <p>
+          Don't over-polish it. Bullet points are fine. You're writing a brief
+          for colleagues, not a proposal.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-wrap container">
+  <!-- SIDEBAR -->
+  <aside class="form-sidebar">
+    <!-- PARTNER SIDEBAR -->
+    <div class="sidebar-body" data-sidebar="partner">
+      <div class="eyebrow">Research spec</div>
+      <h2>What a good spec contains.</h2>
+      <p>There's no template police. But strong specs usually cover:</p>
+      <ul>
+        <li>A clear research question, stated as a question</li>
+        <li>Why now, the decision it will inform</li>
+        <li>What you already know and what you don't</li>
+        <li>Access you can offer (people, data, sites)</li>
+        <li>What a useful output would look like</li>
+        <li>Timeline and funding posture</li>
+      </ul>
+      <div class="callout">
+        <b>Our response time:</b> within two weeks, always. Either a genuine yes, a genuine no, or a "yes but not from us, here's who."
+      </div>
+    </div>
+
+    <!-- RA SIDEBAR -->
+    <div class="sidebar-body" data-sidebar="ra" style="display:none;">
+      <div class="eyebrow">Researcher interest</div>
+      <h2>How we hire.</h2>
+      <p>We maintain a single rolling form instead of cycle-specific postings. When positions open, we start with people already in the queue.</p>
+      <ul>
+        <li>RAs: most years, 2 – 4 positions</li>
+        <li>Postdocs: annually, 1 – 2 positions</li>
+        <li>Visitors: sabbatical and fellowship year</li>
+      </ul>
+      <div class="callout">
+        <b>What we look for:</b> curiosity about method, some fieldwork experience, fluency in at least one research tradition, and a genuine commitment to working with organizations as equals.
+      </div>
+    </div>
+
+    <!-- LIST SIDEBAR -->
+    <div class="sidebar-body" data-sidebar="list" style="display:none;">
+      <div class="eyebrow">Stay in touch</div>
+      <h2>The lab newsletter.</h2>
+      <p>Four emails a year. New work, field dispatches from wherever we are, and one longer think-piece per quarter.</p>
+      <ul>
+        <li>No pitches or asks</li>
+        <li>No tracking pixels</li>
+        <li>Easy to leave any time</li>
+      </ul>
+      <div class="callout">
+        <b>Last issue:</b> notes from São Paulo fieldwork, a reading list on backsliding, an early preview of <em>Prisms</em>.
+      </div>
+    </div>
+  </aside>
+
+  <!-- FORMS -->
+  <div>
+    <!-- PARTNER FORM -->
+    <form class="form-body active" data-form="partner" onsubmit="return submitForm(event, 'partner')">
+      <div class="form-section">
+        <div class="form-section-title">Section 1 <span>/ You</span></div>
+        <div class="form-section-desc">Who you are and how to reach you.</div>
+        <div class="field-grid">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" required>
+          </div>
+          <div class="field">
+            <label>Your role / title</label>
+            <input type="text" required>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label>Organization</label>
+            <input type="text" required>
+          </div>
+          <div class="field">
+            <label>Organization URL</label>
+            <input type="url" placeholder="https://">
+          </div>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Section 2 <span>/ Your organization</span></div>
+        <div class="form-section-desc">A little context so we know who we're reading.</div>
+        <div class="field">
+          <label>One-paragraph description of what you do.</label>
+          <span class="hint">Think: how you'd describe the org to a stranger at a dinner. 4 – 6 sentences.</span>
+          <textarea required></textarea>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label>Where are you based?</label>
+            <input type="text" placeholder="City, country">
+          </div>
+          <div class="field">
+            <label>Approximate org size</label>
+            <select>
+              <option>Select…</option>
+              <option>1 – 5 staff</option>
+              <option>6 – 25 staff</option>
+              <option>26 – 100 staff</option>
+              <option>100+ staff</option>
+              <option>Volunteer-led, no staff</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Section 3 <span>/ The question</span></div>
+        <div class="form-section-desc">The heart of the spec. Take your time here.</div>
+
+        <div class="field">
+          <label>What's the research question?</label>
+          <span class="hint">Phrase it as a question. It's fine, good, even, if it's still a bit messy.</span>
+          <textarea class="tall" required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Why now? What decision or moment will this research inform?</label>
+          <span class="hint">Describe the concrete choice, campaign, or moment the answer will shape.</span>
+          <textarea required></textarea>
+        </div>
+
+        <div class="field">
+          <label>What do you already know? What have you already tried?</label>
+          <span class="hint">Prior internal research, hunches, adjacent studies you've read.</span>
+          <textarea required></textarea>
+        </div>
+
+        <div class="field">
+          <label>What would a useful output look like?</label>
+          <span class="hint">A memo? A dashboard? A journal article? A training? Be specific.</span>
+          <textarea required></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Section 4 <span>/ Access &amp; logistics</span></div>
+        <div class="form-section-desc">What you can offer, what you can't.</div>
+
+        <div class="field">
+          <label>What access could you provide?</label>
+          <div class="checks">
+            <label><input type="checkbox"><span>Staff interviews<small>Leadership, organizers, program staff.</small></span></label>
+            <label><input type="checkbox"><span>Member / participant interviews or surveys</span></label>
+            <label><input type="checkbox"><span>Administrative / program data<small>CRM, canvass, participation logs.</small></span></label>
+            <label><input type="checkbox"><span>Observation / fieldwork<small>Meetings, trainings, events.</small></span></label>
+            <label><input type="checkbox"><span>Document archives</span></label>
+            <label><input type="checkbox"><span>Something else (describe below)</span></label>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label>Ideal timeline</label>
+            <input type="text" placeholder="e.g. fieldwork Jun – Dec 2026">
+          </div>
+          <div class="field">
+            <label>Funding posture</label>
+            <select>
+              <option>Select…</option>
+              <option>We have funding to contribute</option>
+              <option>We can co-apply for funding</option>
+              <option>We're asking the lab to seek funding</option>
+              <option>Unsure</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Anything else we should know?</label>
+          <textarea></textarea>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <span class="note">We reply within 2 weeks, yes, no, or a referral.</span>
+        <button class="btn cobalt" type="submit">Submit spec →</button>
+      </div>
+    </form>
+
+    <!-- RA FORM -->
+    <form class="form-body" data-form="ra" onsubmit="return submitForm(event, 'ra')">
+      <div class="form-section">
+        <div class="form-section-title">Section 1 <span>/ You</span></div>
+        <div class="field-grid">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" required>
+          </div>
+          <div class="field">
+            <label>Current affiliation</label>
+            <input type="text" placeholder="University, program, or role">
+          </div>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Section 2 <span>/ Role of interest</span></div>
+        <div class="form-section-desc">Check everything that fits. We read every application for every role.</div>
+        <div class="field">
+          <div class="checks">
+            <label><input type="checkbox" value="ra"><span>Research Assistant<small>Undergraduate or recent BA.</small></span></label>
+            <label><input type="checkbox" value="senior-ra"><span>Senior RA / pre-doc<small>1 – 3 years post-BA, heading toward a PhD.</small></span></label>
+            <label><input type="checkbox" value="phd"><span>PhD student at Harvard<small>Looking for advising or lab affiliation.</small></span></label>
+            <label><input type="checkbox" value="postdoc"><span>Postdoctoral fellow</span></label>
+            <label><input type="checkbox" value="visitor"><span>Visiting scholar (sabbatical / fellowship)</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Section 3 <span>/ Streams</span></div>
+        <div class="form-section-desc">Which research streams are you drawn to, and why? Pick up to three.</div>
+        <div class="field">
+          <div class="checks">
+            <label><input type="checkbox"><span>Agency<small>Organizational production of political agency.</small></span></label>
+            <label><input type="checkbox"><span>Civic Perception<small>How citizens read democracy under strain.</small></span></label>
+            <label><input type="checkbox"><span>Donors &amp; Democracy<small>Philanthropy as civic infrastructure.</small></span></label>
+            <label><input type="checkbox"><span>POLIS<small>Multi-city network study of civic ecosystems.</small></span></label>
+            <label><input type="checkbox"><span>Mamdani Initiative<small>Coalition infrastructure in urban politics.</small></span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label>In 3 – 4 sentences: what draws you to these streams?</label>
+          <textarea></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Section 4 <span>/ Chops</span></div>
+        <div class="form-section-desc">We care about methods <em>and</em> field experience. Both count.</div>
+        <div class="field">
+          <label>Methods you're fluent in (or learning).</label>
+          <div class="checks">
+            <label><input type="checkbox"><span>Qualitative interviewing</span></label>
+            <label><input type="checkbox"><span>Ethnography / fieldwork</span></label>
+            <label><input type="checkbox"><span>Survey design</span></label>
+            <label><input type="checkbox"><span>Experiments (lab or field)</span></label>
+            <label><input type="checkbox"><span>Network analysis</span></label>
+            <label><input type="checkbox"><span>Computational text / NLP</span></label>
+            <label><input type="checkbox"><span>Archival / historical</span></label>
+            <label><input type="checkbox"><span>Something else (describe below)</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Organizing, movement, or campaign experience (if any).</label>
+          <span class="hint">Everything counts, paid or volunteer, across any issue area.</span>
+          <textarea></textarea>
+        </div>
+        <div class="field">
+          <label>Languages besides English</label>
+          <input type="text" placeholder="e.g. Portuguese (fluent), Spanish (reading)">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Section 5 <span>/ Materials</span></div>
+        <div class="field-grid">
+          <div class="field">
+            <label>CV (link)</label>
+            <input type="url" placeholder="Google Drive, Dropbox, personal site">
+          </div>
+          <div class="field">
+            <label>Writing sample (link)</label>
+            <input type="url" placeholder="Any 5 – 20 pages">
+          </div>
+        </div>
+        <div class="field">
+          <label>Anything else?</label>
+          <textarea></textarea>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <span class="note">We keep all interest indefinitely unless you ask us not to.</span>
+        <button class="btn cobalt" type="submit">Submit interest →</button>
+      </div>
+    </form>
+
+    <!-- LIST FORM -->
+    <form class="form-body" data-form="list" onsubmit="return submitForm(event, 'list')">
+      <div class="form-section">
+        <div class="form-section-title">Stay in touch <span>/ 30 seconds</span></div>
+        <div class="form-section-desc">We send four newsletters a year. You can leave any time.</div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" required>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>How do you relate to this work? (optional)</label>
+          <span class="hint">Just helps us write better notes. No marketing segments, promise.</span>
+          <div class="checks">
+            <label><input type="radio" name="r"><span>Academic / researcher</span></label>
+            <label><input type="radio" name="r"><span>Organizer or movement worker</span></label>
+            <label><input type="radio" name="r"><span>Funder / philanthropy staff</span></label>
+            <label><input type="radio" name="r"><span>Journalist</span></label>
+            <label><input type="radio" name="r"><span>Student</span></label>
+            <label><input type="radio" name="r"><span>Just interested</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <span class="note">We never share the list. Plain-text emails.</span>
+        <button class="btn cobalt" type="submit">Join the list →</button>
+      </div>
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="success-msg" id="success">
+      <h3>Thank you, we received this.</h3>
+      <p id="success-body">You'll hear from us soon.</p>
+      <div style="margin-top:20px;"><a href="index.html" style="color:var(--cream);border-bottom:1px solid var(--cream);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">← Back home</a></div>
+    </div>
+  </div>
+</section>
+
+<div data-footer></div>
+
+<script src="assets/tiles.js?v=11"></script>
+<script src="assets/chrome.js?v=11"></script>
+<script>
+  // Path switching
+  function setPath(p, push = true) {
+    document.querySelectorAll('.path').forEach(el => el.classList.toggle('active', el.dataset.path === p));
+    document.querySelectorAll('.form-body').forEach(el => el.classList.toggle('active', el.dataset.form === p));
+    document.querySelectorAll('.sidebar-body').forEach(el => el.style.display = el.dataset.sidebar === p ? 'block' : 'none');
+    document.getElementById('success').classList.remove('active');
+    const note = document.getElementById('why-spec');
+    if (note) note.style.display = (p === 'partner') ? 'block' : 'none';
+    if (push) history.replaceState(null, '', '#' + p);
+  }
+
+  document.querySelectorAll('.path').forEach(btn => {
+    btn.addEventListener('click', () => setPath(btn.dataset.path));
+  });
+
+  // Respect #hash on load
+  const hash = location.hash.replace('#','');
+  if (['partner','ra','list'].includes(hash)) setPath(hash, false);
+
+  // Checkbox visual
+  document.addEventListener('change', (e) => {
+    if (e.target.matches('.checks input')) {
+      const label = e.target.closest('label');
+      if (e.target.type === 'radio') {
+        label.closest('.checks').querySelectorAll('label').forEach(l => l.classList.remove('selected'));
+      }
+      if (label) label.classList.toggle('selected', e.target.checked || e.target.type === 'radio' && e.target.checked);
+    }
+  });
+
+  // Fake submit
+  function submitForm(e, kind) {
+    e.preventDefault();
+    document.querySelectorAll('.form-body').forEach(el => el.classList.remove('active'));
+    const msg = {
+      partner: "We've logged your spec. Expect a thoughtful reply within two weeks, yes, no, or a referral to someone better suited.",
+      ra: "Your interest is now in our active queue. We'll reach out when the next round opens, or sooner if your fit jumps out.",
+      list: "You're on the list. Next issue lands at the start of the next quarter."
+    }[kind];
+    document.getElementById('success-body').textContent = msg;
+    document.getElementById('success').classList.add('active');
+    window.scrollTo({ top: document.querySelector('.form-wrap').offsetTop - 80, behavior: 'smooth' });
+    return false;
+  }
+</script>
+</body>
+</html>

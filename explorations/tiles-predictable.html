@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Predictable tile patterns — Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1ead7;
+    --cream-2: #e5dcc0;
+    --ink: #141c1f;
+    --ink-2: #23333a;
+    --mute: #5e6f74;
+    --rule: #ccbf9f;
+    --teal: #15616d;
+    --teal-deep: #0d3d45;
+    --terracotta: #b84a2e;
+    --gold: #d9a636;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 56px 40px 80px;
+    background: var(--paper); color: var(--ink);
+    font-family: 'Work Sans', sans-serif; font-size: 15px; line-height: 1.55;
+  }
+  .wrap { max-width: 1340px; margin: 0 auto; }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 54px; line-height: 1.0; font-weight: 400; letter-spacing: -0.02em; margin: 0 0 12px;
+  }
+  h1 em { color: var(--teal); font-style: italic; }
+  h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px; font-weight: 400; letter-spacing: -0.015em;
+    line-height: 1.1; margin: 0;
+  }
+  .lede { font-family: 'Source Serif 4', serif; font-size: 19px; max-width: 62ch; color: var(--ink-2); }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 18px;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+
+  .back {
+    display: inline-flex; gap: 8px; color: var(--teal);
+    border-bottom: 1px solid currentColor; padding-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; margin-bottom: 32px;
+  }
+
+  /* Motif group header */
+  .motif-group {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+  .motif-head {
+    display: grid; grid-template-columns: 1fr auto; gap: 40px;
+    align-items: baseline; margin-bottom: 32px;
+  }
+  .motif-head .m-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 8px;
+  }
+  .motif-head p {
+    margin: 8px 0 0; color: var(--ink-2);
+    font-family: 'Source Serif 4', serif; font-size: 16px; max-width: 56ch;
+  }
+  .motif-head .swatch-row {
+    display: flex; gap: 4px;
+  }
+  .motif-head .sw {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1px solid var(--rule);
+  }
+
+  /* Three-up column layout for 1/2/3 color treatments */
+  .three-up {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .col {
+    display: flex; flex-direction: column;
+  }
+  .col .col-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 6px 2px 10px;
+  }
+  .col .col-head .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .col .col-head .pips {
+    display: flex; gap: 3px;
+  }
+  .col .col-head .pips .p { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* Tile strip */
+  .strip {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .strip svg { display: block; width: 100%; height: auto; }
+
+  /* Big grid (square tile pattern) */
+  .sqblock {
+    aspect-ratio: 1/1;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .sqblock svg { display: block; width: 100%; height: 100%; }
+
+  /* Recommendation section */
+  .rec {
+    margin-top: 72px;
+    padding: 36px 40px;
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  .rec h2 { color: var(--paper); font-size: 36px; margin: 0 0 14px; }
+  .rec h2 em { color: var(--gold); font-style: italic; }
+  .rec p { margin: 0; font-family: 'Source Serif 4', serif; font-size: 18px; max-width: 70ch; color: #d8cdb0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a href="../index.html" class="back">← Back to site</a>
+
+<section>
+  <div class="eyebrow">Exploration · predictable tile patterns</div>
+  <h1>Less random, <em>more pattern</em>.</h1>
+  <p class="lede">
+    Rotations follow a <em>mirror</em> rule — tile (c,r) rotation is decided
+    by position, not by RNG. That's how Bulcão got the interlocking "lens" and
+    "diamond" shapes across multiple tiles (like your second reference).
+    Every tile in every band below is the same motif, at full density,
+    with color as the only variable.
+  </p>
+</section>
+
+<!-- MOTIF 01 — quarter-disc -->
+<div class="motif-group">
+  <div class="motif-head">
+    <div>
+      <div class="m-tag">01 · quarter-disc</div>
+      <h2>Lens pattern.</h2>
+      <p>
+        The mirror rule pairs adjacent quarter-discs into the lens shape
+        you loved in the second reference. 100% density, mirror rotation.
+      </p>
+    </div>
+    <div class="swatch-row">
+      <div class="sw" style="background:var(--teal);"></div>
+      <div class="sw" style="background:var(--terracotta);"></div>
+      <div class="sw" style="background:var(--gold);"></div>
+    </div>
+  </div>
+  <div class="three-up">
+    <div class="col">
+      <div class="col-head"><span class="name">1 color · teal</span><span class="pips"><span class="p" style="background:var(--teal);"></span></span></div>
+      <div class="strip" id="d-1a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="d-1a-sq"></div>
+    </div>
+    <div class="col">
+      <div class="col-head"><span class="name">2 colors · teal + terracotta</span><span class="pips"><span class="p" style="background:var(--teal);"></span><span class="p" style="background:var(--terracotta);"></span></span></div>
+      <div class="strip" id="d-2a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="d-2a-sq"></div>
+    </div>
+    <div class="col">
+      <div class="col-head"><span class="name">3 colors · teal + terra + gold</span><span class="pips"><span class="p" style="background:var(--teal);"></span><span class="p" style="background:var(--terracotta);"></span><span class="p" style="background:var(--gold);"></span></span></div>
+      <div class="strip" id="d-3a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="d-3a-sq"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MOTIF 02 — triangle -->
+<div class="motif-group">
+  <div class="motif-head">
+    <div>
+      <div class="m-tag">02 · right triangle</div>
+      <h2>Diamond pattern.</h2>
+      <p>
+        Same mirror rule applied to triangles — adjacent tiles mirror into
+        big square-diagonal shapes. The most architectural variant (closest
+        to your first reference).
+      </p>
+    </div>
+    <div class="swatch-row">
+      <div class="sw" style="background:var(--teal);"></div>
+      <div class="sw" style="background:var(--terracotta);"></div>
+      <div class="sw" style="background:var(--gold);"></div>
+    </div>
+  </div>
+  <div class="three-up">
+    <div class="col">
+      <div class="col-head"><span class="name">1 color · teal</span><span class="pips"><span class="p" style="background:var(--teal);"></span></span></div>
+      <div class="strip" id="t-1a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="t-1a-sq"></div>
+    </div>
+    <div class="col">
+      <div class="col-head"><span class="name">2 colors · teal + terracotta</span><span class="pips"><span class="p" style="background:var(--teal);"></span><span class="p" style="background:var(--terracotta);"></span></span></div>
+      <div class="strip" id="t-2a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="t-2a-sq"></div>
+    </div>
+    <div class="col">
+      <div class="col-head"><span class="name">3 colors · teal + terra + gold</span><span class="pips"><span class="p" style="background:var(--teal);"></span><span class="p" style="background:var(--terracotta);"></span><span class="p" style="background:var(--gold);"></span></span></div>
+      <div class="strip" id="t-3a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="t-3a-sq"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MOTIF 03 — stripe -->
+<div class="motif-group">
+  <div class="motif-head">
+    <div>
+      <div class="m-tag">03 · thick stripe</div>
+      <h2>Woven pattern.</h2>
+      <p>
+        A centered bar per tile. The mirror rule turns it into a woven-looking
+        grid — some bars vertical, some horizontal, following position.
+        Evokes the bar tiles in your first reference.
+      </p>
+    </div>
+    <div class="swatch-row">
+      <div class="sw" style="background:var(--teal);"></div>
+      <div class="sw" style="background:var(--terracotta);"></div>
+      <div class="sw" style="background:var(--gold);"></div>
+    </div>
+  </div>
+  <div class="three-up">
+    <div class="col">
+      <div class="col-head"><span class="name">1 color · teal</span><span class="pips"><span class="p" style="background:var(--teal);"></span></span></div>
+      <div class="strip" id="s-1a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="s-1a-sq"></div>
+    </div>
+    <div class="col">
+      <div class="col-head"><span class="name">2 colors · teal + terracotta</span><span class="pips"><span class="p" style="background:var(--teal);"></span><span class="p" style="background:var(--terracotta);"></span></span></div>
+      <div class="strip" id="s-2a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="s-2a-sq"></div>
+    </div>
+    <div class="col">
+      <div class="col-head"><span class="name">3 colors · teal + terra + gold</span><span class="pips"><span class="p" style="background:var(--teal);"></span><span class="p" style="background:var(--terracotta);"></span><span class="p" style="background:var(--gold);"></span></span></div>
+      <div class="strip" id="s-3a"></div>
+      <div class="sqblock" style="margin-top:14px;" id="s-3a-sq"></div>
+    </div>
+  </div>
+</div>
+
+<div class="rec">
+  <div class="mono" style="color: var(--gold); margin-bottom:10px;">Recommendation</div>
+  <h2>The <em>2-color quarter-disc</em> is the pick.</h2>
+  <p style="margin-top:12px;">
+    Teal + terracotta, mirror pattern, full density. It matches the second
+    reference's interlocking lens figures exactly, gives the strip a
+    predictable rhythm instead of noise, and the two-color treatment uses
+    the whole Peacock + Terracotta palette without getting busy. Use the
+    1-color teal triangles for quiet section dividers. Save the 3-color
+    variants for one hero moment, not every band.
+  </p>
+</div>
+
+</div>
+
+<script src="../assets/tiles.js?v=12"></script>
+<script>
+  const TEAL = '#15616d';
+  const TERRA = '#b84a2e';
+  const GOLD = '#d9a636';
+  const CREAM = '#f1ead7';
+
+  const strip = (cols, rows, opts) =>
+    window.bulcaoTiles(cols, rows, { cols, rows, ...opts });
+
+  // Common per-motif defaults
+  const baseStrip = { seed: 1, density: 1.0, bg: CREAM, rotatePattern: 'mirror', colorPattern: 'sequence' };
+  const baseSq    = { seed: 1, density: 1.0, bg: CREAM, rotatePattern: 'mirror', colorPattern: 'sequence' };
+
+  // ─── Quarter-disc ──────────────────────────────────────────────
+  document.getElementById('d-1a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['disc'], colors: [TEAL] });
+  document.getElementById('d-1a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['disc'], colors: [TEAL] });
+  document.getElementById('d-2a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['disc'], colors: [TEAL, TERRA] });
+  document.getElementById('d-2a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['disc'], colors: [TEAL, TERRA] });
+  document.getElementById('d-3a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['disc'], colors: [TEAL, TERRA, GOLD] });
+  document.getElementById('d-3a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['disc'], colors: [TEAL, TERRA, GOLD] });
+
+  // ─── Triangle ──────────────────────────────────────────────
+  document.getElementById('t-1a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['tri'], colors: [TEAL] });
+  document.getElementById('t-1a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['tri'], colors: [TEAL] });
+  document.getElementById('t-2a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['tri'], colors: [TEAL, TERRA] });
+  document.getElementById('t-2a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['tri'], colors: [TEAL, TERRA] });
+  document.getElementById('t-3a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['tri'], colors: [TEAL, TERRA, GOLD] });
+  document.getElementById('t-3a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['tri'], colors: [TEAL, TERRA, GOLD] });
+
+  // ─── Stripe ──────────────────────────────────────────────
+  document.getElementById('s-1a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['stripe'], colors: [TEAL] });
+  document.getElementById('s-1a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['stripe'], colors: [TEAL] });
+  document.getElementById('s-2a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['stripe'], colors: [TEAL, TERRA] });
+  document.getElementById('s-2a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['stripe'], colors: [TEAL, TERRA] });
+  document.getElementById('s-3a').innerHTML    = strip(10, 2, { ...baseStrip, motifs: ['stripe'], colors: [TEAL, TERRA, GOLD] });
+  document.getElementById('s-3a-sq').innerHTML = strip(6, 6,  { ...baseSq,    motifs: ['stripe'], colors: [TEAL, TERRA, GOLD] });
+</script>
+
+</body>
+</html>

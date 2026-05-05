@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Alternative logo options — Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #efe6d1;
+    --cream-2: #e6dcc2;
+    --ink: #171514;
+    --ink-2: #332f2b;
+    --mute: #6a6256;
+    --rule: #cec2a8;
+    --indigo: #13306b;
+    --terracotta: #b7432b;
+    --peacock: #15616d;
+    --font-display: 'Source Serif 4', Georgia, serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: var(--font-body); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 64px 32px 96px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
+  h1 { font-family: var(--font-display); font-size: clamp(40px, 5vw, 68px); letter-spacing: -0.03em; font-weight: 400; line-height: 1.05; margin: 12px 0 20px; max-width: 18ch; }
+  .intro { font-family: var(--font-display); font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 64ch; }
+  .group-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); margin-top: 56px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    border: 1px solid var(--rule);
+    background: var(--cream);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--mute); text-transform: uppercase; }
+  .card h2 { font-family: var(--font-display); font-size: 24px; margin: 0; font-weight: 400; letter-spacing: -0.01em; }
+  .card .tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terracotta); }
+  .card p { font-family: var(--font-display); font-size: 15px; line-height: 1.55; color: var(--ink-2); margin: 0; font-style: italic; }
+  .sizes { display: flex; align-items: flex-end; gap: 20px; padding-top: 16px; border-top: 1px solid var(--rule); margin-top: 4px; }
+  .size-block { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .size-block .box { display: flex; align-items: center; justify-content: center; }
+  .size-block .lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+  .lockup { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--cream-2); border: 1px solid var(--rule); margin-top: 8px; }
+  .lockup .meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); line-height: 1.5; }
+  .lockup .meta b { color: var(--indigo); font-weight: 600; display: block; margin-bottom: 3px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Round 2 · Alternatives</div>
+  <h1>Ten directions that aren't the snowflake.</h1>
+  <p class="intro">
+    The snowflake is the most accurate to what the lab studies. If we set it aside, these are the next strongest ideas, each grouped by metaphor family so you can see what <em>kinds</em> of story are on offer. Each mark is shown at 96, 56, 32, and 20 pixels, plus a lockup with the wordmark.
+  </p>
+  <div id="root"></div>
+</div>
+<script type="text/babel" src="alt-logos.jsx?v=3"></script>
+<script type="text/babel">
+const { ColumnMark, BraidMark, ConvergeMark, DeltaMark, BallotMark,
+        ForumMark, KeystoneMark, MonogramMark, LanternMark, AgoraMark } = window.ALT_LOGOS;
+
+const GROUPS = [
+  { label: 'Architecture family', items: [
+    { num: '01', id: 'column', title: 'Civic Column', tag: 'Architectural',
+      desc: 'A fluted classical column, head-on. Civic architecture (capitol, courthouse, bank) reduced to pure geometry. Stable, institutional, unambiguously about public life.',
+      Mark: ColumnMark },
+    { num: '07', id: 'keystone', title: 'Keystone + arch', tag: 'Infrastructure',
+      desc: 'A keystone trapezoid with a ghosted arch behind it. The stone at the top that holds everything else up. Strongest architectural metaphor for infrastructure work.',
+      Mark: KeystoneMark },
+  ]},
+  { label: 'Relational family', items: [
+    { num: '02', id: 'braid', title: 'Three-strand Braid', tag: 'Relational',
+      desc: 'Three woven strands. The clearest visual metaphor for relational organizing and coalition. Organic without being saccharine; reads especially well animated.',
+      Mark: BraidMark },
+    { num: '03', id: 'converge', title: 'Converging Arrows', tag: 'Power concentrating',
+      desc: 'Four arrows meeting at a shared point. Power gathered from distributed directions. Quieter than a raised fist, more kinetic than a seal.',
+      Mark: ConvergeMark },
+  ]},
+  { label: 'Civic-symbol family', items: [
+    { num: '05', id: 'ballot', title: 'Marked Ballot', tag: 'Civic icon',
+      desc: 'A filled circle inside a square: the most universally legible civic symbol in the world. Direct, plain, no metaphor to decode.',
+      Mark: BallotMark },
+    { num: '06', id: 'forum', title: 'Forum / Assembly', tag: 'Democratic body',
+      desc: 'A ring of evenly spaced seats around a central convener. The council, the town hall, the jury. One seat is the organizer; participation is the picture.',
+      Mark: ForumMark },
+    { num: '09', id: 'lantern', title: 'Lantern', tag: 'Civic illumination',
+      desc: 'A hexagonal lantern with a single contained flame. Civic illumination, Enlightenment, public square after dark. Warmer than a torch.',
+      Mark: LanternMark },
+    { num: '10', id: 'agora', title: 'Agora (open ring)', tag: 'The gathering',
+      desc: 'A heavy open ring with a single notch (the entrance) and a dot at center (the gathering). Simplest possible mark on offer.',
+      Mark: AgoraMark },
+  ]},
+  { label: 'Typographic & abstract', items: [
+    { num: '04', id: 'delta', title: 'Delta with horizon', tag: 'Change + infrastructure',
+      desc: 'Greek delta means change. The internal horizontal rule is the organizing infrastructure inside the change. Clean, mathematical, one-beat reading.',
+      Mark: DeltaMark },
+    { num: '08', id: 'monogram', title: 'CPL Monogram', tag: 'Typographic',
+      desc: 'No iconography at all. Just the three letters, set in the same serif as the site. Works at 14px better than any mark can. A confident, grown-up choice.',
+      Mark: MonogramMark },
+  ]},
+];
+
+function Card({ num, title, tag, desc, Mark }) {
+  return (
+    <div className="card">
+      <div className="num">{num}</div>
+      <h2>{title}</h2>
+      <div className="tag">{tag}</div>
+      <p>{desc}</p>
+      <div className="sizes">
+        {[96, 56, 32, 20].map(s => (
+          <div key={s} className="size-block">
+            <div className="box" style={{ width: s, height: s }}>
+              <Mark size={s} color="#13306b" accent="#b7432b"/>
+            </div>
+            <div className="lbl">{s}px</div>
+          </div>
+        ))}
+      </div>
+      <div className="lockup">
+        <Mark size={36} color="#13306b" accent="#b7432b"/>
+        <div className="meta">
+          <b>Civic Power Lab</b>
+          HKS · Center for Public Leadership
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      {GROUPS.map(g => (
+        <React.Fragment key={g.label}>
+          <div className="group-label">{g.label}</div>
+          <div className="grid">
+            {g.items.map(it => <Card key={it.id} {...it}/>)}
+          </div>
+        </React.Fragment>
+      ))}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

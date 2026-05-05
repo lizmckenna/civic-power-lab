@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plus Spokes in the wild — Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1ead7;
+    --cream-2: #e5dcc0;
+    --ink: #141c1f;
+    --ink-2: #23333a;
+    --mute: #5e6f74;
+    --rule: #ccbf9f;
+    --teal: #15616d;
+    --teal-deep: #0d3d45;
+    --terracotta: #b84a2e;
+    --gold: #d9a636;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 56px 40px 80px;
+    background: var(--paper); color: var(--ink);
+    font-family: 'Work Sans', sans-serif; font-size: 15px; line-height: 1.55;
+  }
+  .wrap { max-width: 1340px; margin: 0 auto; }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 54px; line-height: 1.0; font-weight: 400; letter-spacing: -0.02em; margin: 0 0 12px;
+  }
+  h1 em { color: var(--teal); font-style: italic; }
+  h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 28px; line-height: 1.1; font-weight: 400; letter-spacing: -0.015em; margin: 0 0 6px;
+  }
+  .lede { font-family: 'Source Serif 4', serif; font-size: 19px; max-width: 62ch; color: var(--ink-2); }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 18px;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+
+  section { margin: 64px 0 0; }
+  .sec-head {
+    display: grid; grid-template-columns: 320px 1fr; gap: 40px;
+    padding-bottom: 24px; margin-bottom: 28px; border-bottom: 1px solid var(--rule);
+  }
+  .sec-head .mono { color: var(--teal); margin-bottom: 10px; }
+  .sec-head p { margin: 0; font-family: 'Source Serif 4', serif; font-size: 16.5px; color: var(--ink-2); max-width: 62ch; }
+
+  .back {
+    display: inline-flex; gap: 8px; color: var(--teal);
+    border-bottom: 1px solid currentColor; padding-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; margin-bottom: 32px;
+  }
+
+  /* ======================= BROWSER ======================= */
+  .browser {
+    background: #dfd8c4;
+    border-radius: 12px 12px 0 0;
+    padding: 10px 12px 0;
+    border: 1px solid var(--rule);
+    width: 100%;
+    max-width: 880px;
+  }
+  .browser .controls { display: flex; gap: 6px; margin-bottom: 8px; padding: 4px 0 0; }
+  .browser .controls .dot { width: 12px; height: 12px; border-radius: 50%; background: #c8bfa4; }
+  .browser .tabs { display: flex; gap: 2px; align-items: flex-end; }
+  .browser .tab {
+    background: #ebe3cd; padding: 7px 14px 7px 10px;
+    border-radius: 9px 9px 0 0;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px; color: var(--mute);
+    max-width: 220px;
+  }
+  .browser .tab.active { background: #fff; color: var(--ink); }
+  .browser .tab .title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .browser .url {
+    background: #fff; border-radius: 18px;
+    margin: 6px 0 12px;
+    padding: 8px 14px;
+    font-size: 13px; color: var(--mute);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .browser .url svg { flex-shrink: 0; }
+
+  /* ======================= MAC DOCK ======================= */
+  .mac-dock {
+    background: linear-gradient(#3a3a3a, #222);
+    border-radius: 18px;
+    padding: 12px 16px;
+    display: inline-flex; gap: 14px; align-items: flex-end;
+    border: 1px solid #111;
+    box-shadow: 0 12px 40px -10px rgba(0,0,0,0.45);
+  }
+  .mac-dock .app {
+    width: 54px; height: 54px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .mac-dock .app.cream { background: linear-gradient(135deg, #f5ecd2, #e0d4b6); }
+  .mac-dock .app.other { width: 50px; height: 50px; }
+  .mac-dock .app.o1 { background: linear-gradient(135deg,#ff6464,#d41e1e); }
+  .mac-dock .app.o2 { background: linear-gradient(135deg,#4aa8ff,#2066b8); }
+  .mac-dock .app.o3 { background: linear-gradient(135deg,#a67cff,#6b3fd0); }
+  .mac-dock .app.o4 { background: linear-gradient(135deg,#ffa94d,#d16a1a); }
+  .mac-dock .sep { width: 1px; height: 40px; background: rgba(255,255,255,0.2); margin: 0 2px; }
+
+  /* ======================= iOS ======================= */
+  .phone {
+    width: 260px; height: 500px;
+    border-radius: 40px;
+    background: linear-gradient(180deg, #f5f0df 0%, #e4dac0 100%);
+    border: 10px solid #181818;
+    box-shadow: 0 20px 50px -20px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    padding: 36px 20px 20px;
+  }
+  .phone .notch {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px; background: #181818; border-radius: 14px;
+  }
+  .phone .time { position: absolute; top: 10px; left: 24px; font-size: 13px; font-weight: 600; color: var(--ink); font-family: -apple-system, sans-serif; }
+  .phone .stats { position: absolute; top: 10px; right: 24px; font-size: 11px; color: var(--ink); }
+  .phone .springboard {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 8px;
+  }
+  .springboard .icon {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .springboard .sq {
+    width: 48px; height: 48px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .springboard .lbl {
+    font-size: 9px; color: var(--ink); font-family: -apple-system, sans-serif;
+    text-align: center; line-height: 1.1;
+  }
+  .sq.cpl { background: linear-gradient(135deg, var(--teal), var(--teal-deep)); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+  .sq.cpl-cream { background: linear-gradient(135deg, #f5ecd2, #e0d4b6); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+  .sq.o { background: #bbb; }
+  .sq.o1 { background: linear-gradient(135deg,#ff6464,#d41e1e); }
+  .sq.o2 { background: linear-gradient(135deg,#4aa8ff,#2066b8); }
+  .sq.o3 { background: linear-gradient(135deg,#22c55e,#15803d); }
+  .sq.o4 { background: linear-gradient(135deg,#ffa94d,#d16a1a); }
+  .sq.o5 { background: #000; }
+  .sq.o6 { background: #fff; border: 1px solid #ddd; }
+
+  /* ======================= SOCIAL AVATAR ======================= */
+  .socials { display: flex; gap: 28px; flex-wrap: wrap; }
+  .social {
+    width: 320px;
+    border: 1px solid var(--rule);
+    background: #fff;
+    padding: 16px;
+  }
+  .social.x { background: #fff; color: #0f1419; font-family: -apple-system, sans-serif; }
+  .social.ln { background: #fff; }
+  .social-row { display: flex; gap: 12px; align-items: flex-start; }
+  .social .avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .social .meta { flex: 1; min-width: 0; }
+  .social .name { font-weight: 700; font-size: 14px; color: #0f1419; }
+  .social .handle { font-size: 13px; color: #536471; }
+  .social .body { margin-top: 8px; font-size: 14px; color: #0f1419; line-height: 1.4; }
+  .social.ln .name { font-size: 15px; }
+  .social.ln .role { font-size: 12px; color: #666; }
+
+  /* ======================= BOOKMARK BAR ======================= */
+  .bmbar {
+    background: #efe8d3;
+    padding: 6px 12px;
+    display: flex; gap: 6px; align-items: center;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .bmbar .bm {
+    display: inline-flex; gap: 6px; align-items: center;
+    padding: 4px 8px; border-radius: 4px; color: var(--ink);
+  }
+  .bmbar .bm:hover { background: rgba(0,0,0,0.05); }
+
+  /* ======================= EMAIL SIG ======================= */
+  .email {
+    background: #fff; border: 1px solid var(--rule);
+    padding: 20px 24px; max-width: 540px;
+    font-family: -apple-system, Helvetica, Arial, sans-serif; font-size: 14px; color: #202020;
+  }
+  .email .siggy {
+    display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center;
+    border-top: 2px solid var(--teal); padding-top: 14px; margin-top: 14px;
+  }
+  .email .siggy .name { font-weight: 600; font-size: 14.5px; color: var(--ink); line-height: 1.2; }
+  .email .siggy .role { font-size: 12px; color: var(--mute); margin-top: 2px; }
+  .email .siggy .org { font-size: 12px; color: var(--teal); margin-top: 2px; }
+  .email .siggy .brand-mark {
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--cream-2); border-radius: 6px;
+  }
+
+  /* ======================= PRESS MENTION ======================= */
+  .press-card {
+    background: #fff; border: 1px solid var(--rule); padding: 22px 24px;
+    display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start;
+    max-width: 620px;
+  }
+  .press-card .outlet-mark {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--cream-2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .press-card .src { font-size: 11.5px; color: var(--mute); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .press-card .headline { font-family: 'Source Serif 4', serif; font-size: 18px; line-height: 1.3; color: var(--ink); }
+
+  /* ======================= SIZE LADDER ======================= */
+  .ladder {
+    display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap;
+    padding: 36px 28px; background: var(--cream-2); border: 1px solid var(--rule);
+  }
+  .ladder .u { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .ladder .u .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); letter-spacing: 0.1em; }
+  .ladder .u .lbl b { color: var(--teal); font-weight: 500; }
+  .ladder.dark { background: var(--ink); }
+  .ladder.dark .u .lbl { color: #8d9aa0; }
+  .ladder.dark .u .lbl b { color: var(--gold); }
+
+  /* layouts */
+  .two-col { display: grid; grid-template-columns: 1fr 260px; gap: 36px; align-items: start; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+  .wide { max-width: 880px; }
+
+  .caption {
+    font-family: 'Source Serif 4', serif; font-style: italic;
+    font-size: 13px; color: var(--mute); margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a href="../index.html" class="back">← Back to site</a>
+
+<section>
+  <div class="eyebrow">Exploration · logo in the wild</div>
+  <h1>Plus Spokes, in <em>real places</em>.</h1>
+  <p class="lede">
+    The favicon tier mark rendered in the contexts it actually has to hold.
+    Browser tabs, iOS home screen, Mac dock, social avatars, email signatures,
+    press mentions. No imagination required.
+  </p>
+</section>
+
+<!-- SIZE LADDER -->
+<section>
+  <div class="sec-head">
+    <div>
+      <div class="mono">01 · Size ladder</div>
+      <h2>Every size that ships.</h2>
+    </div>
+    <div>
+      <p>Same mark, scaled. This is what every downstream vendor, avatar uploader, browser, and operating system will render from the same source SVG.</p>
+    </div>
+  </div>
+  <div class="ladder" id="ladder-light"></div>
+  <div class="caption">Cream field. Teal spokes (#15616d), terracotta center (#b84a2e).</div>
+
+  <div class="ladder dark" id="ladder-dark" style="margin-top:12px;"></div>
+  <div class="caption">Dark field. Cream mark, gold center. For dark-mode favicons, OLED avatars, and the footer.</div>
+</section>
+
+<!-- BROWSER TAB -->
+<section>
+  <div class="sec-head">
+    <div>
+      <div class="mono">02 · Browser tab</div>
+      <h2>16 pixels, in the wild.</h2>
+    </div>
+    <div>
+      <p>The hardest test. Next to Google and NYT in your morning tab stack, the mark has to hold its own at 16px. Plus Spokes reads as a confident radial shape rather than pixel mush.</p>
+    </div>
+  </div>
+
+  <div class="browser">
+    <div class="controls">
+      <div class="dot" style="background:#e97a6a;"></div>
+      <div class="dot" style="background:#e9c56a;"></div>
+      <div class="dot" style="background:#77c57a;"></div>
+    </div>
+    <div class="tabs">
+      <div class="tab">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#999" stroke-width="1.5"/><path d="M2 8h20" stroke="#999" stroke-width="1.5"/></svg>
+        <span class="title">Gmail — Inbox (4)</span>
+      </div>
+      <div class="tab">
+        <svg width="14" height="14" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#4285f4"/><path d="M12 7v5l3 2" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        <span class="title">Google Calendar</span>
+      </div>
+      <div class="tab active">
+        <span id="browser-favicon"></span>
+        <span class="title">Civic Power Lab · The R&amp;D arm of democracy</span>
+      </div>
+      <div class="tab">
+        <svg width="14" height="14" viewBox="0 0 24 24"><rect width="24" height="24" fill="#000"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-family="serif" font-size="14" font-weight="bold">T</text></svg>
+        <span class="title">The New York Times</span>
+      </div>
+      <div class="tab">
+        <svg width="14" height="14" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#a51c30"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-family="serif" font-size="11" font-weight="bold">H</text></svg>
+        <span class="title">Harvard Kennedy School</span>
+      </div>
+    </div>
+    <div class="url">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 10V7a6 6 0 0112 0v3" stroke="#888" stroke-width="2"/><rect x="4" y="10" width="16" height="11" rx="2" stroke="#888" stroke-width="2"/></svg>
+      <span>civicpowerlab.hks.harvard.edu</span>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:40px;margin-top:36px;flex-wrap:wrap;">
+    <div>
+      <div class="mono" style="margin-bottom:10px;">BOOKMARK BAR (20px, dense row)</div>
+      <div class="bmbar">
+        <div class="bm">
+          <svg width="14" height="14" viewBox="0 0 24 24"><rect width="24" height="24" fill="#4285f4"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="16" font-weight="bold">G</text></svg>
+          <span>Gmail</span>
+        </div>
+        <div class="bm">
+          <span id="bm-cpl"></span>
+          <span>Civic Power Lab</span>
+        </div>
+        <div class="bm">
+          <svg width="14" height="14" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#a51c30"/></svg>
+          <span>HKS Directory</span>
+        </div>
+        <div class="bm">
+          <svg width="14" height="14" viewBox="0 0 24 24"><rect width="24" height="24" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-family="serif" font-size="10" font-weight="bold">NYT</text></svg>
+          <span>NYT</span>
+        </div>
+        <div class="bm">
+          <svg width="14" height="14" viewBox="0 0 24 24"><rect width="24" height="24" fill="#1da1f2"/></svg>
+          <span>X / Twitter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- iOS SPRINGBOARD -->
+<section>
+  <div class="sec-head">
+    <div>
+      <div class="mono">03 · iOS springboard</div>
+      <h2>As an app icon.</h2>
+    </div>
+    <div>
+      <p>Two versions. Left: teal field, mark in cream. Right: cream field, mark in teal. Both preserve the center accent in a contrast color so it reads against the field.</p>
+    </div>
+  </div>
+  <div style="display:flex;gap:36px;flex-wrap:wrap;">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="time">9:41</div>
+      <div class="stats">••• ⚡ 100%</div>
+      <div class="springboard">
+        <div class="icon"><div class="sq o1"></div><div class="lbl">Messages</div></div>
+        <div class="icon"><div class="sq o2"></div><div class="lbl">Safari</div></div>
+        <div class="icon"><div class="sq o3"></div><div class="lbl">Maps</div></div>
+        <div class="icon"><div class="sq o4"></div><div class="lbl">Photos</div></div>
+        <div class="icon"><div class="sq cpl" id="ios-app-1"></div><div class="lbl">CPL</div></div>
+        <div class="icon"><div class="sq cpl-cream" id="ios-app-2"></div><div class="lbl">CPL · cream</div></div>
+        <div class="icon"><div class="sq o5"></div><div class="lbl">X</div></div>
+        <div class="icon"><div class="sq o6"></div><div class="lbl">Reader</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="mono" style="margin-bottom:16px;">MAC DOCK</div>
+      <div class="mac-dock">
+        <div class="app o1"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M2 6a3 3 0 013-3h14a3 3 0 013 3v12a3 3 0 01-3 3H5a3 3 0 01-3-3V6z"/><path d="M4 7l8 6 8-6" stroke="#d41e1e" stroke-width="2" fill="none"/></svg></div>
+        <div class="app o2"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+        <div class="app o3"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="8"/></svg></div>
+        <div class="sep"></div>
+        <div class="app" id="dock-app"></div>
+        <div class="app cream" id="dock-app-cream"></div>
+        <div class="sep"></div>
+        <div class="app o4"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" fill="none" stroke="#fff" stroke-width="2"/></svg></div>
+      </div>
+      <div class="caption" style="margin-left:0;">48px app-icon mark. Holds against the color field.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL AVATARS -->
+<section>
+  <div class="sec-head">
+    <div>
+      <div class="mono">04 · Social avatar</div>
+      <h2>At 48px, in a feed.</h2>
+    </div>
+    <div>
+      <p>Lab Twitter, BlueSky, LinkedIn page header, GitHub org avatar. All render at roughly 48px in feed, 128–400px on profile. The mark fills the circle cleanly.</p>
+    </div>
+  </div>
+
+  <div class="socials">
+    <div class="social x">
+      <div class="social-row">
+        <div class="avatar" id="x-avatar"></div>
+        <div class="meta">
+          <div class="name">Civic Power Lab</div>
+          <div class="handle">@civicpowerlab · HKS Ash Center</div>
+        </div>
+      </div>
+      <div class="body">
+        New working paper on leadership density in state-based organizing groups. Dataset spans 38 orgs across 10 states, five years. Link below ↓
+      </div>
+    </div>
+
+    <div class="social ln">
+      <div class="social-row">
+        <div class="avatar" style="background: linear-gradient(135deg, #f5ecd2, #e0d4b6);" id="ln-avatar"></div>
+        <div class="meta">
+          <div class="name">Civic Power Lab</div>
+          <div class="role">Research lab · Cambridge, MA</div>
+          <div class="role" style="margin-top:3px;">1,240 followers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL + PRESS -->
+<section>
+  <div class="sec-head">
+    <div>
+      <div class="mono">05 · Email &amp; press</div>
+      <h2>In copy blocks.</h2>
+    </div>
+    <div>
+      <p>Outbound email signatures, press releases, citation footers — the mark as a grammatical unit embedded in text.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:36px;flex-wrap:wrap;">
+    <div class="email">
+      <div>Hi Sarah,</div>
+      <div style="margin-top:14px;">
+        Following up on our call last week, I'm attaching the POLIS preliminary brief.
+        Happy to schedule a debrief once you've had a chance to read.
+      </div>
+      <div style="margin-top:12px;">Best,<br>Marshall</div>
+      <div class="siggy">
+        <div class="brand-mark" id="email-mark"></div>
+        <div>
+          <div class="name">Marshall Ganz</div>
+          <div class="role">Rita E. Hauser Senior Lecturer in Leadership, Organizing, and Civil Society</div>
+          <div class="org">Civic Power Lab · Harvard Kennedy School</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="press-card">
+      <div class="outlet-mark" id="press-mark"></div>
+      <div>
+        <div class="src">Folha de São Paulo · Opinion</div>
+        <div class="headline">Research from the Civic Power Lab at Harvard maps the organizational infrastructure behind Brazil's social movements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script src="../assets/tiles.js?v=11"></script>
+<script>
+  // Use the real labMark — it picks the right tier per size:
+  //   ≥40 Full network, 24–39 Mid leadered, <24 Plus Spokes burst.
+  const m = (size, color, accent) => window.labMark(size, color, accent);
+
+  const TEAL = '#15616d';
+  const TERRA = '#b84a2e';
+  const CREAM = '#f1ead7';
+  const GOLD = '#d9a636';
+
+  // Size ladder
+  const LADDER_SIZES = [12, 16, 20, 24, 32, 48, 64, 96, 128];
+  const L1 = document.getElementById('ladder-light');
+  const L2 = document.getElementById('ladder-dark');
+  L1.innerHTML = LADDER_SIZES.map(sz => `
+    <div class="u">${m(sz, TEAL, TERRA)}<div class="lbl"><b>${sz}</b>PX</div></div>
+  `).join('');
+  L2.innerHTML = LADDER_SIZES.map(sz => `
+    <div class="u">${m(sz, CREAM, GOLD)}<div class="lbl"><b>${sz}</b>PX</div></div>
+  `).join('');
+
+  // Browser favicon / bookmark — tiny, Plus Spokes tier
+  document.getElementById('browser-favicon').innerHTML = m(14, TEAL, TERRA);
+  document.getElementById('bm-cpl').innerHTML = m(14, TEAL, TERRA);
+
+  // iOS app tile — 34px falls into Mid (leadered) tier
+  document.getElementById('ios-app-1').innerHTML = m(34, CREAM, GOLD);
+  document.getElementById('ios-app-2').innerHTML = m(34, TEAL, TERRA);
+
+  // Mac dock — 38px → Mid tier (leadered)
+  document.getElementById('dock-app').innerHTML = m(38, CREAM, GOLD);
+  document.getElementById('dock-app-cream').innerHTML = m(38, TEAL, TERRA);
+
+  // Avatars — 48px → Full network tier
+  document.getElementById('x-avatar').innerHTML = m(42, CREAM, GOLD);
+  document.getElementById('ln-avatar').innerHTML = m(42, TEAL, TERRA);
+
+  // Email signature — 40px → Full tier
+  document.getElementById('email-mark').innerHTML = m(44, TEAL, TERRA);
+  // Press mark — 28px → Mid tier
+  document.getElementById('press-mark').innerHTML = m(32, TEAL, TERRA);
+</script>
+
+</body>
+</html>

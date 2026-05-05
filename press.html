@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Press, Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css?v=11">
+<style>
+  .press-wrap { padding: 64px 0; }
+  .filter-bar {
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .filter-bar button {
+    background: transparent;
+    border: 1px solid var(--rule);
+    padding: 6px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .filter-bar button.active, .filter-bar button:hover {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+
+  .press-row {
+    display: grid;
+    grid-template-columns: 120px 180px 1fr 140px;
+    gap: 32px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    transition: background .15s;
+  }
+  .press-row:hover { background: var(--cream-2); }
+  @media (max-width: 800px) {
+    .press-row { grid-template-columns: 100px 1fr; gap: 8px 16px; }
+    .press-row > :nth-child(3), .press-row > :nth-child(4) { grid-column: 2; }
+  }
+  .press-row .date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--mute);
+  }
+  .press-row .outlet {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cobalt);
+  }
+  .press-row .headline {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .press-row .headline em { color: var(--mute); font-style: italic; font-size: 13px; display: block; margin-top: 4px; }
+  .press-row .type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  .press-feature {
+    background: var(--cobalt-deep);
+    color: var(--cream);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .press-feature-bg { position: absolute; inset: 0; opacity: 0.12; }
+  .press-feature-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  @media (max-width: 800px) { .press-feature-inner { grid-template-columns: 1fr; } }
+  .press-feature q {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.3;
+    display: block;
+    quotes: none;
+    font-weight: 300;
+    color: var(--cream);
+  }
+  .press-feature q::before, .press-feature q::after { content: ''; }
+  .press-feature cite {
+    display: block;
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #b8c5e8;
+    font-style: normal;
+  }
+</style>
+</head>
+<body>
+
+<div data-nav></div>
+
+<header class="page-head">
+  <div class="container">
+    <div class="page-head-inner">
+      <div>
+        <div class="eyebrow">Press &amp; Public Writing</div>
+        <h1>Where the lab's work has shown up in public.</h1>
+      </div>
+      <p class="lede">
+        Features, interviews, op-eds, and radio. For press inquiries, contact
+        Clara Vogel at the email below, we respond within two business days
+        in most cases.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- FEATURED -->
+<section class="press-feature">
+  <div class="press-feature-bg" data-tiles
+       data-cols="14" data-rows="5" data-seed="91" data-density="0.75"
+       data-bg="#0f2a6b"
+       data-colors="#f1e9d8"
+       data-motifs="arc,doubleArc,dots,squiggle"></div>
+  <div class="container press-feature-inner">
+    <div>
+      <div class="eyebrow" style="color:#f4c58a;">Featured coverage</div>
+      <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#b8c5e8;margin-bottom:12px;">The Atlantic · March 2026</div>
+      <h2 style="color:var(--cream);font-size:clamp(28px, 3vw, 42px);">"What the Obama campaign taught us about volunteering, and what we forgot."</h2>
+      <p style="font-family:var(--font-display);font-size:17px;line-height:1.5;color:#d8dfee;max-width:50ch;margin-top:20px;">
+        A long feature drawing on a decade of the lab's work on relational
+        organizing and the quiet infrastructure of campaigns.
+      </p>
+    </div>
+    <div>
+      <q>
+        The lab's research reframes a question most political scientists
+        stopped asking years ago: what are organizations <em>for</em>, if not
+        to make ordinary people politically capable?
+      </q>
+      <cite>,  From the Atlantic piece</cite>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER + LIST -->
+<section class="press-wrap">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="feature">Features</button>
+      <button data-filter="interview">Interviews</button>
+      <button data-filter="oped">Op-eds</button>
+      <button data-filter="radio">Radio / Podcast</button>
+    </div>
+
+    <div id="press-list">
+      <div class="press-row" data-cat="feature">
+        <div class="date">Mar 2026</div>
+        <div class="outlet">The Atlantic</div>
+        <div class="headline">What the Obama campaign taught us about volunteering, and what we forgot.<em>Feature by A. Marantz · ~8,000 words</em></div>
+        <div class="type">Feature</div>
+      </div>
+      <div class="press-row" data-cat="feature">
+        <div class="date">Feb 2026</div>
+        <div class="outlet">Folha de São Paulo</div>
+        <div class="headline">Pesquisadora de Harvard mapeia movimentos de base no Brasil.<em>Reportagem · Seção Ilustríssima</em></div>
+        <div class="type">Feature</div>
+      </div>
+      <div class="press-row" data-cat="oped">
+        <div class="date">Jan 2026</div>
+        <div class="outlet">NYT Opinion</div>
+        <div class="headline">The quiet architecture behind every surprise political victory.<em>Guest essay</em></div>
+        <div class="type">Op-ed</div>
+      </div>
+      <div class="press-row" data-cat="radio">
+        <div class="date">Nov 2025</div>
+        <div class="outlet">NPR · On Point</div>
+        <div class="headline">Why perception of democracy may matter more than democracy itself.<em>47-minute interview</em></div>
+        <div class="type">Radio</div>
+      </div>
+      <div class="press-row" data-cat="interview">
+        <div class="date">Oct 2025</div>
+        <div class="outlet">The Dig (podcast)</div>
+        <div class="headline">On the Mamdani coalition and what it tells us about city politics.<em>Interview · 90 min</em></div>
+        <div class="type">Podcast</div>
+      </div>
+      <div class="press-row" data-cat="oped">
+        <div class="date">Sep 2025</div>
+        <div class="outlet">The Guardian</div>
+        <div class="headline">Democracies don't die from the top alone.<em>Opinion</em></div>
+        <div class="type">Op-ed</div>
+      </div>
+      <div class="press-row" data-cat="feature">
+        <div class="date">Aug 2025</div>
+        <div class="outlet">The New Yorker</div>
+        <div class="headline">The archives of ordinary people: inside a decade-long ethnography of Brazilian housing movements.<em>Feature · The Political Scene</em></div>
+        <div class="type">Feature</div>
+      </div>
+      <div class="press-row" data-cat="interview">
+        <div class="date">Jul 2025</div>
+        <div class="outlet">Ezra Klein Show</div>
+        <div class="headline">What organizing actually is, and why policy schools misunderstand it.<em>Interview</em></div>
+        <div class="type">Podcast</div>
+      </div>
+      <div class="press-row" data-cat="oped">
+        <div class="date">May 2025</div>
+        <div class="outlet">Washington Post</div>
+        <div class="headline">The philanthropy problem inside pro-democracy work.<em>Opinion</em></div>
+        <div class="type">Op-ed</div>
+      </div>
+      <div class="press-row" data-cat="radio">
+        <div class="date">Apr 2025</div>
+        <div class="outlet">BBC World Service</div>
+        <div class="headline">Backsliding, perception, and the politics of trust.<em>25-minute documentary</em></div>
+        <div class="type">Radio</div>
+      </div>
+      <div class="press-row" data-cat="feature">
+        <div class="date">Mar 2025</div>
+        <div class="outlet">Piauí</div>
+        <div class="headline">A pesquisadora americana que escuta o Brasil há uma década.<em>Perfil</em></div>
+        <div class="type">Feature</div>
+      </div>
+      <div class="press-row" data-cat="interview">
+        <div class="date">Feb 2025</div>
+        <div class="outlet">Harvard Magazine</div>
+        <div class="headline">A lab for democracy's practitioners.<em>Q&amp;A</em></div>
+        <div class="type">Interview</div>
+      </div>
+      <div class="press-row" data-cat="oped">
+        <div class="date">Dec 2024</div>
+        <div class="outlet">Boston Globe</div>
+        <div class="headline">Local organizing is the infrastructure of a national election.<em>Op-ed</em></div>
+        <div class="type">Op-ed</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;padding-top:24px;border-top:2px solid var(--ink);">
+      <div class="eyebrow">Press contact</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:700px;margin-top:16px;">
+        <div>
+          <div class="mono">Communications</div>
+          <div style="font-family:var(--font-display);font-size:20px;margin-top:4px;">Clara Vogel</div>
+          <a href="mailto:press@civicpower.hks.harvard.edu" style="border-bottom:1px solid var(--cobalt);color:var(--cobalt);font-size:14px;">press@civicpower.hks.harvard.edu</a>
+        </div>
+        <div>
+          <div class="mono">Media kit</div>
+          <p style="font-size:14px;margin:4px 0 8px;color:var(--ink-2);">Bios, headshots, and lab backgrounder for reporters.</p>
+          <a href="#" class="btn ghost" style="padding:8px 14px;font-size:12px;">Download media kit →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-footer></div>
+
+<script src="assets/tiles.js?v=11"></script>
+<script src="assets/chrome.js?v=11"></script>
+<script>
+document.querySelectorAll('.filter-bar button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-bar button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.press-row').forEach(row => {
+      row.style.display = (f === 'all' || row.dataset.cat === f) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Logo options — Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1f2e;
+    --ink-2: #3d4759;
+    --mute: #7a8699;
+    --cream: #f4ecd8;
+    --cream-2: #ebe1cb;
+    --paper: #f7f1e3;
+    --rule: #d8cfb8;
+    --cobalt: #1a3a8f;
+    --cobalt-deep: #0f2a6b;
+    --terracotta: #c24e2a;
+    --olive: #5a6b34;
+
+    --font-display: 'Source Serif 4', serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-body); color: var(--ink); background: var(--cream); }
+
+  /* Artboard content styles */
+  .ab { padding: 40px; font-family: var(--font-body); color: var(--ink); background: var(--cream); width: 100%; height: 100%; display: flex; flex-direction: column; }
+  .ab-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+  .ab-head h2 { font-family: var(--font-display); font-size: 28px; line-height: 1.1; margin: 0 0 6px; font-weight: 500; }
+  .ab-head .tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cobalt); }
+  .ab-head .num { font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.1em; }
+  .ab-note { font-family: var(--font-display); font-size: 14px; line-height: 1.5; color: var(--ink-2); margin: 0 0 24px; max-width: 60ch; }
+  .ab-note b { font-weight: 600; color: var(--ink); }
+
+  .show-grid { display: grid; grid-template-columns: 1fr 280px; gap: 32px; flex: 1; min-height: 0; }
+  .show-main {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    min-height: 320px;
+  }
+  .show-main.dark { background: var(--cobalt-deep); }
+  .show-main svg, .show-main .mark-large { width: 220px; height: 220px; }
+
+  .show-side { display: flex; flex-direction: column; gap: 16px; }
+
+  .scale-box {
+    border: 1px solid var(--rule);
+    padding: 16px;
+    background: var(--paper);
+  }
+  .scale-box .scale-label {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mute); margin-bottom: 10px;
+  }
+  .scale-row { display: flex; align-items: center; gap: 20px; }
+  .scale-row svg.s-xl { width: 64px; height: 64px; }
+  .scale-row svg.s-md { width: 40px; height: 40px; }
+  .scale-row svg.s-sm { width: 24px; height: 24px; }
+  .scale-row svg.s-xs { width: 16px; height: 16px; }
+
+  .lockup-box {
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    background: var(--paper);
+  }
+  .lockup-box .scale-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); margin-bottom: 12px; }
+  .lockup { display: flex; align-items: center; gap: 14px; }
+  .lockup svg { width: 44px; height: 44px; flex-shrink: 0; }
+  .lockup .wordmark {
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.1;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .lockup .wordmark small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-top: 3px;
+    font-weight: 400;
+  }
+
+  .lockup-box.dark { background: var(--cobalt-deep); border-color: var(--cobalt-deep); }
+  .lockup-box.dark .scale-label { color: #b8c5e8; }
+  .lockup-box.dark .wordmark { color: var(--cream); }
+  .lockup-box.dark .wordmark small { color: #b8c5e8; }
+
+  /* intro artboard */
+  .intro-ab { padding: 56px 48px; }
+  .intro-ab h1 {
+    font-family: var(--font-display);
+    font-size: 54px;
+    line-height: 1;
+    margin: 0 0 24px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .intro-ab h1 em { color: var(--cobalt); font-style: italic; }
+  .intro-ab .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cobalt);
+    margin-bottom: 20px;
+  }
+  .intro-ab p {
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 14px;
+    max-width: 68ch;
+  }
+  .intro-ab h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+    margin: 32px 0 12px;
+  }
+  .intro-ab ul {
+    font-family: var(--font-display); font-size: 15px; line-height: 1.55;
+    color: var(--ink-2); margin: 0; padding-left: 20px;
+    max-width: 70ch;
+  }
+  .intro-ab ul li { margin-bottom: 8px; }
+  .intro-ab ul li b { color: var(--ink); font-weight: 600; }
+
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .legend-item {
+    border: 1px solid var(--rule);
+    padding: 14px;
+    background: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .legend-item b {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+  <div id="canvas-root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="design-canvas.jsx"></script>
+
+  <script type="text/babel" src="logos.jsx"></script>
+  <script type="text/babel" src="logos-app.jsx"></script>
+</body>
+</html>

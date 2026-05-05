@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Burst-friendly snowflake — Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #efe6d1;
+    --ink: #171514;
+    --ink-2: #332f2b;
+    --mute: #6a6256;
+    --rule: #cec2a8;
+    --cream-2: #e6dcc2;
+    --cobalt: #13306b;
+    --cobalt-deep: #0a204e;
+    --terracotta: #b7432b;
+    --gold: #d9a636;
+    --olive: #6b7a3a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 56px 40px 80px;
+    background: var(--paper); color: var(--ink);
+    font-family: 'Work Sans', sans-serif; font-size: 15px; line-height: 1.55;
+  }
+  .wrap { max-width: 1340px; margin: 0 auto; }
+  .lede {
+    font-family: 'Source Serif 4', serif;
+    font-size: 19px;
+    max-width: 62ch;
+    color: var(--ink-2);
+  }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 54px;
+    line-height: 1.0;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  h1 em { color: var(--cobalt); font-style: italic; }
+  h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px;
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin: 0 0 4px;
+  }
+  h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 19px;
+    line-height: 1.2;
+    font-weight: 500;
+    margin: 0 0 6px;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 18px;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+
+  section { margin: 72px 0 0; }
+  section.intro { margin-top: 32px; }
+
+  .sec-head {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 40px;
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sec-head .meta .mono {
+    color: var(--cobalt);
+    margin-bottom: 10px;
+  }
+  .sec-head .body p {
+    margin: 0;
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    color: var(--ink-2);
+    max-width: 62ch;
+  }
+
+  /* problem demo grid — show current family at tiny sizes */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 12px;
+  }
+  .problem-cell {
+    background: var(--paper);
+    padding: 32px 20px 20px;
+    text-align: center;
+    min-height: 220px;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  }
+  .problem-cell .size-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 16px;
+  }
+  .problem-cell .size-label b { color: var(--ink); font-weight: 600; }
+  .problem-cell svg { display: block; }
+  .problem-cell .note {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--mute);
+    max-width: 22ch;
+    line-height: 1.35;
+    margin-top: 14px;
+  }
+  .problem-cell .note.bad { color: var(--terracotta); font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* candidate card — one per burst variant */
+  .cand-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 1100px) { .cand-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .cand-grid { grid-template-columns: 1fr; } }
+
+  .cand {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    display: flex; flex-direction: column;
+  }
+  .cand .hero {
+    background: var(--cream-2);
+    padding: 40px 0;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid var(--rule);
+    min-height: 180px;
+  }
+  .cand .hero.dark { background: var(--cobalt-deep); }
+  .cand-body {
+    padding: 22px 22px 18px;
+    flex: 1;
+    display: flex; flex-direction: column;
+  }
+  .cand-body .name-row {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+  }
+  .cand-body .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--terracotta);
+    letter-spacing: 0.1em;
+  }
+  .cand-body p {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    margin: 0 0 16px;
+    line-height: 1.5;
+  }
+  .cand .sizes {
+    border-top: 1px solid var(--rule);
+    padding: 20px 22px 22px;
+    display: flex; align-items: flex-end; justify-content: space-around;
+    background: var(--paper);
+    gap: 10px;
+  }
+  .cand .sizes .s {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .cand .sizes .s .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    color: var(--mute);
+    text-transform: uppercase;
+  }
+  .cand .sizes .s .lbl b { color: var(--cobalt); font-weight: 500; }
+  .cand .pros {
+    padding: 14px 22px 18px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--mute);
+    line-height: 1.7;
+  }
+  .cand .pros .line b { color: var(--olive); font-weight: 500; }
+  .cand .pros .line.bad b { color: var(--terracotta); }
+
+  /* favicon rail */
+  .fav-rail {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    align-items: center;
+    padding: 24px;
+    background: var(--cream-2);
+    border: 1px solid var(--rule);
+    margin-top: 14px;
+  }
+  .fav-rail .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .fav-rail .lbl b { color: var(--ink); display: block; margin-top: 4px; font-weight: 600; font-family: 'Source Serif 4', serif; font-size: 15px; letter-spacing: 0; text-transform: none; }
+  .fav-rail .row {
+    display: flex; gap: 28px; align-items: center; flex-wrap: wrap;
+  }
+  .fav-rail .row .unit {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .fav-rail .row .unit .sz { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--mute); letter-spacing: 0.1em; }
+  .fav-rail .browser-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff;
+    padding: 6px 10px 6px 8px;
+    border: 1px solid #d5cdb5;
+    border-radius: 4px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 12px;
+    color: var(--ink-2);
+  }
+
+  .recos {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .reco {
+    padding: 20px 22px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .reco .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 10px;
+  }
+  .reco h3 { font-size: 22px; margin-bottom: 8px; }
+  .reco p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+
+  .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--cobalt);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a href="../index.html" class="back">← Back to site</a>
+
+<section class="intro">
+  <div class="eyebrow">Exploration · logo small-size study</div>
+  <h1>Making the snowflake <em>read small</em>.</h1>
+  <p class="lede">
+    The current Classic mark holds up from 24px up. Below that, the outer nodes
+    collapse into the spokes and the whole thing gets mushy. The fix is not to
+    cram more detail in, it's to design a sibling form that reads as a
+    <em>burst</em> instead of a <em>network</em> when there isn't room for
+    both. Everything here keeps the four-quadrant, one-center logic
+    of the snowflake model, and every option uses the same accent-at-center
+    move that marks the organizer.
+  </p>
+</section>
+
+<!-- THE PROBLEM -->
+<section>
+  <div class="sec-head">
+    <div class="meta">
+      <div class="mono">01 · The problem</div>
+      <h2>What breaks at 16–20px.</h2>
+    </div>
+    <div class="body">
+      <p>
+        The Mini tier renders one center + four satellites + four spokes. At
+        favicon sizes the satellites become 1–2px, the spokes thin below one
+        pixel, and everything competes for the same quarter-inch of screen.
+        You lose the network reading entirely. You're left with a blob.
+      </p>
+    </div>
+  </div>
+
+  <div class="problem-grid">
+    <div class="problem-cell">
+      <div class="size-label"><b>96px</b> · app icon</div>
+      <div id="p-96"></div>
+      <div class="note">Fine. Clearly reads as a network with center + four leaders.</div>
+    </div>
+    <div class="problem-cell">
+      <div class="size-label"><b>40px</b> · nav</div>
+      <div id="p-40"></div>
+      <div class="note">Still fine. Leaders register.</div>
+    </div>
+    <div class="problem-cell">
+      <div class="size-label"><b>20px</b> · favicon</div>
+      <div id="p-20"></div>
+      <div class="note bad">Nodes too small</div>
+    </div>
+    <div class="problem-cell">
+      <div class="size-label"><b>16px</b> · browser tab</div>
+      <div id="p-16"></div>
+      <div class="note bad">Illegible blob</div>
+    </div>
+  </div>
+</section>
+
+<!-- CANDIDATES -->
+<section>
+  <div class="sec-head">
+    <div class="meta">
+      <div class="mono">02 · Six burst candidates</div>
+      <h2>Sibling marks for the small tier.</h2>
+    </div>
+    <div class="body">
+      <p>
+        The idea: keep the Full snowflake for signs, decks, hero lockups. Use
+        a purpose-built <em>burst</em> sibling below ~24px. Every option below
+        holds the accent-at-center rule, keeps a four-fold radial structure,
+        and is drawn with enough mass that favicon sizes read cleanly.
+      </p>
+    </div>
+  </div>
+
+  <div class="cand-grid" id="cand-grid"></div>
+</section>
+
+<!-- FAVICON TEST -->
+<section>
+  <div class="sec-head">
+    <div class="meta">
+      <div class="mono">03 · Favicon test</div>
+      <h2>How each reads <em>in the wild</em>.</h2>
+    </div>
+    <div class="body">
+      <p>
+        Rendering each candidate at 16px inside a mock browser tab. This is
+        the real acid test, favicon placement next to a favicon-first
+        competitor (Google, Harvard, NYT).
+      </p>
+    </div>
+  </div>
+  <div id="fav-rails"></div>
+</section>
+
+<!-- RECOMMENDATION -->
+<section>
+  <div class="sec-head">
+    <div class="meta">
+      <div class="mono">04 · Recommendation</div>
+      <h2>Ship a family, <em>not</em> a mark.</h2>
+    </div>
+    <div class="body">
+      <p>
+        The snowflake model is the conceptual backbone of the lab's work. We
+        should not abandon it for a trendy burst at small sizes, and we
+        should not squeeze the full network into a favicon. Use three siblings.
+      </p>
+    </div>
+  </div>
+
+  <div class="recos">
+    <div class="reco">
+      <div class="tag">Mark A · 40px +</div>
+      <h3>Classic snowflake.</h3>
+      <p>
+        The full 1 + 4 + 12 network, current Full tier. For letterhead,
+        hero lockups, signage, slide covers, print. The canonical form.
+      </p>
+    </div>
+    <div class="reco">
+      <div class="tag">Mark B · 24–40px</div>
+      <h3>Leadered.</h3>
+      <p>
+        Current Mid: 1 + 4 with short tick-marks at each leader. Nav bars,
+        email signatures, social avatars. Reads as network in a smaller footprint.
+      </p>
+    </div>
+    <div class="reco">
+      <div class="tag">Mark C · ≤ 24px</div>
+      <h3>Burst (pick one below).</h3>
+      <p>
+        Favicons, app icons, mobile. The small-size solution, same four-fold
+        structure and center-accent as the family, but drawn with enough
+        mass to read at 16px.
+      </p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script src="burst-marks.js"></script>
+<script>
+  const M = window.BURST_MARKS;
+  const current = M.currentMini; // existing Mini for the "problem" row
+
+  // Problem row: current mark at 96 / 40 / 20 / 16
+  const put = (id, svg) => { const el = document.getElementById(id); if (el) el.innerHTML = svg; };
+  put('p-96', current(96));
+  put('p-40', current(40));
+  put('p-20', current(20));
+  put('p-16', current(16));
+
+  // Candidates
+  const COBALT = '#13306b';
+  const VERM = '#b7432b';
+  const CANDIDATES = [
+    {
+      id: 'tapered',
+      num: '01',
+      name: 'Tapered spokes',
+      desc: 'Four diamond-shaped wedges radiating from the center accent. The wedges ARE the leaders, no separate nodes. Reads as burst or propeller, confident, easy to recognize at any size.',
+      fn: M.tapered,
+      pros: [
+        {good:true, t:'Reads at 12px'},
+        {good:true, t:'Single confident shape'},
+        {good:false, t:'Least snowflake-like'},
+      ],
+    },
+    {
+      id: 'petal',
+      num: '02',
+      name: 'Petal cluster',
+      desc: 'Four rounded petals around a center dot. Softer, more organic. The network is implied by the four-fold rotation; no spokes visible at this size.',
+      fn: M.petal,
+      pros: [
+        {good:true, t:'Warm, handmade'},
+        {good:true, t:'Reads at 14px'},
+        {good:false, t:'Could be confused with flower'},
+      ],
+    },
+    {
+      id: 'spoke-plus',
+      num: '03',
+      name: 'Plus spokes',
+      desc: 'Four bold spokes terminating in larger dots. Same logic as the Mini tier but with much chunkier geometry. The most direct descendant of the current mark.',
+      fn: M.spokePlus,
+      pros: [
+        {good:true, t:'Most on-brand'},
+        {good:true, t:'Nodes still register'},
+        {good:false, t:'Thickest at 16px'},
+      ],
+    },
+    {
+      id: 'eight-ray',
+      num: '04',
+      name: 'Eight-ray burst',
+      desc: 'Eight alternating spokes of two lengths, evoking a compass rose or burst of light. More density, reads as radiating structure even at tiny sizes.',
+      fn: M.eightRay,
+      pros: [
+        {good:true, t:'Most "burst"'},
+        {good:true, t:'Distinctive silhouette'},
+        {good:false, t:'Breaks 4-fold rule'},
+      ],
+    },
+    {
+      id: 'cross-fill',
+      num: '05',
+      name: 'Filled cross',
+      desc: 'The four-spoke cross rendered as one filled shape, with the center accent a separate disc. The most graphic, reads almost like a flag or civic emblem.',
+      fn: M.crossFill,
+      pros: [
+        {good:true, t:'Extremely bold'},
+        {good:true, t:'Works at 12px'},
+        {good:false, t:'Loses network feel'},
+      ],
+    },
+    {
+      id: 'ring-dots',
+      num: '06',
+      name: 'Ring of dots',
+      desc: 'Eight dots around a center accent, no spokes. The network pattern compressed into a radial rhythm. Feels more like a Bulcão tile than a diagram.',
+      fn: M.ringDots,
+      pros: [
+        {good:true, t:'Most Bulcão'},
+        {good:false, t:'Blurs at 12px'},
+        {good:false, t:'No explicit spokes'},
+      ],
+    },
+  ];
+
+  const grid = document.getElementById('cand-grid');
+  grid.innerHTML = CANDIDATES.map(c => `
+    <div class="cand">
+      <div class="hero">${c.fn(120, COBALT, VERM)}</div>
+      <div class="cand-body">
+        <div class="name-row"><span class="num">${c.num}</span><h3>${c.name}</h3></div>
+        <p>${c.desc}</p>
+      </div>
+      <div class="sizes">
+        <div class="s">${c.fn(48, COBALT, VERM)}<span class="lbl"><b>48</b></span></div>
+        <div class="s">${c.fn(32, COBALT, VERM)}<span class="lbl"><b>32</b></span></div>
+        <div class="s">${c.fn(24, COBALT, VERM)}<span class="lbl"><b>24</b></span></div>
+        <div class="s">${c.fn(20, COBALT, VERM)}<span class="lbl"><b>20</b></span></div>
+        <div class="s">${c.fn(16, COBALT, VERM)}<span class="lbl"><b>16</b></span></div>
+        <div class="s">${c.fn(12, COBALT, VERM)}<span class="lbl"><b>12</b></span></div>
+      </div>
+      <div class="pros">
+        ${c.pros.map(p => `<div class="line ${p.good?'':'bad'}"><b>${p.good?'+':'−'}</b> ${p.t}</div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  // Favicon rail
+  const fav = document.getElementById('fav-rails');
+  fav.innerHTML = CANDIDATES.map(c => `
+    <div class="fav-rail" style="margin-bottom:10px;">
+      <div class="lbl">${c.num} · burst<b>${c.name}</b></div>
+      <div class="row">
+        <div class="unit">${c.fn(16, COBALT, VERM)}<span class="sz">16PX</span></div>
+        <div class="unit">${c.fn(20, COBALT, VERM)}<span class="sz">20PX</span></div>
+        <div class="browser-chip">${c.fn(16, COBALT, VERM)}<span>civicpowerlab.org</span></div>
+        <div class="browser-chip" style="background:#1f1f1f;color:#eee;border-color:#000;">${c.fn(16, '#efe6d1', '#e8a663')}<span>Dark mode</span></div>
+      </div>
+    </div>
+  `).join('');
+</script>
+
+</body>
+</html>

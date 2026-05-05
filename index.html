@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Civic Power Lab, The R&amp;D arm of democracy.</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css?v=14">
+
+<!-- SCHEME SYSTEM
+     Six Seigensha-principled palettes. Each defines paper, two network colors,
+     an accent (organizer), and reversed-out tones for the footer. Restraint is
+     the rule: one strong accent, everything else quiet. -->
+<style>
+  /* Default scheme overrides, the one marked `active` gets applied by JS. */
+  :root {
+    /* paper / field */
+    --paper:       #efe6d1;   /* slightly warmer cream for more tooth */
+    --cream:       #efe6d1;
+    --cream-2:     #e6dcc2;
+    --rule:        #cec2a8;
+
+    /* ink */
+    --ink:         #171514;   /* sumi, not pure black */
+    --ink-2:       #332f2b;
+    --mute:        #6a6256;
+
+    /* mark (Classic snowflake) */
+    --mark-color:  #13306b;   /* aizome indigo */
+    --mark-accent: #b7432b;   /* vermillion organizer */
+
+    /* semantic accents */
+    --cobalt:      #13306b;
+    --cobalt-deep: #0a204e;
+    --terracotta:  #b7432b;
+    --olive:       #6b7a3a;
+
+    /* headliners / hero */
+    --hero-ink:       var(--ink);
+    --hero-em:        var(--cobalt);
+    --headline-bg:    var(--cobalt-deep);
+    --headline-text:  #f0e7d1;
+    --headline-em:    #e8a663;
+    --headline-mute:  #aebad8;
+
+    /* footer tuning */
+    --footer-mark-color:  #efe6d1;
+    --footer-mark-accent: #e8a663;
+  }
+
+  /* Tiles field colors update per scheme via CSS vars on .tile-host */
+  [data-tiles] { --t-bg: var(--paper); --t-ink: var(--cobalt); --t-warm: var(--terracotta); --t-olive: var(--olive); }
+
+  body { background: var(--paper); color: var(--ink); }
+  .nav { background: var(--paper); border-bottom-color: var(--rule); }
+  .footer { background: #0d3d45; }
+</style>
+
+<!-- Per-scheme overrides. Classes applied to <html>. -->
+<style>
+  /* ---------- 01 · Aizome + Vermillion (default, named) ---------- */
+  html.scheme-aizome {
+    --paper: #efe6d1; --cream: #efe6d1; --cream-2: #e6dcc2; --rule: #cec2a8;
+    --ink: #171514; --ink-2: #332f2b; --mute: #6a6256;
+    --mark-color: #13306b;  --mark-accent: #b7432b;
+    --cobalt: #13306b; --cobalt-deep: #0a204e; --terracotta: #b7432b; --olive: #6b7a3a;
+    --headline-bg: #0a204e; --headline-text: #f0e7d1; --headline-em: #e8a663; --headline-mute: #aebad8;
+    --footer-mark-color: #efe6d1; --footer-mark-accent: #e8a663;
+  }
+
+  /* ---------- 02 · Peacock Field (peacock as headline backdrop) ---------- */
+  html.scheme-sumi {
+    --paper: #f1ead7; --cream: #f1ead7; --cream-2: #e5dcc0; --rule: #ccbf9f;
+    --ink: #141c1f; --ink-2: #23333a; --mute: #5e6f74;
+    --mark-color: #0b5560; --mark-accent: #b84a2e;
+    --cobalt: #0b5560; --cobalt-deep: #073a43; --terracotta: #b84a2e; --olive: #a87820;
+    --headline-bg: #0b5560; --headline-text: #f1ead7; --headline-em: #d9a636; --headline-mute: #9fc2c9;
+    --footer-mark-color: #f1ead7; --footer-mark-accent: #d9a636;
+  }
+
+  /* ---------- 03 · Seigaiha (monochrome blue on natural) ---------- */
+  html.scheme-seigaiha {
+    --paper: #eee5d0; --cream: #eee5d0; --cream-2: #e4dabf; --rule: #cbc0a6;
+    --ink: #0f1e40; --ink-2: #1c2d54; --mute: #647090;
+    --mark-color: #1c4a8c; --mark-accent: #2a6db0;
+    --cobalt: #1c4a8c; --cobalt-deep: #0f2550; --terracotta: #2a6db0; --olive: #3d6590;
+    --headline-bg: #0f2550; --headline-text: #eee5d0; --headline-em: #a0c8f0; --headline-mute: #9fb1d4;
+    --footer-mark-color: #eee5d0; --footer-mark-accent: #a0c8f0;
+  }
+
+  /* ---------- 04 · Peacock Deep (more saturated, stronger terracotta) ---------- */
+  html.scheme-matsuba {
+    --paper: #eee5c7; --cream: #eee5c7; --cream-2: #e3d9b6; --rule: #c8bb96;
+    --ink: #0e1a1d; --ink-2: #1d2d33; --mute: #566a6f;
+    --mark-color: #0a5560; --mark-accent: #c74a2c;
+    --cobalt: #0a5560; --cobalt-deep: #063540; --terracotta: #c74a2c; --olive: #b07818;
+    --headline-bg: #063540; --headline-text: #eee5c7; --headline-em: #e6b53c; --headline-mute: #8ab3ba;
+    --footer-mark-color: #eee5c7; --footer-mark-accent: #e6b53c;
+  }
+
+  /* ---------- 05 · Reversed Aizome (deep indigo field) ---------- */
+  html.scheme-reversed {
+    --paper: #0c234f; --cream: #0c234f; --cream-2: #0f2a5f; --rule: #23407a;
+    --ink: #efe6d1; --ink-2: #e0d6bc; --mute: #a3b0cf;
+    --mark-color: #efe6d1; --mark-accent: #e8a663;
+    --cobalt: #efe6d1; --cobalt-deep: #f1ead7; --terracotta: #e8a663; --olive: #b5bf93;
+    --headline-bg: #b7432b; --headline-text: #efe6d1; --headline-em: #f3c99c; --headline-mute: #f2d8c3;
+    --footer-mark-color: #0c234f; --footer-mark-accent: #b7432b;
+  }
+  html.scheme-reversed .nav { background: var(--paper); border-bottom-color: #23407a; }
+  html.scheme-reversed .nav-cta { background: var(--terracotta); color: var(--paper) !important; }
+  html.scheme-reversed .footer { background: #efe6d1; color: #171514; }
+  html.scheme-reversed .footer a { color: #332f2b; }
+  html.scheme-reversed .footer h4 { color: #6a6256; }
+  html.scheme-reversed .footer-bottom { border-top-color: rgba(0,0,0,0.12); color: #6a6256; }
+
+  /* ---------- 06 · Cinnabar (vermillion-led) ---------- */
+  html.scheme-cinnabar {
+    --paper: #f3e9d0; --cream: #f3e9d0; --cream-2: #ebdfc0; --rule: #d5c8a4;
+    --ink: #171514; --ink-2: #332f2b; --mute: #6a6256;
+    --mark-color: #b7432b; --mark-accent: #13306b;
+    --cobalt: #b7432b; --cobalt-deep: #7a2a15; --terracotta: #13306b; --olive: #6b7a3a;
+    --headline-bg: #7a2a15; --headline-text: #f3e9d0; --headline-em: #f3c99c; --headline-mute: #e5b99b;
+    --footer-mark-color: #f3e9d0; --footer-mark-accent: #f3c99c;
+  }
+
+  /* ---------- 07 · Jewel (peacock, terracotta, gold accent) ---------- */
+  html.scheme-jewel {
+    --paper: #f1ead7; --cream: #f1ead7; --cream-2: #e5dcc0; --rule: #ccbf9f;
+    --ink: #141c1f; --ink-2: #23333a; --mute: #5e6f74;
+    --mark-color: #15616d;  --mark-accent: #b84a2e;
+    --cobalt: #15616d; --cobalt-deep: #0d3d45; --terracotta: #b84a2e; --olive: #a87820;
+    --headline-bg: #0d3d45; --headline-text: #f1ead7; --headline-em: #d9a636; --headline-mute: #9dbcc2;
+    --footer-mark-color: #f1ead7; --footer-mark-accent: #d9a636;
+  }
+</style>
+
+<!-- Page-specific styles -->
+<style>
+  /* === HERO === */
+  .hero { position: relative; padding: 56px 0 0; overflow: hidden; border-bottom: 1px solid var(--rule); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 56px;
+    align-items: end;
+    padding-bottom: 56px;
+  }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .hero h1 {
+    font-size: clamp(52px, 8.4vw, 140px);
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+    font-weight: 400;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--cobalt);
+    font-weight: 400;
+  }
+  .pre-h1 {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 18px;
+    font-weight: 400;
+  }
+  @media (max-width: 960px) { .pre-h1 { margin-bottom: 14px; font-size: 11px; } }
+  .hero-lede {
+    font-family: var(--font-display);
+    font-size: clamp(17px, 1.4vw, 21px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 46ch;
+    margin: 28px 0 32px;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* hero mark lockup, shows the NEW logo prominently */
+  .hero-mark-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-mark-row .mark-wrap {
+    width: 72px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-mark-row .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+    line-height: 1.5;
+  }
+  .hero-mark-row .meta b {
+    color: var(--cobalt);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* flagged headlines in the hero column */
+  .hero-flag {
+    padding: 22px 0 22px 22px;
+    border-left: 3px solid var(--cobalt);
+    font-family: var(--font-display);
+    font-size: 16.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 42ch;
+  }
+  .hero-flag + .hero-flag { margin-top: 14px; }
+  .hero-flag .flag-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cobalt);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .hero-flag.warm { border-left-color: var(--terracotta); }
+  .hero-flag.warm .flag-label { color: var(--terracotta); }
+  .hero-flag a { border-bottom: 1px solid currentColor; color: inherit; }
+  .hero-flag a:hover { color: var(--cobalt); }
+
+  .hero-tiles {
+    height: 84px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid rgba(241,234,215,0.12);
+    overflow: hidden;
+    background: #0d3d45;
+  }
+  .hero-tiles > svg { display: block; width: 100%; height: 100%; }
+
+  /* === HEADLINER (POLIS) === */
+  .headliner {
+    background: var(--headline-bg);
+    color: var(--headline-text);
+    padding: 96px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .headliner-bg { position: absolute; inset: 0; opacity: 0.08; }
+  .headliner-inner { position: relative; z-index: 2; }
+  .headliner-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 32px;
+    align-items: baseline;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255,255,255,.22);
+    margin-bottom: 40px;
+  }
+  @media (max-width: 800px) {
+    .headliner-top { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .headliner .flag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--headline-em);
+    padding: 5px 11px;
+    border: 1px solid var(--headline-em);
+    display: inline-block;
+    background: transparent;
+  }
+  .headliner .proj-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--headline-mute);
+  }
+  .headliner h2 {
+    color: var(--headline-text);
+    font-size: clamp(44px, 5.8vw, 84px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    max-width: 20ch;
+  }
+  .headliner h2 em { color: var(--headline-em); font-style: italic; }
+  .headliner .bigger {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 1.55vw, 22px);
+    line-height: 1.5;
+    color: var(--headline-text);
+    opacity: 0.92;
+    max-width: 54ch;
+  }
+  .headliner-grid {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 960px) { .headliner-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .take-box {
+    border-top: 3px solid var(--headline-em);
+    padding-top: 20px;
+    margin-top: 32px;
+    max-width: 56ch;
+  }
+  .take-box .take-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--headline-em);
+    margin-bottom: 10px;
+  }
+  .take-box .take-text {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 1.8vw, 26px);
+    line-height: 1.35;
+    color: var(--headline-text);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .take-box .take-text b {
+    font-style: normal;
+    font-weight: 500;
+    background: linear-gradient(to top, color-mix(in srgb, var(--headline-em) 28%, transparent) 0 32%, transparent 32% 100%);
+  }
+
+  .headliner-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,.22);
+  }
+  .hstat {
+    padding: 22px 20px 22px 0;
+    border-right: 1px solid rgba(255,255,255,.22);
+    border-bottom: 1px solid rgba(255,255,255,.22);
+  }
+  .hstat:nth-child(2n) { border-right: none; padding-right: 0; padding-left: 20px; }
+  .hstat .n {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 3.2vw, 46px);
+    line-height: 1;
+    color: var(--headline-text);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .hstat .l {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--headline-mute);
+    line-height: 1.4;
+  }
+
+  /* === PRACTICE HEADLINER (Groundwork) === */
+  .practice-headline {
+    padding: 96px 0;
+    background: var(--cream-2);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .ph-bg { position: absolute; inset: 0; opacity: 0.18; }
+  .ph-inner { position: relative; z-index: 2; }
+  .ph-top {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 36px;
+  }
+  .ph-flag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    padding: 5px 11px;
+    border: 1px solid var(--terracotta);
+    background: var(--paper);
+  }
+  .ph-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: end;
+  }
+  @media (max-width: 900px) { .ph-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .ph-grid h2 {
+    font-size: clamp(40px, 5.2vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    max-width: 14ch;
+  }
+  .ph-grid h2 em { color: var(--terracotta); font-style: italic; }
+  .ph-grid .lede {
+    font-family: var(--font-display);
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 44ch;
+    margin-bottom: 24px;
+  }
+  .ph-bullets {
+    list-style: none; padding: 0; margin: 0;
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .ph-bullets li {
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+    display: flex; gap: 16px; align-items: baseline;
+    color: var(--ink-2);
+  }
+  .ph-bullets li:last-child { border-bottom: 1px solid var(--rule); }
+  .ph-bullets .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--terracotta);
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .ph-bullets b { color: var(--ink); font-weight: 500; }
+
+  /* === RESEARCH TEASER === */
+  .research-teaser .proj-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 2fr 120px;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: background .15s;
+    cursor: pointer;
+  }
+  .research-teaser .proj-row:first-of-type { border-top: 1px solid var(--rule); }
+  .research-teaser .proj-row:hover { background: var(--cream-2); }
+  .research-teaser .proj-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--cobalt); }
+  .research-teaser .proj-name { font-family: var(--font-display); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; }
+  .research-teaser .proj-desc { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .research-teaser .proj-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); text-align: right; }
+  @media (max-width: 800px) {
+    .research-teaser .proj-row { grid-template-columns: 60px 1fr; gap: 16px; }
+    .research-teaser .proj-desc, .research-teaser .proj-tag { grid-column: 2; }
+  }
+
+  /* === MANIFESTO === */
+  .manifesto { background: var(--cream-2); padding: 96px 0; border-bottom: 1px solid var(--rule); }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 800px) { .manifesto-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .manifesto h2 { font-size: clamp(28px, 3.6vw, 52px); line-height: 1.05; }
+  .manifesto h2 em { color: var(--terracotta); font-style: italic; }
+  .manifesto-cols {
+    columns: 2; column-gap: 40px;
+    font-size: 16px; line-height: 1.6; color: var(--ink-2);
+  }
+  @media (max-width: 700px) { .manifesto-cols { columns: 1; } }
+  .manifesto-cols p { margin: 0 0 16px; break-inside: avoid; }
+
+  /* === BOOKS === */
+  .books-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+  @media (max-width: 700px) { .books-grid { grid-template-columns: 1fr; } }
+  .book { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: start; }
+  .book-cover {
+    aspect-ratio: 2/3;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    color: var(--cream);
+  }
+  .book-cover .tiles-bg { position: absolute; inset: 0; }
+  .book-cover .book-title {
+    position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+    z-index: 2;
+    font-family: var(--font-display); font-size: 19px; line-height: 1.05;
+    text-align: center; font-weight: 600; letter-spacing: 0.01em;
+    padding: 12px 14px;
+    background: var(--paper);
+    color: var(--ink);
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+  .book-info h3 { margin-bottom: 4px; }
+  .book-info .mono { margin-bottom: 10px; }
+  .book-info p { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin: 0 0 12px; }
+
+  /* === QUOTE === */
+  .quote-section { padding: 120px 0; text-align: center; background: var(--cream); color: var(--ink); position: relative; overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .quote-bg { position: absolute; inset: 0; opacity: 0.18; }
+  .quote-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 0 var(--gutter); }
+  .quote-inner q {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 46px);
+    line-height: 1.22;
+    display: block; quotes: none; font-weight: 300;
+  }
+  .quote-inner q::before, .quote-inner q::after { content: ''; }
+  .quote-inner cite {
+    display: block; margin-top: 32px;
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--cobalt);
+    font-style: normal;
+  }
+
+  /* === PRESS === */
+  .press-strip { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  .press-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 24px; }
+  @media (max-width: 900px) { .press-items { grid-template-columns: repeat(2, 1fr); } }
+  .press-item { border-top: 1px solid var(--ink); padding-top: 16px; }
+  .press-item .outlet { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cobalt); margin-bottom: 10px; }
+  .press-item .headline { font-family: var(--font-display); font-size: 17px; line-height: 1.3; color: var(--ink); }
+  .press-item .date { font-family: var(--font-mono); font-size: 11px; color: var(--mute); margin-top: 10px; }
+
+  /* === ENGAGE === */
+  .engage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) { .engage-grid { grid-template-columns: 1fr; } }
+  .engage-cell {
+    padding: 48px 40px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: background .2s;
+  }
+  .engage-cell:last-child { border-right: none; }
+  .engage-cell:hover { background: var(--cream-2); }
+  .engage-cell .mono { margin-bottom: 20px; color: var(--cobalt); }
+  .engage-cell h3 { font-size: 28px; margin-bottom: 12px; }
+  .engage-cell p { font-size: 15px; line-height: 1.5; color: var(--ink-2); margin: 0 0 24px; }
+  .engage-cell .arrow { margin-top: auto; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+
+  /* === TWEAKS PANEL (color scheme picker) === */
+  .tweaks-panel {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 200;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 20px 50px -20px rgba(0,0,0,0.35);
+    display: none;
+    font-family: var(--font-body);
+  }
+  .tweaks-panel.active { display: block; }
+  .tweaks-panel h4 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 4px;
+    font-weight: 500;
+  }
+  .tweaks-panel .sub {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--mute);
+    margin: 0 0 18px;
+    font-style: italic;
+  }
+  .tweak-scheme {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--rule);
+    background: transparent;
+    margin-bottom: 6px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color .15s, background .15s;
+    font-family: inherit;
+  }
+  .tweak-scheme:hover { border-color: var(--ink); }
+  .tweak-scheme.active { border-color: var(--ink); background: var(--cream-2); }
+  .tweak-scheme .swatches { display: flex; gap: 3px; flex-shrink: 0; }
+  .tweak-scheme .sw {
+    width: 14px; height: 14px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .tweak-scheme .labels { flex: 1; min-width: 0; }
+  .tweak-scheme .n {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .tweak-scheme .t {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+  .tweak-scheme.active .t { color: var(--cobalt); }
+  .tweaks-panel .note {
+    font-family: var(--font-display);
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.45;
+    margin: 14px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<div data-nav></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="pre-h1">Helping build…</div>
+        <h1>The R&amp;D arm<br>of <em>democracy</em>.</h1>
+        <p class="hero-lede">
+          A mixed-methods research lab studying (and helping build) the organizational
+          infrastructure that turns civic participation into political power. We work
+          alongside the organizations doing the work.
+        </p>
+        <div class="hero-ctas">
+          <a href="research.html" class="btn">See our research →</a>
+          <a href="connect.html" class="btn ghost">Work with us</a>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="hero-flag">
+          <span class="flag-label">New research · POLIS Study</span>
+          A multiyear study of state-based organizing groups (the first large-N
+          dataset built to study organizing, not mobilizing).
+          <a href="#polis-headliner">See what that means →</a>
+        </div>
+        <div class="hero-flag warm">
+          <span class="flag-label">New practice · Groundwork</span>
+          A field-owned relational organizing platform, built by and for
+          organizers (an alternative to investor-owned tooling).
+          <a href="#practice-headline">Read the brief →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-tiles" data-tiles
+       data-cols="20" data-rows="2" data-seed="909" data-density="1.0"
+       data-bg="#0d3d45"
+       data-colors="#f1ead7,#d9a636,#b84a2e"
+       data-motifs="disc"
+       data-rotate-pattern="mirror"
+       data-color-pattern="sequence">
+  </div>
+</section>
+
+<!-- HEADLINER · POLIS -->
+<section class="headliner" id="polis-headliner">
+  <div class="headliner-bg" data-tiles
+       data-cols="14" data-rows="7" data-seed="301" data-density="0.35"
+       data-bg="#0d3d45"
+       data-colors="#15616d,#d9a636"
+       data-motifs="disc"
+       data-rotate-pattern="mirror"
+       data-color-pattern="sequence"></div>
+  <div class="container headliner-inner">
+    <div class="headliner-top">
+      <span class="flag">New research</span>
+      <span class="proj-meta">POLIS · Participation, Organizing, and Local Influence Study</span>
+      <span class="proj-meta">Year 2 of 5</span>
+    </div>
+
+    <div class="headliner-grid">
+      <div>
+        <h2>The first large-N dataset built to study <em>organizing</em>, not mobilizing.</h2>
+        <p class="bigger" style="margin-top:28px;">
+          POLIS follows state-based organizing groups across the country,
+          looking at how they recruit, develop leaders, and build durable
+          power in their communities. Every text sent, every one-to-one
+          booked, every leader trained, at weekly resolution.
+        </p>
+
+        <div class="take-box">
+          <div class="take-label">What it lets us see</div>
+          <div class="take-text">
+            Most civic datasets measure <em>mobilizing</em> (who showed up,
+            who voted). POLIS measures the slower, relational work that
+            happens between elections: the part the field has always
+            known matters, but nobody had the data to study at scale.
+          </div>
+        </div>
+
+        <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="research.html#polis" class="btn" style="background:var(--headline-text);color:var(--headline-bg);border-color:var(--headline-text);">Read the POLIS brief →</a>
+          <a href="practice.html#groundwork" class="btn ghost" style="color:var(--headline-text);border-color:var(--headline-text);">The Groundwork platform →</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--headline-em);margin-bottom:18px;">The network, by the numbers</div>
+        <div class="headliner-stats">
+          <div class="hstat"><div class="n">38</div><div class="l">Partner<br>organizations</div></div>
+          <div class="hstat"><div class="n">10</div><div class="l">US states<br>covered</div></div>
+          <div class="hstat"><div class="n">5yr</div><div class="l">Research<br>horizon</div></div>
+          <div class="hstat"><div class="n">100%</div><div class="l">Partners signed<br>on DUAs</div></div>
+          <div class="hstat"><div class="n">~40k</div><div class="l">Members reached<br>across network</div></div>
+          <div class="hstat"><div class="n">weekly</div><div class="l">Organizing activity<br>resolution</div></div>
+        </div>
+        <p style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.06em;color:var(--headline-mute);margin-top:22px;line-height:1.5;">
+          Funded in part by the Carnegie Fellowship (2025–27), in partnership with the Democracy &amp; Power Innovation Fund and the Organizing Lab.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE HEADLINER · GROUNDWORK -->
+<section class="practice-headline" id="practice-headline">
+  <div class="ph-bg" data-tiles
+       data-cols="14" data-rows="4" data-seed="808" data-density="0.4"
+       data-bg="var(--cream-2)"
+       data-colors="#b84a2e,#d9a636"
+       data-motifs="tri"
+       data-rotate-pattern="mirror"
+       data-color-pattern="sequence"></div>
+  <div class="container ph-inner">
+    <div class="ph-top">
+      <span class="ph-flag">New practice</span>
+      <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:var(--mute);">Groundwork · Open-source organizing platform · Alpha 2026</span>
+    </div>
+    <div class="ph-grid">
+      <div>
+        <h2>An organizing stack, <em>owned by the field</em>.</h2>
+        <p class="lede">
+          Movement organizations have spent two decades paying rent to platforms
+          that weren't designed for their work. Groundwork is an alternative:
+          a relational organizing toolkit built in the open, with the POLIS
+          network as its first users.
+        </p>
+        <a href="practice.html#groundwork" class="btn">Read the brief →</a>
+      </div>
+      <ul class="ph-bullets">
+        <li><span class="num">01</span><span><b>Field-owned.</b> Source-available, no vendor lock-in, no data extraction.</span></li>
+        <li><span class="num">02</span><span><b>Designed by organizers.</b> Leader development is a first-class object (not an afterthought).</span></li>
+        <li><span class="num">03</span><span><b>Informed by POLIS.</b> What the research shows works becomes what the platform makes easy.</span></li>
+        <li><span class="num">04</span><span><b>Radically cheaper.</b> A fraction of the cost of the incumbent stack, by design.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+      <div>
+        <div class="eyebrow" style="color:var(--terracotta);">About the lab</div>
+        <h2>Rigor <em>in service</em> of real movements.</h2>
+      </div>
+      <div class="manifesto-cols">
+        <p>
+          We think of the lab as a small R&amp;D arm for democracy. Not the whole
+          thing (no lab could be) but a place that takes the work of building
+          civic power seriously enough to study it with care, and rigorously
+          enough that organizers can use what we find.
+        </p>
+        <p>
+          The work is mixed-methods by conviction, not habit. Quantitative network
+          and administrative data shows us the <em>architecture</em> of civic
+          life. Deep ethnography shows us what it <em>feels like</em> to live
+          inside it. Neither tells the whole story alone.
+        </p>
+        <p>
+          We publish in journals, and we build things organizers can actually
+          pick up on a Tuesday. Our premise is simple: the study of democracy
+          should be accountable to the people practicing it.
+        </p>
+        <p>
+          Housed at the Center for Public Leadership
+          at HKS, in long partnerships with community-based organizations
+          that shape what we ask and how we ask it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section marker: Research -->
+<div class="section-marker-label">
+  <div class="sml-tag" style="color:#15616d;">01 · Research</div>
+  <div class="sml-strip" data-tiles
+       data-cols="22" data-rows="1" data-seed="401" data-density="1.0"
+       data-bg="#f1ead7"
+       data-colors="#15616d,#d9a636"
+       data-motifs="arc,half"
+       data-rotate-pattern="mirror"
+       data-color-pattern="sequence"></div>
+</div>
+
+<!-- RESEARCH TEASER -->
+<section class="section research-teaser">
+  <div class="container">
+    <div class="section-head">
+      <h2>Streams of research.</h2>
+      <a href="research.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">All projects →</a>
+    </div>
+
+    <a href="research.html#polis" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">01 / POLIS</div>
+        <div class="proj-name">Participation, Organizing &amp; Local Influence</div>
+        <div class="proj-desc">38 groups, 10 states, five years. Leadership density, relational tracking, and what it takes to turn participation into power.</div>
+        <div class="proj-tag">US · 10 states</div>
+      </div>
+    </a>
+    <a href="research.html#agency" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">02 / AGENCY</div>
+        <div class="proj-name">The architecture of agency</div>
+        <div class="proj-desc">How organizations teach people to act (and act together). Field experiments and ethnography across large-scale organizing campaigns.</div>
+        <div class="proj-tag">US · Brazil</div>
+      </div>
+    </a>
+    <a href="research.html#civic" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">03 / PERCEPTION</div>
+        <div class="proj-name">Civic perception under strain</div>
+        <div class="proj-desc">Survey-embedded experiments on how citizens read the health of their own democracy, and what changes when the signal gets noisy.</div>
+        <div class="proj-tag">Multi-country</div>
+      </div>
+    </a>
+    <a href="research.html#donors" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">04 / DONORS</div>
+        <div class="proj-name">Donors &amp; democracy</div>
+        <div class="proj-desc">Philanthropy as infrastructure: the quiet ways funder strategy shapes (and sometimes displaces) democratic practice.</div>
+        <div class="proj-tag">US · Transatlantic</div>
+      </div>
+    </a>
+    <a href="research.html#mamdani" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">05 / MAMDANI</div>
+        <div class="proj-name">Mamdani research initiative</div>
+        <div class="proj-desc">Tracing the organizational infrastructure behind the 2025 NYC mayoral campaign, and what it reveals about the future of urban politics.</div>
+        <div class="proj-tag">New York City</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Section marker: Publications -->
+<div class="section-marker-label" style="background:var(--cream-2);">
+  <div class="sml-tag" style="color:#15616d;">02 · Publications</div>
+  <div class="sml-strip" data-tiles
+       data-cols="22" data-rows="1" data-seed="412" data-density="1.0"
+       data-bg="#e5dcc0"
+       data-colors="#15616d,#d9a636"
+       data-motifs="arc,half"
+       data-rotate-pattern="mirror"
+       data-color-pattern="sequence"></div>
+</div>
+
+<!-- BOOKS -->
+<section class="section cream-2" id="publications" style="background:var(--cream-2);">
+  <div class="container">
+    <div class="section-head">
+      <h2>Books &amp; selected publications.</h2>
+      <a href="research.html#publications" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">Full list →</a>
+    </div>
+
+    <div class="books-grid">
+      <div class="book">
+        <div class="book-cover" style="background: var(--cobalt-deep);">
+          <div class="tiles-bg" data-tiles
+               data-cols="4" data-rows="6" data-seed="101" data-density="1.0"
+               data-bg="var(--cobalt-deep)"
+               data-colors="#f1ead7,#d9a636"
+               data-motifs="disc"
+               data-rotate-pattern="mirror"
+               data-color-pattern="sequence"></div>
+          <span class="book-title">GROUND<br>BREAKERS</span>
+        </div>
+        <div class="book-info">
+          <span class="mono">2014 · Oxford University Press</span>
+          <h3>Groundbreakers</h3>
+          <p>
+            How the Obama campaign's 2.2 million volunteers transformed
+            American politics. A multi-year study of relational organizing
+            at unprecedented scale, with Hahrie Han.
+          </p>
+        </div>
+      </div>
+
+      <div class="book">
+        <div class="book-cover" style="background: var(--terracotta);">
+          <div class="tiles-bg" data-tiles
+               data-cols="4" data-rows="6" data-seed="202" data-density="1.0"
+               data-bg="var(--terracotta)"
+               data-colors="#f1ead7,#d9a636"
+               data-motifs="tri"
+               data-rotate-pattern="mirror"
+               data-color-pattern="sequence"></div>
+          <span class="book-title">PRISMS<br>OF THE<br>PEOPLE</span>
+        </div>
+        <div class="book-info">
+          <span class="mono">2021 · University of Chicago Press</span>
+          <h3>Prisms of the People</h3>
+          <p>
+            Power, organizing, and twenty-first-century democracy. Co-authored
+            with Hahrie Han and Michelle Oyakawa: a book-length case for
+            why leadership density matters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE / PULL -->
+<section class="quote-section">
+  <div class="quote-inner">
+    <q>
+      The R&amp;D arm of democracy is what turns the labor of showing up into
+      something durable: organizations that learn, adapt, and keep
+      building power for the people furthest from it.
+    </q>
+    <cite>From the lab's opening note</cite>
+  </div>
+</section>
+
+<!-- Section marker: Press -->
+<div class="section-marker-label">
+  <div class="sml-tag" style="color:#b84a2e;">03 · Press</div>
+  <div class="sml-strip" data-tiles
+       data-cols="22" data-rows="1" data-seed="403" data-density="1.0"
+       data-bg="#f1ead7"
+       data-colors="#b84a2e,#d9a636"
+       data-motifs="tri"
+       data-rotate-pattern="mirror"
+       data-color-pattern="sequence"></div>
+</div>
+
+<!-- PRESS TEASER -->
+<section class="press-strip">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:8px;">
+      <div>
+        <div class="eyebrow" style="color:var(--terracotta);">In the press</div>
+        <h2>Recent coverage.</h2>
+      </div>
+      <a href="press.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">All press →</a>
+    </div>
+    <div class="press-items">
+      <div class="press-item">
+        <div class="outlet">The Atlantic</div>
+        <div class="headline">What the Obama campaign taught us about volunteering, and what we forgot.</div>
+        <div class="date">March 2026</div>
+      </div>
+      <div class="press-item">
+        <div class="outlet">Folha de São Paulo</div>
+        <div class="headline">Pesquisadora de Harvard mapeia movimentos de base no Brasil.</div>
+        <div class="date">Feb 2026</div>
+      </div>
+      <div class="press-item">
+        <div class="outlet">NYT Opinion</div>
+        <div class="headline">The quiet architecture behind every surprise political victory.</div>
+        <div class="date">Jan 2026</div>
+      </div>
+      <div class="press-item">
+        <div class="outlet">NPR · On Point</div>
+        <div class="headline">Why perception of democracy may matter more than democracy itself.</div>
+        <div class="date">Nov 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section marker: Engage -->
+<div class="section-marker-label">
+  <div class="sml-tag" style="color:#b84a2e;">04 · Engage</div>
+  <div class="sml-strip" data-tiles
+       data-cols="22" data-rows="1" data-seed="414" data-density="1.0"
+       data-bg="#f1ead7"
+       data-colors="#b84a2e,#15616d"
+       data-motifs="arc,half,stripe"
+       data-rotate-pattern="mirror"
+       data-color-pattern="sequence"></div>
+</div>
+
+<!-- ENGAGE -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Work with the lab</div>
+        <h2 style="max-width:20ch;">Three ways to engage.</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="engage-grid">
+    <a href="connect.html#partner" class="engage-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">For organizations</div>
+      <h3>Propose a partnership</h3>
+      <p>
+        We work with movements, unions, and civic organizations on focused
+        research questions. We ask partners to submit a written spec, not
+        book a meeting, so we can say yes or no with real clarity.
+      </p>
+      <span class="arrow">Submit a research spec →</span>
+    </a>
+    <a href="connect.html#ra" class="engage-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">For researchers</div>
+      <h3>Join the lab</h3>
+      <p>
+        We hire research assistants, postdoctoral fellows, forward-deployed
+        engineers, and visiting scholars. Methods chops and movement
+        experience both valued.
+      </p>
+      <span class="arrow">Express interest →</span>
+    </a>
+    <a href="connect.html#list" class="engage-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">For everyone</div>
+      <h3>Stay in touch</h3>
+      <p>
+        A short quarterly note from the lab, new work, field dispatches,
+        things we're reading. No clickbait, no pushy asks.
+      </p>
+      <span class="arrow">Join the email list →</span>
+    </a>
+  </div>
+</section>
+
+<div data-footer></div>
+
+<!-- TWEAKS: color scheme picker -->
+<div class="tweaks-panel" id="tweaks">
+  <h4>Color scheme</h4>
+  <p class="sub">Seigensha-principled palettes. Single strong accent, everything else quiet.</p>
+  <div id="scheme-list"></div>
+  <p class="note" id="scheme-note"></p>
+  <h4 style="margin-top:22px;">Mark tilt</h4>
+  <p class="sub">How much the snowflake leans in the hero.</p>
+  <div id="tilt-list" style="display:flex;gap:6px;"></div>
+</div>
+
+<!-- Persisted tweakable state -->
+<script>
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "scheme": "jewel",
+  "markTilt": 0
+}/*EDITMODE-END*/;
+
+const SCHEMES = [
+  { id: 'aizome',    name: 'Aizome + Vermillion',  tag: 'Traditional',   swatches: ['#efe6d1','#13306b','#b7432b'], note: 'Indigo and vermillion on paper-cream. Traditional and restrained.' },
+  { id: 'jewel',     name: 'Peacock + Terracotta', tag: 'Jewel · A',     swatches: ['#f1ead7','#15616d','#b84a2e','#d9a636'], note: 'Peacock teal with warm terracotta on cream, gold as a small accent. Muted and grounded.' },
+  { id: 'sumi',      name: 'Peacock Field',        tag: 'Jewel · B',     swatches: ['#f1ead7','#0b5560','#b84a2e','#d9a636'], note: 'Peacock teal carries through as the headline backdrop — the jewel tone dominates the page, not just the accents.' },
+  { id: 'matsuba',   name: 'Peacock Deep',         tag: 'Jewel · C',     swatches: ['#eee5c7','#0a5560','#c74a2c','#e6b53c'], note: 'Deeper, more saturated teal with a stronger terracotta and brighter gold. Contrastier and more jewel-like.' },
+  { id: 'seigaiha',  name: 'Seigaiha Blue',        tag: 'Monochrome',    swatches: ['#eee5d0','#0f2550','#2a6db0'], note: 'A single color in two values: deep navy and a softer blue. Unified and quiet.' },
+  { id: 'reversed',  name: 'Reversed Aizome',      tag: 'Dark field',    swatches: ['#0c234f','#efe6d1','#e8a663'], note: 'Deep indigo field. The hero becomes a sumi-print. Strongest on a projector, most distinctive in a feed.' },
+  { id: 'cinnabar',  name: 'Cinnabar-led',         tag: 'Inverted',      swatches: ['#f3e9d0','#b7432b','#13306b'], note: 'Vermillion does the structural work, indigo becomes the quiet accent. Warmer feel.' },
+];
+
+function applyScheme(id) {
+  document.documentElement.className = document.documentElement.className
+    .replace(/\bscheme-\S+/g, '').trim();
+  document.documentElement.classList.add('scheme-' + id);
+
+  // Re-render any data-mark that reads CSS vars so swatches pick up new colors.
+  document.querySelectorAll('[data-mark]').forEach(el => { el.innerHTML = ''; });
+  if (window.renderTileElements) window.renderTileElements();
+
+  // Re-render tiles too, their colors are CSS vars embedded into SVG attrs.
+  document.querySelectorAll('[data-tiles]').forEach(el => { el.innerHTML = ''; delete el.dataset.rendered; });
+  if (window.renderTileElements) window.renderTileElements();
+
+  const active = SCHEMES.find(s => s.id === id) || SCHEMES[0];
+  const note = document.getElementById('scheme-note');
+  if (note) note.textContent = active.note;
+
+  document.querySelectorAll('.tweak-scheme').forEach(b => {
+    b.classList.toggle('active', b.dataset.id === id);
+  });
+}
+
+function buildSchemeList() {
+  const host = document.getElementById('scheme-list');
+  if (!host) return;
+  host.innerHTML = SCHEMES.map(s => `
+    <button class="tweak-scheme" data-id="${s.id}">
+      <span class="swatches">${s.swatches.map(c => `<span class="sw" style="background:${c}"></span>`).join('')}</span>
+      <span class="labels">
+        <span class="n">${s.name}</span>
+        <span class="t">${s.tag}</span>
+      </span>
+    </button>
+  `).join('');
+  host.querySelectorAll('.tweak-scheme').forEach(b => {
+    b.addEventListener('click', () => {
+      const id = b.dataset.id;
+      applyScheme(id);
+      TWEAKS.scheme = id;
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { scheme: id } }, '*');
+    });
+  });
+}
+
+// Apply initial scheme before chrome renders so the mark reads the right vars.
+applyScheme(TWEAKS.scheme || 'aizome');
+
+function applyMarkTilt(deg) {
+  document.documentElement.setAttribute('data-mark-tilt', String(deg));
+  document.documentElement.style.setProperty('--mark-tilt', String(deg));
+  // Re-render all marks with the new tilt
+  document.querySelectorAll('[data-mark]').forEach(el => { el.innerHTML = ''; });
+  if (window.renderTileElements) window.renderTileElements();
+  document.querySelectorAll('.tweak-tilt').forEach(b => {
+    b.classList.toggle('active', Number(b.dataset.tilt) === Number(deg));
+  });
+}
+function buildTiltList() {
+  const host = document.getElementById('tilt-list');
+  if (!host) return;
+  host.innerHTML = [0,15,30,45].map(d => `<button class="tweak-scheme tweak-tilt" data-tilt="${d}" style="flex:1;justify-content:center;"><span class="labels"><span class="n">${d}°</span></span></button>`).join('');
+  host.querySelectorAll('.tweak-tilt').forEach(b => {
+    b.addEventListener('click', () => {
+      const deg = Number(b.dataset.tilt);
+      applyMarkTilt(deg);
+      TWEAKS.markTilt = deg;
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { markTilt: deg } }, '*');
+    });
+  });
+  applyMarkTilt(TWEAKS.markTilt ?? 15);
+}
+applyMarkTilt(TWEAKS.markTilt ?? 15);
+
+// Tweaks protocol
+window.addEventListener('message', (e) => {
+  const d = e.data || {};
+  if (d.type === '__activate_edit_mode') {
+    document.getElementById('tweaks').classList.add('active');
+  } else if (d.type === '__deactivate_edit_mode') {
+    document.getElementById('tweaks').classList.remove('active');
+  }
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+// Build panel after DOM exists
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => { buildSchemeList(); buildTiltList(); });
+} else {
+  buildSchemeList();
+  buildTiltList();
+}
+</script>
+
+<script src="assets/tiles.js?v=14"></script>
+<script src="assets/chrome.js?v=14"></script>
+</body>
+</html>

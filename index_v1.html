@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Civic Power Lab — The R&amp;D arm of democracy.</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css?v=2">
+<style>
+  .hero { position: relative; padding: 48px 0 0; overflow: hidden; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 64px;
+    align-items: end;
+    padding-bottom: 64px;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .hero h1 {
+    font-size: clamp(48px, 7.8vw, 132px);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    font-weight: 400;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--cobalt);
+    font-weight: 400;
+  }
+  .hero-lede {
+    font-family: var(--font-display);
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 46ch;
+    margin: 28px 0 32px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .hero-sidenote {
+    border-left: 2px solid var(--cobalt);
+    padding: 4px 0 4px 20px;
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 42ch;
+  }
+  .hero-sidenote .mono { margin-bottom: 8px; display: block; }
+
+  .hero-tiles {
+    height: 220px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  /* POLIS headliner */
+  .headliner {
+    background: var(--cobalt-deep);
+    color: var(--cream);
+    padding: 96px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .headliner-bg { position: absolute; inset: 0; opacity: 0.14; }
+  .headliner-inner { position: relative; z-index: 2; }
+  .headliner-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 40px;
+    align-items: baseline;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,.22);
+    margin-bottom: 40px;
+  }
+  @media (max-width: 800px) {
+    .headliner-top { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .headliner .flag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #f4c58a;
+    padding: 4px 10px;
+    border: 1px solid #f4c58a;
+    display: inline-block;
+  }
+  .headliner h2 {
+    color: var(--cream);
+    font-size: clamp(40px, 5.4vw, 78px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+  .headliner h2 em { color: #f4c58a; font-style: italic; }
+  .headliner .bigger {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.45;
+    color: #e1e6f3;
+    max-width: 60ch;
+  }
+  .headliner-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .headliner-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .headliner-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,.22);
+  }
+  @media (max-width: 700px) { .headliner-stats { grid-template-columns: repeat(2, 1fr); } }
+  .hstat {
+    padding: 24px 20px;
+    border-right: 1px solid rgba(255,255,255,.22);
+    border-bottom: 1px solid rgba(255,255,255,.22);
+  }
+  .hstat:last-child { border-right: none; }
+  .hstat .n {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 3.4vw, 48px);
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .hstat .l {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b8c5e8;
+  }
+
+  .manifesto { background: var(--cream-2); padding: 96px 0; border-bottom: 1px solid var(--rule); }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 800px) { .manifesto-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .manifesto h2 { font-size: clamp(28px, 3.6vw, 52px); line-height: 1.05; }
+  .manifesto h2 em { color: var(--terracotta); font-style: italic; }
+  .manifesto-cols {
+    columns: 2; column-gap: 40px;
+    font-size: 16px; line-height: 1.6; color: var(--ink-2);
+  }
+  @media (max-width: 700px) { .manifesto-cols { columns: 1; } }
+  .manifesto-cols p { margin: 0 0 16px; break-inside: avoid; }
+
+  .research-teaser .proj-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 2fr 120px;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: background .15s;
+    cursor: pointer;
+  }
+  .research-teaser .proj-row:first-of-type { border-top: 1px solid var(--rule); }
+  .research-teaser .proj-row:hover { background: var(--cream-2); }
+  .research-teaser .proj-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--cobalt); }
+  .research-teaser .proj-name { font-family: var(--font-display); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; }
+  .research-teaser .proj-desc { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  .research-teaser .proj-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); text-align: right; }
+  @media (max-width: 800px) {
+    .research-teaser .proj-row { grid-template-columns: 60px 1fr; gap: 16px; }
+    .research-teaser .proj-desc, .research-teaser .proj-tag { grid-column: 2; }
+  }
+
+  /* Practice strip */
+  .practice-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) { .practice-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .practice-grid { grid-template-columns: 1fr; } }
+  .practice-cell {
+    padding: 32px 28px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    background: var(--cream);
+    transition: background .2s;
+  }
+  .practice-cell:last-child { border-right: none; }
+  .practice-cell:hover { background: var(--cream-2); }
+  .practice-cell .mono { color: var(--cobalt); margin-bottom: 12px; }
+  .practice-cell h3 { font-size: 22px; line-height: 1.15; margin-bottom: 10px; }
+  .practice-cell p { font-size: 14px; line-height: 1.5; color: var(--ink-2); margin: 0 0 14px; }
+  .practice-cell .arrow { margin-top: auto; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+
+  /* Books */
+  .books-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+  @media (max-width: 700px) { .books-grid { grid-template-columns: 1fr; } }
+  .book { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: start; }
+  .book-cover {
+    aspect-ratio: 2/3;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--cream); padding: 18px;
+  }
+  .book-cover .tiles-bg { position: absolute; inset: 0; }
+  .book-cover .book-title {
+    position: relative; font-family: var(--font-display); font-size: 22px; line-height: 1.05;
+    z-index: 2; text-align: center; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,.3);
+  }
+  .book-info h3 { margin-bottom: 4px; }
+  .book-info .mono { margin-bottom: 10px; }
+  .book-info p { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin: 0 0 12px; }
+
+  /* Quote */
+  .quote-section { padding: 120px 0; text-align: center; background: var(--cream); color: var(--ink); position: relative; overflow: hidden; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .quote-bg { position: absolute; inset: 0; opacity: 0.4; }
+  .quote-inner { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 0 var(--gutter); }
+  .quote-inner q {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(26px, 3.6vw, 46px);
+    line-height: 1.22;
+    display: block; quotes: none; font-weight: 300;
+  }
+  .quote-inner q::before, .quote-inner q::after { content: ''; }
+  .quote-inner cite {
+    display: block; margin-top: 32px;
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--cobalt);
+    font-style: normal;
+  }
+
+  /* Press strip */
+  .press-strip { padding: 48px 0; border-bottom: 1px solid var(--rule); }
+  .press-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 24px; }
+  @media (max-width: 900px) { .press-items { grid-template-columns: repeat(2, 1fr); } }
+  .press-item { border-top: 1px solid var(--ink); padding-top: 16px; }
+  .press-item .outlet { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cobalt); margin-bottom: 10px; }
+  .press-item .headline { font-family: var(--font-display); font-size: 17px; line-height: 1.3; color: var(--ink); }
+  .press-item .date { font-family: var(--font-mono); font-size: 11px; color: var(--mute); margin-top: 10px; }
+
+  /* Engage */
+  .engage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) { .engage-grid { grid-template-columns: 1fr; } }
+  .engage-cell {
+    padding: 48px 40px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: background .2s;
+  }
+  .engage-cell:last-child { border-right: none; }
+  .engage-cell:hover { background: var(--cream-2); }
+  .engage-cell .mono { margin-bottom: 20px; color: var(--cobalt); }
+  .engage-cell h3 { font-size: 28px; margin-bottom: 12px; }
+  .engage-cell p { font-size: 15px; line-height: 1.5; color: var(--ink-2); margin: 0 0 24px; }
+  .engage-cell .arrow { margin-top: auto; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div data-nav></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Harvard Kennedy School · Ash Center</div>
+        <h1>The R&amp;D arm<br>of <em>democracy</em>.</h1>
+        <p class="hero-lede">
+          We study — and help build — the organizational infrastructure that
+          turns civic participation into political power. A mixed-methods
+          research lab working shoulder-to-shoulder with the organizations
+          doing the work.
+        </p>
+        <div class="hero-ctas">
+          <a href="research.html" class="btn">See our research →</a>
+          <a href="connect.html" class="btn ghost">Work with us</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div class="hero-sidenote">
+          <span class="mono">Headliner · POLIS</span>
+          A five-year study of 38 organizing groups across 10 states,
+          mapping how civic power actually gets built. <a href="research.html#polis" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);">Enter POLIS →</a>
+        </div>
+        <div class="hero-sidenote" style="border-color:var(--terracotta);">
+          <span class="mono" style="color:var(--terracotta);">New · Groundwork</span>
+          An open-source relational organizing platform, designed from the
+          ground up <em>by</em> organizers, <em>for</em> them.
+          <a href="practice.html#groundwork" style="color:var(--terracotta);border-bottom:1px solid var(--terracotta);">Read the brief →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-tiles" data-tiles
+       data-cols="16" data-rows="3" data-seed="7" data-density="0.88"
+       data-bg="#f7f1e3"
+       data-colors="#1a3a8f,#1a3a8f,#1a3a8f,#c24e2a,#5a6b34"
+       data-motifs="arc,arc,arc,doubleArc,disc,tri,squiggle,banana,dots,half">
+  </div>
+</section>
+
+<!-- POLIS HEADLINER -->
+<section class="headliner" id="polis-headliner">
+  <div class="headliner-bg" data-tiles
+       data-cols="14" data-rows="7" data-seed="301" data-density="0.72"
+       data-bg="#0f2a6b"
+       data-colors="#f1e9d8"
+       data-motifs="arc,doubleArc,dots,squiggle,disc"></div>
+  <div class="container headliner-inner">
+    <div class="headliner-top">
+      <span class="flag">Current headliner</span>
+      <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:#b8c5e8;">POLIS · Participation, Organizing, and Local Influence Study</span>
+      <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:#b8c5e8;">Years 2 of 5</span>
+    </div>
+
+    <div class="headliner-grid">
+      <div>
+        <h2>How does civic participation<br>turn into <em>political power</em>?</h2>
+        <p class="bigger" style="margin-top:24px;">
+          POLIS follows 38 state-based organizing groups across 10 states — reaching tens of thousands of members on healthcare, wages, voting rights, and housing — to answer the question at the center of the lab: what organizational practices, at what intensity, build durable civic power in the communities that most need it?
+        </p>
+        <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="research.html#polis" class="btn" style="background:var(--cream);color:var(--ink);border-color:var(--cream);">Read the POLIS brief →</a>
+          <a href="practice.html#groundwork" class="btn ghost" style="color:var(--cream);border-color:var(--cream);">The Groundwork platform →</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;color:#f4c58a;margin-bottom:16px;">Network at a glance</div>
+        <div class="headliner-stats">
+          <div class="hstat"><div class="n">38</div><div class="l">Partner organizations</div></div>
+          <div class="hstat"><div class="n">10</div><div class="l">US states</div></div>
+          <div class="hstat"><div class="n">5yr</div><div class="l">Research horizon</div></div>
+          <div class="hstat"><div class="n">DUA</div><div class="l">All partners signed</div></div>
+        </div>
+        <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;color:#b8c5e8;margin-top:20px;line-height:1.5;">
+          Funded in part by the Carnegie Fellowship (2025–27) and in partnership with the Democracy &amp; Power Innovation Fund and the Organizing Lab.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+      <div>
+        <div class="eyebrow" style="color:var(--terracotta);">About the lab</div>
+        <h2>Rigor <em>in service</em> of real movements.</h2>
+      </div>
+      <div class="manifesto-cols">
+        <p>
+          We coined it, and we claim it: <b>the R&amp;D arm of democracy.</b>
+          A lab can't fill that whole space alone — but somebody has to
+          insist it exists. We insist.
+        </p>
+        <p>
+          The work is mixed-methods by conviction, not habit: quantitative
+          network and administrative data reveals the <em>architecture</em>
+          of civic life, while deep ethnography reveals what it <em>feels
+          like</em> to live inside it.
+        </p>
+        <p>
+          We publish in journals and we build tools organizers can actually
+          pick up on a Tuesday. The lab runs on a simple premise: the study
+          of democracy should be accountable to the people practicing it.
+        </p>
+        <p>
+          Housed at the Ash Center for Democratic Governance and Innovation
+          at HKS, in long partnerships with community-based organizations
+          that shape what we ask and how we ask it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH TEASER -->
+<section class="section research-teaser">
+  <div class="container">
+    <div class="section-head">
+      <h2>Streams of research.</h2>
+      <a href="research.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">All projects →</a>
+    </div>
+
+    <a href="research.html#polis" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">01 / POLIS</div>
+        <div class="proj-name">Participation, Organizing &amp; Local Influence</div>
+        <div class="proj-desc">The headliner — 38 groups, 10 states, 5 years. Leadership density, relational tracking, and what it takes to turn participation into power.</div>
+        <div class="proj-tag">US · 10 states</div>
+      </div>
+    </a>
+    <a href="research.html#agency" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">02 / AGENCY</div>
+        <div class="proj-name">The architecture of agency</div>
+        <div class="proj-desc">How organizations teach people to act — and act together. Field experiments and ethnography across large-scale organizing campaigns.</div>
+        <div class="proj-tag">US · Brazil</div>
+      </div>
+    </a>
+    <a href="research.html#civic" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">03 / PERCEPTION</div>
+        <div class="proj-name">Civic perception under strain</div>
+        <div class="proj-desc">Survey-embedded experiments on how citizens read the health of their own democracy — and what changes when the signal gets noisy.</div>
+        <div class="proj-tag">Multi-country</div>
+      </div>
+    </a>
+    <a href="research.html#donors" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">04 / DONORS</div>
+        <div class="proj-name">Donors &amp; democracy</div>
+        <div class="proj-desc">Philanthropy as infrastructure: the quiet ways funder strategy shapes — and sometimes displaces — democratic practice.</div>
+        <div class="proj-tag">US · Transatlantic</div>
+      </div>
+    </a>
+    <a href="research.html#mamdani" style="display:block;color:inherit;">
+      <div class="proj-row">
+        <div class="proj-num">05 / MAMDANI</div>
+        <div class="proj-name">Mamdani research initiative</div>
+        <div class="proj-desc">Tracing the organizational infrastructure behind the 2025 NYC mayoral campaign, and what it reveals about the future of urban politics.</div>
+        <div class="proj-tag">New York City</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PRACTICE TEASER -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow" style="color:var(--terracotta);">Practice</div>
+        <h2 style="max-width:20ch;">Research is one half. Building is the other.</h2>
+      </div>
+      <a href="practice.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">Practice →</a>
+    </div>
+  </div>
+
+  <div class="practice-grid">
+    <a href="practice.html#groundwork" class="practice-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">Tool / Open Source</div>
+      <h3>Groundwork</h3>
+      <p>A field-owned relational organizing platform, designed by and for organizers. Replacing extractive, investor-owned tooling at a fraction of the cost.</p>
+      <span class="arrow">Read the brief →</span>
+    </a>
+    <a href="practice.html#workshops" class="practice-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">Curriculum</div>
+      <h3>Organizing workshops</h3>
+      <p>A training arc delivered across the POLIS network — in collaboration with the Organizing Lab — building leadership density in real time.</p>
+      <span class="arrow">Training stream →</span>
+    </a>
+    <a href="practice.html#metrics" class="practice-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">Measurement</div>
+      <h3>Power metrics</h3>
+      <p>New indicators — from leadership density to commitment follow-through — that let organizations see their own power-building as clearly as they see their turnout.</p>
+      <span class="arrow">Metrics stream →</span>
+    </a>
+    <a href="practice.html#dpi" class="practice-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">Civic power · DPI</div>
+      <h3>Field &amp; funder collaborations</h3>
+      <p>Shared work with the Democracy &amp; Power Innovation Fund, Organizing Lab, and a wider ecosystem to build a field-owned civic tech stack.</p>
+      <span class="arrow">Collaborations →</span>
+    </a>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="section cream-2" id="publications">
+  <div class="container">
+    <div class="section-head">
+      <h2>Books &amp; selected publications.</h2>
+      <a href="research.html#publications" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">Full list →</a>
+    </div>
+
+    <div class="books-grid">
+      <div class="book">
+        <div class="book-cover" style="background: var(--cobalt-deep);">
+          <div class="tiles-bg" data-tiles
+               data-cols="4" data-rows="6" data-seed="101" data-density="0.9"
+               data-bg="#0f2a6b"
+               data-colors="#f1e9d8,#c24e2a"
+               data-motifs="arc,disc,tri,squiggle"></div>
+          <span class="book-title">GROUND<br>BREAKERS</span>
+        </div>
+        <div class="book-info">
+          <span class="mono">2014 · Oxford University Press</span>
+          <h3>Groundbreakers</h3>
+          <p>
+            How the Obama campaign's 2.2 million volunteers transformed
+            American politics. A multi-year study of relational organizing
+            at unprecedented scale — with Hahrie Han.
+          </p>
+        </div>
+      </div>
+
+      <div class="book">
+        <div class="book-cover" style="background: var(--terracotta);">
+          <div class="tiles-bg" data-tiles
+               data-cols="4" data-rows="6" data-seed="202" data-density="0.88"
+               data-bg="#c24e2a"
+               data-colors="#f1e9d8,#1a3a8f"
+               data-motifs="arc,doubleArc,half,banana"></div>
+          <span class="book-title">PRISMS<br>OF THE<br>PEOPLE</span>
+        </div>
+        <div class="book-info">
+          <span class="mono">2021 · University of Chicago Press</span>
+          <h3>Prisms of the People</h3>
+          <p>
+            Power, organizing, and twenty-first-century democracy. Co-authored
+            with Hahrie Han and Michelle Oyakawa — a book-length case for
+            why leadership density matters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE / PULL -->
+<section class="quote-section">
+  <div class="quote-bg" data-tiles
+       data-cols="14" data-rows="6" data-seed="33" data-density="0.65"
+       data-bg="#f1e9d8"
+       data-colors="#1a3a8f"
+       data-motifs="arc,arc,squiggle,dots,banana"></div>
+  <div class="quote-inner">
+    <q>
+      Democracy's R&amp;D arm is what turns the labor of showing up into
+      something durable: organizations that learn, adapt, and keep
+      building power for the people furthest from it.
+    </q>
+    <cite>— Lab opening note</cite>
+  </div>
+</section>
+
+<!-- PRESS TEASER -->
+<section class="press-strip">
+  <div class="container">
+    <div class="section-head" style="margin-bottom:8px;">
+      <div>
+        <div class="eyebrow" style="color:var(--terracotta);">In the press</div>
+        <h2>Recent coverage.</h2>
+      </div>
+      <a href="press.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">All press →</a>
+    </div>
+    <div class="press-items">
+      <div class="press-item">
+        <div class="outlet">The Atlantic</div>
+        <div class="headline">What the Obama campaign taught us about volunteering — and what we forgot.</div>
+        <div class="date">March 2026</div>
+      </div>
+      <div class="press-item">
+        <div class="outlet">Folha de São Paulo</div>
+        <div class="headline">Pesquisadora de Harvard mapeia movimentos de base no Brasil.</div>
+        <div class="date">Feb 2026</div>
+      </div>
+      <div class="press-item">
+        <div class="outlet">NYT Opinion</div>
+        <div class="headline">The quiet architecture behind every surprise political victory.</div>
+        <div class="date">Jan 2026</div>
+      </div>
+      <div class="press-item">
+        <div class="outlet">NPR · On Point</div>
+        <div class="headline">Why perception of democracy may matter more than democracy itself.</div>
+        <div class="date">Nov 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGE -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Work with the lab</div>
+        <h2 style="max-width:20ch;">Three ways to engage.</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="engage-grid">
+    <a href="connect.html#partner" class="engage-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">For organizations</div>
+      <h3>Propose a partnership</h3>
+      <p>
+        We work with movements, unions, and civic organizations on focused
+        research questions. We ask partners to submit a written spec — not
+        book a meeting — so we can say yes or no with real clarity.
+      </p>
+      <span class="arrow">Submit a research spec →</span>
+    </a>
+    <a href="connect.html#ra" class="engage-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">For researchers</div>
+      <h3>Join the lab</h3>
+      <p>
+        We hire research assistants, postdoctoral fellows, forward-deployed
+        engineers, and visiting scholars. Methods chops and movement
+        experience both valued.
+      </p>
+      <span class="arrow">Express interest →</span>
+    </a>
+    <a href="connect.html#list" class="engage-cell" style="text-decoration:none;color:inherit;">
+      <div class="mono">For everyone else</div>
+      <h3>Stay in touch</h3>
+      <p>
+        A short quarterly note from the lab — new work, field dispatches,
+        things we're reading. No clickbait, no pushy asks.
+      </p>
+      <span class="arrow">Join the email list →</span>
+    </a>
+  </div>
+</section>
+
+<div data-footer></div>
+
+<script src="assets/tiles.js?v=2"></script>
+<script src="assets/chrome.js?v=2"></script>
+</body>
+</html>
