@@ -384,33 +384,35 @@
   <!-- FORMS -->
   <div>
     <!-- PARTNER FORM -->
-    <form class="form-body active" data-form="partner" onsubmit="return submitForm(event, 'partner')">
+    <form class="form-body active" data-form="partner" name="cpl-partner-spec" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="return submitForm(event, 'partner')">
+      <input type="hidden" name="form-name" value="cpl-partner-spec">
+      <p class="hidden" style="display:none;"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
       <div class="form-section">
         <div class="form-section-title">Section 1 <span>/ You</span></div>
         <div class="form-section-desc">Who you are and how to reach you.</div>
         <div class="field-grid">
           <div class="field">
             <label>Your name</label>
-            <input type="text" required>
+            <input name="donrsquot-fill-this-out" type="text" required>
           </div>
           <div class="field">
             <label>Your role / title</label>
-            <input type="text" required>
+            <input name="your-role-title" type="text" required>
           </div>
         </div>
         <div class="field-grid">
           <div class="field">
             <label>Organization</label>
-            <input type="text" required>
+            <input name="organization" type="text" required>
           </div>
           <div class="field">
             <label>Organization URL</label>
-            <input type="url" placeholder="https://">
+            <input name="organization-url" type="url" placeholder="https://">
           </div>
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" required>
+          <input name="email" type="email" required>
         </div>
       </div>
 
@@ -420,16 +422,16 @@
         <div class="field">
           <label>One-paragraph description of what you do.</label>
           <span class="hint">Think: how you'd describe the org to a stranger at a dinner. 4 – 6 sentences.</span>
-          <textarea required></textarea>
+          <textarea name="one-paragraph-description-of-what-you-do" required></textarea>
         </div>
         <div class="field-grid">
           <div class="field">
             <label>Where are you based?</label>
-            <input type="text" placeholder="City, country">
+            <input name="where-are-you-based" type="text" placeholder="City, country">
           </div>
           <div class="field">
             <label>Approximate org size</label>
-            <select>
+            <select name="approximate-org-size">
               <option>Select…</option>
               <option>1 – 5 staff</option>
               <option>6 – 25 staff</option>
@@ -448,25 +450,25 @@
         <div class="field">
           <label>What's the research question?</label>
           <span class="hint">Phrase it as a question. It's fine, good, even, if it's still a bit messy.</span>
-          <textarea class="tall" required></textarea>
+          <textarea name="whats-the-research-question" class="tall" required></textarea>
         </div>
 
         <div class="field">
           <label>Why now? What decision or moment will this research inform?</label>
           <span class="hint">Describe the concrete choice, campaign, or moment the answer will shape.</span>
-          <textarea required></textarea>
+          <textarea name="why-now-what-decision-or-moment-will-this-research-inform" required></textarea>
         </div>
 
         <div class="field">
           <label>What do you already know? What have you already tried?</label>
           <span class="hint">Prior internal research, hunches, adjacent studies you've read.</span>
-          <textarea required></textarea>
+          <textarea name="what-do-you-already-know-what-have-you-already-tried" required></textarea>
         </div>
 
         <div class="field">
           <label>What would a useful output look like?</label>
           <span class="hint">A memo? A dashboard? A journal article? A training? Be specific.</span>
-          <textarea required></textarea>
+          <textarea name="what-would-a-useful-output-look-like" required></textarea>
         </div>
       </div>
 
@@ -477,23 +479,23 @@
         <div class="field">
           <label>What access could you provide?</label>
           <div class="checks">
-            <label><input type="checkbox"><span>Staff interviews<small>Leadership, organizers, program staff.</small></span></label>
-            <label><input type="checkbox"><span>Member / participant interviews or surveys</span></label>
-            <label><input type="checkbox"><span>Administrative / program data<small>CRM, canvass, participation logs.</small></span></label>
-            <label><input type="checkbox"><span>Observation / fieldwork<small>Meetings, trainings, events.</small></span></label>
-            <label><input type="checkbox"><span>Document archives</span></label>
-            <label><input type="checkbox"><span>Something else (describe below)</span></label>
+            <label><input name="what-access-could-you-provide" type="checkbox"><span>Staff interviews<small>Leadership, organizers, program staff.</small></span></label>
+            <label><input type="checkbox" name="member-participant-interviews-or-surveys" value="yes"><span>Member / participant interviews or surveys</span></label>
+            <label><input type="checkbox" name="administrative-program-data" value="yes"><span>Administrative / program data<small>CRM, canvass, participation logs.</small></span></label>
+            <label><input type="checkbox" name="observation-fieldwork" value="yes"><span>Observation / fieldwork<small>Meetings, trainings, events.</small></span></label>
+            <label><input type="checkbox" name="document-archives" value="yes"><span>Document archives</span></label>
+            <label><input type="checkbox" name="something-else-describe-below" value="yes"><span>Something else (describe below)</span></label>
           </div>
         </div>
 
         <div class="field-grid">
           <div class="field">
             <label>Ideal timeline</label>
-            <input type="text" placeholder="e.g. fieldwork Jun – Dec 2026">
+            <input name="ideal-timeline" type="text" placeholder="e.g. fieldwork Jun – Dec 2026">
           </div>
           <div class="field">
             <label>Funding posture</label>
-            <select>
+            <select name="funding-posture">
               <option>Select…</option>
               <option>We have funding to contribute</option>
               <option>We can co-apply for funding</option>
@@ -505,7 +507,7 @@
 
         <div class="field">
           <label>Anything else we should know?</label>
-          <textarea></textarea>
+          <textarea name="anything-else-we-should-know"></textarea>
         </div>
       </div>
 
@@ -516,22 +518,24 @@
     </form>
 
     <!-- RA FORM -->
-    <form class="form-body" data-form="ra" onsubmit="return submitForm(event, 'ra')">
+    <form class="form-body" data-form="ra" name="cpl-ra-interest" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="return submitForm(event, 'ra')">
+      <input type="hidden" name="form-name" value="cpl-ra-interest">
+      <p class="hidden" style="display:none;"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
       <div class="form-section">
         <div class="form-section-title">Section 1 <span>/ You</span></div>
         <div class="field-grid">
           <div class="field">
             <label>Your name</label>
-            <input type="text" required>
+            <input name="donrsquot-fill-this-out" type="text" required>
           </div>
           <div class="field">
             <label>Current affiliation</label>
-            <input type="text" placeholder="University, program, or role">
+            <input name="current-affiliation" type="text" placeholder="University, program, or role">
           </div>
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" required>
+          <input name="email" type="email" required>
         </div>
       </div>
 
@@ -540,11 +544,11 @@
         <div class="form-section-desc">Check everything that fits. We read every application for every role.</div>
         <div class="field">
           <div class="checks">
-            <label><input type="checkbox" value="ra"><span>Research Assistant<small>Undergraduate or recent BA.</small></span></label>
-            <label><input type="checkbox" value="senior-ra"><span>Senior RA / pre-doc<small>1 – 3 years post-BA, heading toward a PhD.</small></span></label>
-            <label><input type="checkbox" value="phd"><span>PhD student at Harvard<small>Looking for advising or lab affiliation.</small></span></label>
-            <label><input type="checkbox" value="postdoc"><span>Postdoctoral fellow</span></label>
-            <label><input type="checkbox" value="visitor"><span>Visiting scholar (sabbatical / fellowship)</span></label>
+            <label><input type="checkbox" value="ra" name="research-assistant" value="yes"><span>Research Assistant<small>Undergraduate or recent BA.</small></span></label>
+            <label><input type="checkbox" value="senior-ra" name="senior-ra-pre-doc" value="yes"><span>Senior RA / pre-doc<small>1 – 3 years post-BA, heading toward a PhD.</small></span></label>
+            <label><input type="checkbox" value="phd" name="phd-student-at-harvard" value="yes"><span>PhD student at Harvard<small>Looking for advising or lab affiliation.</small></span></label>
+            <label><input type="checkbox" value="postdoc" name="postdoctoral-fellow" value="yes"><span>Postdoctoral fellow</span></label>
+            <label><input type="checkbox" value="visitor" name="visiting-scholar-sabbatical-fellowship" value="yes"><span>Visiting scholar (sabbatical / fellowship)</span></label>
           </div>
         </div>
       </div>
@@ -554,16 +558,16 @@
         <div class="form-section-desc">Which research streams are you drawn to, and why? Pick up to three.</div>
         <div class="field">
           <div class="checks">
-            <label><input type="checkbox"><span>Agency<small>Organizational production of political agency.</small></span></label>
-            <label><input type="checkbox"><span>Civic Perception<small>How citizens read democracy under strain.</small></span></label>
-            <label><input type="checkbox"><span>Donors &amp; Democracy<small>Philanthropy as civic infrastructure.</small></span></label>
-            <label><input type="checkbox"><span>POLIS<small>Multi-city network study of civic ecosystems.</small></span></label>
-            <label><input type="checkbox"><span>Mamdani Initiative<small>Coalition infrastructure in urban politics.</small></span></label>
+            <label><input type="checkbox" name="agency" value="yes"><span>Agency<small>Organizational production of political agency.</small></span></label>
+            <label><input type="checkbox" name="civic-perception" value="yes"><span>Civic Perception<small>How citizens read democracy under strain.</small></span></label>
+            <label><input type="checkbox" name="donors-amp-democracy" value="yes"><span>Donors &amp; Democracy<small>Philanthropy as civic infrastructure.</small></span></label>
+            <label><input type="checkbox" name="polis" value="yes"><span>POLIS<small>Multi-city network study of civic ecosystems.</small></span></label>
+            <label><input type="checkbox" name="mamdani-initiative" value="yes"><span>Mamdani Initiative<small>Coalition infrastructure in urban politics.</small></span></label>
           </div>
         </div>
         <div class="field">
           <label>In 3 – 4 sentences: what draws you to these streams?</label>
-          <textarea></textarea>
+          <textarea name="in-3-4-sentences-what-draws-you-to-these-streams"></textarea>
         </div>
       </div>
 
@@ -573,24 +577,24 @@
         <div class="field">
           <label>Methods you're fluent in (or learning).</label>
           <div class="checks">
-            <label><input type="checkbox"><span>Qualitative interviewing</span></label>
-            <label><input type="checkbox"><span>Ethnography / fieldwork</span></label>
-            <label><input type="checkbox"><span>Survey design</span></label>
-            <label><input type="checkbox"><span>Experiments (lab or field)</span></label>
-            <label><input type="checkbox"><span>Network analysis</span></label>
-            <label><input type="checkbox"><span>Computational text / NLP</span></label>
-            <label><input type="checkbox"><span>Archival / historical</span></label>
-            <label><input type="checkbox"><span>Something else (describe below)</span></label>
+            <label><input name="methods-youre-fluent-in-or-learning" type="checkbox"><span>Qualitative interviewing</span></label>
+            <label><input type="checkbox" name="ethnography-fieldwork" value="yes"><span>Ethnography / fieldwork</span></label>
+            <label><input type="checkbox" name="survey-design" value="yes"><span>Survey design</span></label>
+            <label><input type="checkbox" name="experiments-lab-or-field" value="yes"><span>Experiments (lab or field)</span></label>
+            <label><input type="checkbox" name="network-analysis" value="yes"><span>Network analysis</span></label>
+            <label><input type="checkbox" name="computational-text-nlp" value="yes"><span>Computational text / NLP</span></label>
+            <label><input type="checkbox" name="archival-historical" value="yes"><span>Archival / historical</span></label>
+            <label><input type="checkbox" name="something-else-describe-below" value="yes"><span>Something else (describe below)</span></label>
           </div>
         </div>
         <div class="field">
           <label>Organizing, movement, or campaign experience (if any).</label>
           <span class="hint">Everything counts, paid or volunteer, across any issue area.</span>
-          <textarea></textarea>
+          <textarea name="organizing-movement-or-campaign-experience-if-any"></textarea>
         </div>
         <div class="field">
           <label>Languages besides English</label>
-          <input type="text" placeholder="e.g. Portuguese (fluent), Spanish (reading)">
+          <input name="languages-besides-english" type="text" placeholder="e.g. Portuguese (fluent), Spanish (reading)">
         </div>
       </div>
 
@@ -599,16 +603,16 @@
         <div class="field-grid">
           <div class="field">
             <label>CV (link)</label>
-            <input type="url" placeholder="Google Drive, Dropbox, personal site">
+            <input name="cv-link" type="url" placeholder="Google Drive, Dropbox, personal site">
           </div>
           <div class="field">
             <label>Writing sample (link)</label>
-            <input type="url" placeholder="Any 5 – 20 pages">
+            <input name="writing-sample-link" type="url" placeholder="Any 5 – 20 pages">
           </div>
         </div>
         <div class="field">
           <label>Anything else?</label>
-          <textarea></textarea>
+          <textarea name="anything-else"></textarea>
         </div>
       </div>
 
@@ -619,7 +623,9 @@
     </form>
 
     <!-- LIST FORM -->
-    <form class="form-body" data-form="list" onsubmit="return submitForm(event, 'list')">
+    <form class="form-body" data-form="list" name="cpl-mailing-list" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="return submitForm(event, 'list')">
+      <input type="hidden" name="form-name" value="cpl-mailing-list">
+      <p class="hidden" style="display:none;"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
       <div class="form-section">
         <div class="form-section-title">Stay in touch <span>/ 30 seconds</span></div>
         <div class="form-section-desc">We send four newsletters a year. You can leave any time.</div>
@@ -627,11 +633,11 @@
         <div class="field-grid">
           <div class="field">
             <label>Your name</label>
-            <input type="text" required>
+            <input name="donrsquot-fill-this-out" type="text" required>
           </div>
           <div class="field">
             <label>Email</label>
-            <input type="email" required>
+            <input name="email" type="email" required>
           </div>
         </div>
         <div class="field">
@@ -698,18 +704,31 @@
     }
   });
 
-  // Fake submit
+  // Real Netlify submit
   function submitForm(e, kind) {
     e.preventDefault();
-    document.querySelectorAll('.form-body').forEach(el => el.classList.remove('active'));
-    const msg = {
-      partner: "We've logged your spec. Expect a thoughtful reply within two weeks, yes, no, or a referral to someone better suited.",
-      ra: "Your interest is now in our active queue. We'll reach out when the next round opens, or sooner if your fit jumps out.",
-      list: "You're on the list. Next issue lands at the start of the next quarter."
-    }[kind];
-    document.getElementById('success-body').textContent = msg;
-    document.getElementById('success').classList.add('active');
-    window.scrollTo({ top: document.querySelector('.form-wrap').offsetTop - 80, behavior: 'smooth' });
+    const form = e.target;
+    const data = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+      document.querySelectorAll('.form-body').forEach(el => el.classList.remove('active'));
+      const msg = {
+        partner: "We've logged your spec. Expect a thoughtful reply within two weeks, yes, no, or a referral to someone better suited.",
+        ra: "Your interest is now in our active queue. We'll reach out when the next round opens, or sooner if your fit jumps out.",
+        list: "You're on the list. Next issue lands at the start of the next quarter."
+      }[kind];
+      document.getElementById('success-body').textContent = msg;
+      document.getElementById('success').classList.add('active');
+      window.scrollTo({ top: document.querySelector('.form-wrap').offsetTop - 80, behavior: 'smooth' });
+    })
+    .catch(err => {
+      alert("Sorry, something went wrong submitting the form. Please email civicpowerlab@hks.harvard.edu directly.");
+      console.error(err);
+    });
     return false;
   }
 </script>
