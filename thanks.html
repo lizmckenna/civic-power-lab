@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Thanks &mdash; Civic Power Lab</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css?v=14">
+<style>
+  html { scheme-jewel: true; }
+  .thanks-wrap {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+  }
+  .thanks-card {
+    max-width: 560px;
+    text-align: center;
+  }
+  .thanks-card h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .thanks-card p {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 48ch;
+    margin: 0 auto 32px;
+  }
+  .thanks-card .eyebrow {
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .thanks-actions {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+
+<div data-nav></div>
+
+<section class="thanks-wrap">
+  <div class="thanks-card">
+    <div class="eyebrow">Received</div>
+    <h1>Thanks &mdash; we got it.</h1>
+    <p>
+      We read every submission carefully. You'll hear from us within two
+      weeks. In the meantime, feel free to keep exploring the lab.
+    </p>
+    <div class="thanks-actions">
+      <a href="index.html" class="btn">Back to the lab &rarr;</a>
+      <a href="research.html" class="btn ghost">See our research</a>
+    </div>
+  </div>
+</section>
+
+<div data-footer></div>
+
+<script>
+  document.documentElement.classList.add('scheme-jewel');
+</script>
+<script src="assets/tiles.js?v=14"></script>
+<script src="assets/chrome.js?v=14"></script>
+</body>
+</html>

@@ -383,7 +383,7 @@
   <!-- FORMS -->
   <div>
     <!-- PARTNER FORM -->
-    <form class="form-body active" data-form="partner" name="cpl-partner-spec" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="return submitForm(event, 'partner')">
+    <form class="form-body active" data-form="partner" name="cpl-partner-spec" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks" onsubmit="return submitForm(event, 'partner')">
       <input type="hidden" name="form-name" value="cpl-partner-spec">
       <p class="hidden" style="display:none;"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
       <div class="form-section">
@@ -406,12 +406,12 @@
           </div>
           <div class="field">
             <label>Organization URL</label>
-            <input name="organization-url" type="url" placeholder="https://">
+            <input name="organization-url" type="text" placeholder="https://">
           </div>
         </div>
         <div class="field">
           <label>Email</label>
-          <input name="email" type="email" required>
+          <input name="email" type="text" required>
         </div>
       </div>
 
@@ -511,13 +511,13 @@
       </div>
 
       <div class="submit-row">
-        <span class="note">We reply within 2 weeks, yes, no, or a referral.</span>
+        <span class="note">We reply within 2 weeks.</span>
         <button class="btn cobalt" type="submit">Submit spec →</button>
       </div>
     </form>
 
     <!-- RA FORM -->
-    <form class="form-body" data-form="ra" name="cpl-ra-interest" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="return submitForm(event, 'ra')">
+    <form class="form-body" data-form="ra" name="cpl-ra-interest" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks" onsubmit="return submitForm(event, 'ra')">
       <input type="hidden" name="form-name" value="cpl-ra-interest">
       <p class="hidden" style="display:none;"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
       <div class="form-section">
@@ -534,7 +534,7 @@
         </div>
         <div class="field">
           <label>Email</label>
-          <input name="email" type="email" required>
+          <input name="email" type="text" required>
         </div>
       </div>
 
@@ -603,11 +603,11 @@
         <div class="field-grid">
           <div class="field">
             <label>CV (link)</label>
-            <input name="cv-link" type="url" placeholder="Google Drive, Dropbox, personal site">
+            <input name="cv-link" type="text" placeholder="Google Drive, Dropbox, personal site">
           </div>
           <div class="field">
             <label>Writing sample (link)</label>
-            <input name="writing-sample-link" type="url" placeholder="Any 5 – 20 pages">
+            <input name="writing-sample-link" type="text" placeholder="Any 5 – 20 pages">
           </div>
         </div>
         <div class="field">
@@ -623,7 +623,7 @@
     </form>
 
     <!-- LIST FORM -->
-    <form class="form-body" data-form="list" name="cpl-mailing-list" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="return submitForm(event, 'list')">
+    <form class="form-body" data-form="list" name="cpl-mailing-list" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks" onsubmit="return submitForm(event, 'list')">
       <input type="hidden" name="form-name" value="cpl-mailing-list">
       <p class="hidden" style="display:none;"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
       <div class="form-section">
@@ -637,7 +637,7 @@
           </div>
           <div class="field">
             <label>Email</label>
-            <input name="email" type="email" required>
+            <input name="email" type="text" required>
           </div>
         </div>
         <div class="field">
