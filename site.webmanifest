@@ -1,0 +1,11 @@
+{
+  "name": "Civic Power Lab",
+  "short_name": "CPL",
+  "icons": [
+    { "src": "/assets/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0d3d45",
+  "background_color": "#f1ead7",
+  "display": "browser"
+}
