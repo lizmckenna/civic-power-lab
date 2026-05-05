@@ -710,30 +710,16 @@
 
   // Real Netlify submit
   function submitForm(e, kind) {
-    e.preventDefault();
+    // Don't preventDefault — let Netlify handle the POST and redirect to /thanks.
+    // Just disable the submit button so a slow connection can't trigger a double-submit.
     const form = e.target;
-    const data = new FormData(form);
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data).toString()
-    })
-    .then(() => {
-      document.querySelectorAll('.form-body').forEach(el => el.classList.remove('active'));
-      const msg = {
-        partner: "We've logged your spec. Expect a thoughtful reply within two weeks, yes, no, or a referral to someone better suited.",
-        ra: "Your interest is now in our active queue. We'll reach out when the next round opens, or sooner if your fit jumps out.",
-        list: "You're on the list. Next issue lands at the start of the next quarter."
-      }[kind];
-      document.getElementById('success-body').textContent = msg;
-      document.getElementById('success').classList.add('active');
-      window.scrollTo({ top: document.querySelector('.form-wrap').offsetTop - 80, behavior: 'smooth' });
-    })
-    .catch(err => {
-      alert("Sorry, something went wrong submitting the form. Please email civicpowerlab@hks.harvard.edu directly.");
-      console.error(err);
-    });
-    return false;
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+      if (btn.disabled) { e.preventDefault(); return false; }  // already submitting
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+    }
+    return true;
   }
 </script>
 </body>
