@@ -439,37 +439,22 @@
   /* === RESEARCH TEASER === */
   .research-teaser .proj-row {
     display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 40px;
-    align-items: start;
-    padding: 32px 0;
+    grid-template-columns: 100px 1fr 2fr;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
     border-bottom: 1px solid var(--rule);
     transition: background .15s;
     cursor: pointer;
   }
   .research-teaser .proj-row:first-of-type { border-top: 1px solid var(--rule); }
   .research-teaser .proj-row:hover { background: var(--cream-2); }
-  .research-teaser .proj-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--cobalt);
-    padding-top: 8px;
-  }
-  .research-teaser .proj-name {
-    font-family: var(--font-display);
-    font-size: clamp(20px, 2vw, 26px);
-    line-height: 1.2;
-    margin-bottom: 10px;
-  }
-  .research-teaser .proj-desc {
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--ink-2);
-    max-width: 70ch;
-  }
-  @media (max-width: 700px) {
-    .research-teaser .proj-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  .research-teaser .proj-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--cobalt); }
+  .research-teaser .proj-name { font-family: var(--font-display); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; }
+  .research-teaser .proj-desc { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+  @media (max-width: 800px) {
+    .research-teaser .proj-row { grid-template-columns: 60px 1fr; gap: 16px; }
+    .research-teaser .proj-desc { grid-column: 2; }
   }
 
   /* === MANIFESTO === */
