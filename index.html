@@ -439,7 +439,7 @@
   /* === RESEARCH TEASER === */
   .research-teaser .proj-row {
     display: grid;
-    grid-template-columns: 80px 1fr 2fr 120px;
+    grid-template-columns: 80px 1fr 2fr;
     gap: 32px;
     align-items: baseline;
     padding: 28px 0;
@@ -452,10 +452,9 @@
   .research-teaser .proj-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--cobalt); }
   .research-teaser .proj-name { font-family: var(--font-display); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; }
   .research-teaser .proj-desc { font-size: 15px; line-height: 1.5; color: var(--ink-2); }
-  .research-teaser .proj-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); text-align: right; }
   @media (max-width: 800px) {
     .research-teaser .proj-row { grid-template-columns: 60px 1fr; gap: 16px; }
-    .research-teaser .proj-desc, .research-teaser .proj-tag { grid-column: 2; }
+    .research-teaser .proj-desc { grid-column: 2; }
   }
 
   /* === MANIFESTO === */
@@ -785,7 +784,7 @@
         </div>
       </div>
       <ul class="ph-bullets">
-        <li><span class="num">01</span><span><b>Built for the phase you're in.</b> What the dashboards amplify depends on what the org is trying to do, recruit a foundational base, convert an upsurge, deepen leadership, or move leaders into strategy and governance.</span></li>
+        <li><span class="num">01</span><span><b>Built for the phase you're in.</b> What the dashboards amplify depends on what the org is trying to do: recruit a foundational base, convert an upsurge, deepen leadership, or move leaders into strategy and governance.</span></li>
         <li><span class="num">02</span><span><b>Leadership is data, not a tag.</b> Who recruited whom, who's developing others, where the ladder is thin.</span></li>
         <li><span class="num">03</span><span><b>Owned by the orgs that use it.</b> Their data, exportable, on their terms. No lock-in, no extraction.</span></li>
         <li><span class="num">04</span><span><b>Comes with people, not just code.</b> Embedded engineering and practitioner training, not a license you buy and figure out alone.</span></li>
@@ -851,39 +850,34 @@
         <div class="proj-num">01 / POLIS</div>
         <div class="proj-name">Participation, Organizing &amp; Local Influence</div>
         <div class="proj-desc">38 groups, 10 states, five years. The first large-N dataset built to study organizing, not (only) mobilizing.</div>
-        <div class="proj-tag">US &middot; 10 states</div>
       </div>
     </a>
     <a href="research.html#agency" style="display:block;color:inherit;">
       <div class="proj-row">
         <div class="proj-num">02 / AGENCY</div>
         <div class="proj-name">The architecture of collective agency</div>
-        <div class="proj-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With Marshall Ganz and Emily Lin.</div>
-        <div class="proj-tag">Portland, OR &middot; Milwaukee, WI</div>
+        <div class="proj-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Emily Lin</a>.</div>
       </div>
     </a>
     <a href="research.html#civic" style="display:block;color:inherit;">
       <div class="proj-row">
         <div class="proj-num">03 / PERCEPTION</div>
         <div class="proj-name">The Civic Perception Project</div>
-        <div class="proj-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With Dorothy Manevich and Yvette Bailey-Emberson.</div>
-        <div class="proj-tag">MN &middot; MO &middot; GA &middot; CA</div>
+        <div class="proj-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Dorothy Manevich</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Yvette Bailey-Emberson</a>.</div>
       </div>
     </a>
     <a href="research.html#donors" style="display:block;color:inherit;">
       <div class="proj-row">
         <div class="proj-num">04 / DONORS</div>
         <div class="proj-name">Between Donors and Democracy</div>
-        <div class="proj-desc">A pre-registered list experiment embedded in a national survey of civic professionals, testing whose definition of success they actually endorse. With Christian Caballero and Jae Yeon Kim.</div>
-        <div class="proj-tag">112,779 frame</div>
+        <div class="proj-desc">A pre-registered list experiment embedded in a national survey of civic professionals, testing whose definition of success they actually endorse. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Christian Caballero</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Jae Yeon Kim</a>.</div>
       </div>
     </a>
     <a href="research.html#mamdani" style="display:block;color:inherit;">
       <div class="proj-row">
         <div class="proj-num">05 / MAMDANI</div>
-        <div class="proj-name">Organized: the case for people-first politics</div>
-        <div class="proj-desc">An edited volume on how the campaign actually worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With Marshall Ganz, Tascha Van Auken, and seven other contributors.</div>
-        <div class="proj-tag">New York City</div>
+        <div class="proj-name"><em>Organized:</em> The Case for People-First Politics</div>
+        <div class="proj-desc">An edited volume on how the campaign actually worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a>, <a href="https://www.newyorker.com/news/new-york-journal/the-woman-who-made-the-machine-that-made-zohran-mamdani" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule);">Tascha Van Auken</a>, and seven other contributors.</div>
       </div>
     </a>
   </div>
@@ -984,26 +978,26 @@
       <a href="press.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">All press →</a>
     </div>
     <div class="press-items">
-      <div class="press-item">
+      <a href="https://www.newyorker.com/news/the-political-scene/what-maga-can-teach-democrats-about-organizing" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
         <div class="outlet">The New Yorker</div>
         <div class="headline">What MAGA can teach Democrats about organizing. <em style="color:var(--mute);font-size:13px;">Charles Duhigg</em></div>
         <div class="date">Feb 2026</div>
-      </div>
-      <div class="press-item">
+      </a>
+      <a href="https://www.bostonglobe.com" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
         <div class="outlet">Boston Globe</div>
         <div class="headline">The Left knows how to have huge protests. The Right keeps winning elections.</div>
         <div class="date">Oct 2025</div>
-      </div>
-      <div class="press-item">
+      </a>
+      <a href="https://www.wechoose.us/s/civic-power-report" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
         <div class="outlet">Pro-Democracy Campaign</div>
         <div class="headline">Pro-Democracy Campaign report. <em style="color:var(--mute);font-size:13px;">Analyst Institute Expy Award</em></div>
         <div class="date">2025</div>
-      </div>
-      <div class="press-item">
+      </a>
+      <a href="https://news.harvard.edu/gazette" target="_blank" rel="noopener" class="press-item" style="text-decoration:none;color:inherit;display:block;">
         <div class="outlet">Harvard Gazette</div>
         <div class="headline">McKenna awarded Andrew Carnegie Fellowship.</div>
         <div class="date">2024</div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
