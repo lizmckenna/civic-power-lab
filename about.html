@@ -57,9 +57,10 @@
   .person { display: flex; flex-direction: column; }
   .person-portrait {
     aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
     background: var(--paper);
     border: 1px solid var(--rule);
-    overflow: hidden;
     position: relative;
     margin-bottom: 14px;
   }
@@ -70,11 +71,53 @@
   .person-links a { border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
   .person-links a:hover { color: var(--cobalt); border-color: var(--cobalt); }
 
+  /* === FACULTY DIRECTOR BIO === */
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .bio-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .bio-portrait { position: sticky; top: 96px; }
+  .bio-portrait img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
+    border-radius: 50%;
+    filter: grayscale(8%) contrast(1.02);
+    border: 1px solid var(--rule);
+  }
+  .bio-portrait-caption {
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+  .bio-text p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 18px;
+    max-width: 62ch;
+  }
+  .bio-text a {
+    color: var(--cobalt);
+    text-decoration: none;
+    border-bottom: 1px solid var(--cobalt);
+    padding-bottom: 1px;
+  }
+  .bio-text em { font-family: var(--font-display); font-style: italic; font-weight: 500; }
+
   .core-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-bottom: 56px; }
   @media (max-width: 900px) { .core-grid { grid-template-columns: 1fr; } }
-  .core-person .person-portrait { aspect-ratio: 4/5; }
-  .core-person .person-name { font-size: 26px; }
-  .core-person .person-bio { font-size: 15px; }
+  .core-person .person-name { font-size: 18px; }
+  .core-person .person-bio { font-size: 13px; }
 
   .subsection-head {
     display: flex; justify-content: space-between; align-items: baseline;
@@ -104,9 +147,9 @@
   .principles-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
   @media (max-width: 700px) { .principles-list { grid-template-columns: 1fr; } }
   .principle { padding-top: 16px; border-top: 1px solid rgba(255,255,255,.3); }
-  .principle .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: #b8c5e8; margin-bottom: 8px; }
+  .principle .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: #c8e2e6; margin-bottom: 8px; }
   .principle h3 { color: var(--cream); font-size: 20px; line-height: 1.2; margin-bottom: 8px; }
-  .principle p { font-size: 14.5px; line-height: 1.5; color: #d8dfee; margin: 0; }
+  .principle p { font-size: 14.5px; line-height: 1.5; color: #d8e7e9; margin: 0; }
 
   .partner-row {
     padding: 40px 0;
@@ -117,7 +160,7 @@
     align-items: start;
   }
   @media (max-width: 800px) { .partner-row { grid-template-columns: 64px 1fr; } .partner-row > :last-child { grid-column: 2; } }
-  .partner-mark { aspect-ratio: 1; background: var(--paper); border: 1px solid var(--rule); overflow: hidden; }
+  .partner-mark { aspect-ratio: 1; background: var(--paper); border: 1px solid var(--rule); overflow: hidden; border-radius: 50%; }
   .partner-row h4 { font-family: var(--font-display); font-size: 22px; line-height: 1.15; margin-bottom: 4px; font-weight: 500; }
   .partner-row .loc { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 12px; }
   .partner-row p { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin: 0; }
@@ -240,6 +283,49 @@
   </div>
 </section>
 
+<!-- FACULTY DIRECTOR / BIO -->
+<section class="about-section" id="director" style="padding-top:80px;padding-bottom:96px;border-top:1px solid var(--rule);background:var(--paper);">
+  <div class="container">
+    <div class="bio-grid">
+      <div class="bio-portrait">
+        <img src="assets/liz-mckenna.jpg" alt="Liz McKenna" />
+        <div class="bio-portrait-caption mono">Liz McKenna &middot; Cambridge, MA</div>
+      </div>
+      <div class="bio-text">
+        <div class="eyebrow">Faculty Director</div>
+        <h2 style="max-width:20ch;margin-bottom:24px;">Liz McKenna.</h2>
+        <p>
+          Liz McKenna is an Assistant Professor of Public Policy at the Harvard
+          Kennedy School and Faculty Director of the Civic Power Lab. Her
+          <a href="https://www.hks.harvard.edu/announcements/hks-assistant-professor-liz-mckenna-awarded-carnegie-fellowship-research-threats" target="_blank" rel="noopener">2024&ndash;26 Carnegie Fellowship</a>
+          supports fieldwork on the reorganization of civic life across
+          democratic-backsliding cases and the construction of the POLIS
+          Database, the largest research dataset of organizing (as distinct
+          from mobilizing) activity in the United States.
+        </p>
+        <p>
+          The dissertation on which her current book project,
+          <em>The Revolution Will Be Organized</em>, is based received the
+          2021 American Sociological Association
+          <a href="https://www.asanet.org/about/awards/2021-asa-award-winners" target="_blank" rel="noopener">Best Dissertation Award</a>.
+          She has also published peer-reviewed articles in
+          <em>Perspectives on Politics</em>, <em>International Sociology</em>,
+          and <em>American Behavioral Scientist</em>, among other outlets.
+        </p>
+        <p>
+          Prior to HKS, Liz was a postdoctoral scholar at the P3 Lab and SNF
+          Agora Institute at Johns Hopkins University and a predoctoral fellow
+          at Stanford's Center on Philanthropy and Civil Society. Before
+          academia, she worked as a political and community organizer in Ohio
+          and Rio de Janeiro. She earned a B.A. in Social Studies from Harvard
+          College in 2008 and a Ph.D. in Sociology from the University of
+          California, Berkeley in 2020.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TEAM -->
 <section class="about-section" id="team" style="padding-bottom:40px;">
   <div class="container">
@@ -260,46 +346,13 @@
     </div>
 
     <div class="subsection-head">
-      <h3>Faculty &amp; research direction</h3>
-      <span class="count">2</span>
+      <h3>Senior research direction</h3>
+      <span class="count">1</span>
     </div>
-    <div class="core-grid" style="grid-template-columns:repeat(2,1fr);">
-      <div class="person core-person">
+    <div class="team-grid">
+      <div class="person">
         <div class="person-portrait" data-tiles
-             data-cols="3" data-rows="4" data-seed="1001" data-density="0.88"
-             data-bg="#ebe1cb"
-             data-colors="#1a3a8f,#c24e2a"
-             data-motifs="arc,doubleArc,squiggle"></div>
-        <div class="person-name">Elizabeth McKenna</div>
-        <div class="person-role">Faculty Director</div>
-        <p class="person-bio">
-          Assistant Professor of Public Policy at the Harvard Kennedy School
-          and Faculty Director of the Civic Power Lab. Her 2024&ndash;26
-          Carnegie Fellowship supports fieldwork on the reorganization of
-          civic life across democratic-backsliding cases and the construction
-          of the POLIS Database.
-        </p>
-        <p class="person-bio">
-          Her dissertation received the 2021 American Sociological Association
-          Best Dissertation Award. The book based on it, <em>The Revolution
-          Will Be Organized</em>, is under review. Co-author of
-          <em>Groundbreakers</em> (Oxford UP) and <em>Prisms of the People</em>
-          (Chicago). Articles in <em>Perspectives on Politics</em>,
-          <em>International Sociology</em>, and <em>American Behavioral
-          Scientist</em>.
-        </p>
-        <p class="person-bio">
-          Prior to HKS: postdoc at the P3 Lab and SNF Agora Institute (Johns
-          Hopkins); predoctoral fellow at Stanford's Center on Philanthropy
-          and Civil Society. Before academia, she organized in Ohio and Rio
-          de Janeiro. B.A. Harvard 2008, Ph.D. UC Berkeley (Sociology) 2020.
-        </p>
-        <div class="person-links"><a href="mailto:emckenna@hks.harvard.edu">Email</a></div>
-      </div>
-
-      <div class="person core-person">
-        <div class="person-portrait" data-tiles
-             data-cols="3" data-rows="4" data-seed="1002" data-density="0.9"
+             data-cols="3" data-rows="3" data-seed="1002" data-density="0.9"
              data-bg="#ebe1cb"
              data-colors="#c24e2a,#5a6b34"
              data-motifs="half,banana,tri"></div>
@@ -376,11 +429,11 @@
 <section class="principles" id="partners">
   <div class="principles-bg" data-tiles
        data-cols="14" data-rows="6" data-seed="77" data-density="0.7"
-       data-bg="#0f2a6b"
-       data-colors="#f1e9d8"
-       data-motifs="arc,dots,squiggle"></div>
+       data-bg="#0d3d45"
+       data-colors="#efe6d1"
+       data-motifs="half"></div>
   <div class="principles-inner">
-    <div class="eyebrow" style="color:#f4c58a;">How we work</div>
+    <div class="eyebrow" style="color:#d9a636;">How we work</div>
     <h2>Six principles.</h2>
     <div class="principles-list">
       <div class="principle"><div class="num">01</div><h3>Co-formulation.</h3><p>Research questions are often set with the practitioners doing the work, before fieldwork begins. The gap between what scholars want to know and what organizers need to know is itself the question.</p></div>

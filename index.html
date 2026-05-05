@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/shared.css?v=14">
 
 <!-- SCHEME SYSTEM
@@ -140,7 +140,7 @@
 <!-- Page-specific styles -->
 <style>
   /* === HERO === */
-  .hero { position: relative; padding: 56px 0 0; overflow: hidden; border-bottom: 1px solid var(--rule); }
+  .hero { position: relative; padding: 56px 0 0; overflow: hidden; }
   .hero-grid {
     display: grid;
     grid-template-columns: 1.35fr 1fr;
@@ -237,9 +237,7 @@
   .hero-flag a:hover { color: var(--cobalt); }
 
   .hero-tiles {
-    height: 84px;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid rgba(241,234,215,0.12);
+    height: 120px;
     overflow: hidden;
     background: #0d3d45;
   }
@@ -479,9 +477,10 @@
   .manifesto-cols p { margin: 0 0 16px; break-inside: avoid; }
 
   /* === BOOKS === */
-  .books-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+  .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  @media (max-width: 1000px) { .books-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 700px) { .books-grid { grid-template-columns: 1fr; } }
-  .book { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: start; }
+  .book { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; }
   .book-cover {
     aspect-ratio: 2/3;
     background: var(--paper);
@@ -491,6 +490,14 @@
     color: var(--cream);
   }
   .book-cover .tiles-bg { position: absolute; inset: 0; }
+  .book-cover img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .book-cover .book-title {
     position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
     z-index: 2;
@@ -681,7 +688,7 @@
   </div>
 
   <div class="hero-tiles" data-tiles
-       data-cols="20" data-rows="2" data-seed="909" data-density="1.0"
+       data-cols="24" data-rows="2" data-seed="909" data-density="1.0"
        data-bg="#0d3d45"
        data-colors="#f1ead7,#d9a636,#b84a2e"
        data-motifs="disc"
@@ -819,13 +826,13 @@
 
 <!-- Section marker: Research -->
 <div class="section-marker-label">
-  <div class="sml-tag" style="color:#15616d;">01 · Research</div>
+  <div class="sml-tag" style="color:#15616d;">01 &middot; Research</div>
   <div class="sml-strip" data-tiles
        data-cols="22" data-rows="1" data-seed="401" data-density="1.0"
        data-bg="#f1ead7"
        data-colors="#15616d,#d9a636"
-       data-motifs="arc,half"
-       data-rotate-pattern="mirror"
+       data-motifs="half"
+       data-rotate-pattern="checker"
        data-color-pattern="sequence"></div>
 </div>
 
@@ -882,13 +889,13 @@
 
 <!-- Section marker: Publications -->
 <div class="section-marker-label" style="background:var(--cream-2);">
-  <div class="sml-tag" style="color:#15616d;">02 · Publications</div>
+  <div class="sml-tag" style="color:#15616d;">02 &middot; Publications</div>
   <div class="sml-strip" data-tiles
-       data-cols="22" data-rows="1" data-seed="412" data-density="1.0"
-       data-bg="#e5dcc0"
+       data-cols="22" data-rows="1" data-seed="402" data-density="1.0"
+       data-bg="#f1ead7"
        data-colors="#15616d,#d9a636"
-       data-motifs="arc,half"
-       data-rotate-pattern="mirror"
+       data-motifs="half"
+       data-rotate-pattern="checker"
        data-color-pattern="sequence"></div>
 </div>
 
@@ -902,15 +909,26 @@
 
     <div class="books-grid">
       <div class="book">
-        <div class="book-cover" style="background: var(--cobalt-deep);">
-          <div class="tiles-bg" data-tiles
-               data-cols="4" data-rows="6" data-seed="101" data-density="1.0"
-               data-bg="var(--cobalt-deep)"
-               data-colors="#f1ead7,#d9a636"
-               data-motifs="disc"
-               data-rotate-pattern="mirror"
-               data-color-pattern="sequence"></div>
-          <span class="book-title">GROUND<br>BREAKERS</span>
+        <div class="book-cover" data-bulcao-cover
+             data-title="The Revolution|Will Be|Organized"
+             data-subtitle="Brazil&#39;s fragile democracy|and the paradox of civic power"
+             data-author="ELIZABETH McKENNA"
+             data-cols="6" data-rows="9" data-seed="2026"
+             data-ink="#0a0a0a" data-paper="#f4eedc"></div>
+        <div class="book-info">
+          <span class="mono">Under review</span>
+          <h3>The Revolution Will Be Organized</h3>
+          <p>
+            A decade of fieldwork on why dense civic life sometimes builds
+            democracy and sometimes corrodes it, and what that means for
+            countries facing democratic backsliding now.
+          </p>
+        </div>
+      </div>
+
+      <div class="book">
+        <div class="book-cover">
+          <img src="assets/groundbreakers-cover.jpg" alt="Groundbreakers book cover" />
         </div>
         <div class="book-info">
           <span class="mono">2014 &middot; Oxford University Press</span>
@@ -924,15 +942,8 @@
       </div>
 
       <div class="book">
-        <div class="book-cover" style="background: var(--terracotta);">
-          <div class="tiles-bg" data-tiles
-               data-cols="4" data-rows="6" data-seed="202" data-density="1.0"
-               data-bg="var(--terracotta)"
-               data-colors="#f1ead7,#d9a636"
-               data-motifs="tri"
-               data-rotate-pattern="mirror"
-               data-color-pattern="sequence"></div>
-          <span class="book-title">PRISMS<br>OF THE<br>PEOPLE</span>
+        <div class="book-cover">
+          <img src="assets/prisms-cover.jpg" alt="Prisms of the People book cover" />
         </div>
         <div class="book-info">
           <span class="mono">2021 &middot; University of Chicago Press</span>
@@ -941,28 +952,6 @@
             Power, organizing, and twenty-first-century democracy. With
             Hahrie Han and Michelle Oyakawa. APSA Michael Harrington Book
             Award, 2022.
-          </p>
-        </div>
-      </div>
-
-      <div class="book">
-        <div class="book-cover" style="background: #6b7a3a;">
-          <div class="tiles-bg" data-tiles
-               data-cols="4" data-rows="6" data-seed="303" data-density="1.0"
-               data-bg="#6b7a3a"
-               data-colors="#f1ead7,#d9a636"
-               data-motifs="arc"
-               data-rotate-pattern="mirror"
-               data-color-pattern="sequence"></div>
-          <span class="book-title">THE<br>REVOLUTION<br>WILL BE<br>ORGANIZED</span>
-        </div>
-        <div class="book-info">
-          <span class="mono">Under review</span>
-          <h3>The Revolution Will Be Organized</h3>
-          <p>
-            A decade of fieldwork on why dense civic life sometimes builds
-            democracy and sometimes corrodes it, and what that means for
-            countries facing democratic backsliding now.
           </p>
         </div>
       </div>
@@ -1019,12 +1008,12 @@
 
 <!-- Section marker: Engage -->
 <div class="section-marker-label">
-  <div class="sml-tag" style="color:#b84a2e;">04 · Engage</div>
+  <div class="sml-tag" style="color:#15616d;">04 &middot; Engage</div>
   <div class="sml-strip" data-tiles
        data-cols="22" data-rows="1" data-seed="414" data-density="1.0"
        data-bg="#f1ead7"
-       data-colors="#b84a2e,#15616d"
-       data-motifs="arc,half,stripe"
+       data-colors="#15616d,#d9a636"
+       data-motifs="disc,tri,half,disc,tri"
        data-rotate-pattern="mirror"
        data-color-pattern="sequence"></div>
 </div>

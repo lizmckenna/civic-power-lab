@@ -51,7 +51,7 @@
       <footer class="footer">
         <!-- Footer tile strip — same pattern language as the rest of the site -->
         <div class="footer-strip" data-tiles
-             data-cols="20" data-rows="2" data-seed="909" data-density="1.0"
+             data-cols="24" data-rows="2" data-seed="909" data-density="1.0"
              data-bg="#0d3d45"
              data-colors="#f1ead7,#d9a636,#b84a2e"
              data-motifs="disc"
