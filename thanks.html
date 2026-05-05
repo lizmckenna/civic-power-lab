@@ -52,9 +52,9 @@
 
 <section class="thanks-wrap">
   <div class="thanks-card">
-    <div class="eyebrow">Received</div>
-    <h1>Thanks &mdash; we got it.</h1>
-    <p>
+    <div class="eyebrow" id="thanks-eyebrow">Received</div>
+    <h1 id="thanks-headline">Thanks &mdash; we got it.</h1>
+    <p id="thanks-body">
       We read every submission. In the meantime, feel free to keep exploring
       the lab.
     </p>
@@ -69,6 +69,34 @@
 
 <script>
   document.documentElement.classList.add('scheme-jewel');
+  // Customize copy by form type via ?type= query param
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    const variants = {
+      partner: {
+        eyebrow: 'Spec received',
+        headline: 'Thanks — we got your spec.',
+        body: "We read every submission. We'll come back to you within two weeks: a real yes, a real no, or a referral to someone better suited."
+      },
+      ra: {
+        eyebrow: 'Interest logged',
+        headline: 'Thanks — your interest is in.',
+        body: "We read every application carefully. We'll reach out when the next round opens, or sooner if your fit jumps out."
+      },
+      list: {
+        eyebrow: 'Subscribed',
+        headline: "You're on the list.",
+        body: "Four short notes a year, plain text, easy to leave any time. The next issue lands at the start of the next quarter."
+      }
+    };
+    const v = variants[type];
+    if (v) {
+      document.getElementById('thanks-eyebrow').textContent = v.eyebrow;
+      document.getElementById('thanks-headline').textContent = v.headline;
+      document.getElementById('thanks-body').textContent = v.body;
+    }
+  })();
 </script>
 <script src="assets/tiles.js?v=14"></script>
 <script src="assets/chrome.js?v=14"></script>

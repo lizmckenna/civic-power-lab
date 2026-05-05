@@ -38,3 +38,8 @@
   from = "/thanks"
   to = "/thanks.html"
   status = 200
+  query = { type = ":type" }
+[[redirects]]
+  from = "/thanks"
+  to = "/thanks.html"
+  status = 200
