@@ -111,12 +111,15 @@
       time.
     </p>
     <form class="sub-form"
-          action="https://buttondown.email/api/emails/embed-subscribe/civicpowerlab"
-          method="post"
-          target="popupwindow"
-          onsubmit="window.open('https://buttondown.email/civicpowerlab','popupwindow');">
-      <input type="text" name="metadata__name" placeholder="Your name (optional)">
-      <input type="email" name="email" placeholder="Your email" required>
+          name="cpl-mailing-list"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          action="/thanks?type=list">
+      <input type="hidden" name="form-name" value="cpl-mailing-list">
+      <p style="display:none;"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
+      <input type="text" name="your-name" placeholder="Your name (optional)">
+      <input type="text" name="email" placeholder="Your email" required>
       <button type="submit">Subscribe</button>
     </form>
     <div class="sub-fine">civicpowerlab.us &middot; Harvard Kennedy School</div>
