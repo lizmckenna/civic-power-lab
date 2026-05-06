@@ -107,8 +107,49 @@
         embedded ethnography, survey experiments, and qualitative interviews.
       </p>
     </div>
+    <div class="research-photo-pair">
+      <figure>
+        <div class="rp-img"><img src="uploads/research/research.jpg" alt="Lab research session" loading="lazy"></div>
+        <figcaption>Research in progress</figcaption>
+      </figure>
+      <figure>
+        <div class="rp-img"><img src="uploads/research/collab.jpg" alt="Lab collaboration session" loading="lazy"></div>
+        <figcaption>Collaborator working session</figcaption>
+      </figure>
+    </div>
   </div>
 </header>
+
+<style>
+  .research-photo-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+    max-width: 1100px;
+  }
+  @media (max-width: 700px) { .research-photo-pair { grid-template-columns: 1fr; } }
+  .research-photo-pair figure { margin: 0; }
+  .research-photo-pair .rp-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--cream-2);
+  }
+  .research-photo-pair img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    filter: grayscale(6%) contrast(1.02);
+  }
+  .research-photo-pair figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-top: 10px;
+  }
+</style>
 
 <nav class="stream-nav">
   <div class="container">
