@@ -151,9 +151,9 @@
   @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
 
   .hero h1 {
-    font-size: clamp(52px, 8.4vw, 140px);
-    line-height: 0.88;
-    letter-spacing: -0.035em;
+    font-size: clamp(44px, 6.5vw, 104px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
     font-weight: 400;
   }
   .hero h1 em {
@@ -163,14 +163,14 @@
   }
   .pre-h1 {
     font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.22em;
+    font-size: 13.5px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--mute);
     margin-bottom: 18px;
     font-weight: 400;
   }
-  @media (max-width: 960px) { .pre-h1 { margin-bottom: 14px; font-size: 11px; } }
+  @media (max-width: 960px) { .pre-h1 { margin-bottom: 14px; font-size: 12.5px; } }
   .hero-lede {
     font-family: var(--font-display);
     font-size: clamp(17px, 1.4vw, 21px);
@@ -471,7 +471,14 @@
   }
 
   /* === MANIFESTO === */
-  .manifesto { background: var(--cream-2); padding: 96px 0; border-bottom: 1px solid var(--rule); }
+  .manifesto {
+    background: var(--terracotta);
+    color: var(--cream);
+    padding: 96px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .manifesto .eyebrow { color: var(--cream) !important; }
+  .manifesto .eyebrow::before { background: var(--cream); }
   .manifesto-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -479,14 +486,15 @@
     align-items: start;
   }
   @media (max-width: 800px) { .manifesto-grid { grid-template-columns: 1fr; gap: 24px; } }
-  .manifesto h2 { font-size: clamp(28px, 3.6vw, 52px); line-height: 1.05; }
-  .manifesto h2 em { color: var(--terracotta); font-style: italic; }
+  .manifesto h2 { font-size: clamp(28px, 3.6vw, 52px); line-height: 1.05; color: var(--cream); }
+  .manifesto h2 em { color: #f3c99c; font-style: italic; }
   .manifesto-cols {
     columns: 2; column-gap: 40px;
-    font-size: 16px; line-height: 1.6; color: var(--ink-2);
+    font-size: 16px; line-height: 1.6; color: rgba(241, 234, 215, 0.92);
   }
   @media (max-width: 700px) { .manifesto-cols { columns: 1; } }
   .manifesto-cols p { margin: 0 0 16px; break-inside: avoid; }
+  .manifesto-cols b { color: var(--cream); }
 
   /* === BOOKS === */
   .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
@@ -687,13 +695,13 @@
 
       <div style="display:flex;flex-direction:column;gap:14px;">
         <div class="hero-flag">
-          <span class="flag-label">Research &middot; POLIS</span>
+          <span class="flag-label">New Research &middot; POLIS</span>
           A data and measurement infrastructure: the tools that let
           organizers see, track, and learn from the work as it happens.
           <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SCLKL7" target="_blank" rel="noopener">View on Harvard Dataverse &rarr;</a>
         </div>
         <div class="hero-flag warm">
-          <span class="flag-label">Practice &middot; Groundwork</span>
+          <span class="flag-label">New Practice &middot; Groundwork</span>
           A field-owned relational organizing platform, built by and for
           organizers (an alternative to investor-owned tooling).
           <a href="#practice-headline">Read the brief &rarr;</a>
@@ -753,7 +761,7 @@
         </div>
 
         <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SCLKL7" target="_blank" rel="noopener" class="btn" style="background:var(--headline-text);color:var(--headline-bg);border-color:var(--headline-text);">View on Dataverse &rarr;</a>
+          <a href="research.html" class="btn" style="background:var(--headline-text);color:var(--headline-bg);border-color:var(--headline-text);">See more research &rarr;</a>
         </div>
       </div>
       <div>
@@ -844,67 +852,9 @@
   </div>
 </section>
 
-<!-- Section marker: Research -->
-<div class="section-marker-label">
-  <div class="sml-tag" style="color:#15616d;">01 &middot; Research</div>
-  <div class="sml-strip" data-tiles
-       data-cols="22" data-rows="1" data-seed="401" data-density="1.0"
-       data-bg="#f1ead7"
-       data-colors="#15616d,#d9a636"
-       data-motifs="half"
-       data-rotate-pattern="checker"
-       data-color-pattern="sequence"></div>
-</div>
-
-<!-- RESEARCH TEASER -->
-<section class="section research-teaser">
-  <div class="container">
-    <div class="section-head">
-      <h2>Streams of research.</h2>
-      <a href="research.html" class="mono-lg" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);padding-bottom:2px;">All projects →</a>
-    </div>
-
-    <a href="research.html#polis" style="display:block;color:inherit;">
-      <div class="proj-row">
-        <div class="proj-num">01 / POLIS</div>
-        <div class="proj-name">Participation, Organizing &amp; Local Influence</div>
-        <div class="proj-desc">38 groups, 10 states, five years. The first large-N dataset built to study organizing, not (only) mobilizing.</div>
-      </div>
-    </a>
-    <a href="research.html#agency" style="display:block;color:inherit;">
-      <div class="proj-row">
-        <div class="proj-num">02 / AGENCY</div>
-        <div class="proj-name">The architecture of collective agency</div>
-        <div class="proj-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Emily Lin</a>.</div>
-      </div>
-    </a>
-    <a href="research.html#civic" style="display:block;color:inherit;">
-      <div class="proj-row">
-        <div class="proj-num">03 / PERCEPTION</div>
-        <div class="proj-name">The Civic Perception Project</div>
-        <div class="proj-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Dorothy Manevich</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Yvette Bailey-Emberson</a>.</div>
-      </div>
-    </a>
-    <a href="research.html#donors" style="display:block;color:inherit;">
-      <div class="proj-row">
-        <div class="proj-num">04 / DONORS</div>
-        <div class="proj-name">Between Donors and Democracy</div>
-        <div class="proj-desc">A pre-registered list experiment embedded in a national survey of civic professionals, testing whose definition of success they actually endorse. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Christian Caballero</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Jae Yeon Kim</a>.</div>
-      </div>
-    </a>
-    <a href="research.html#mamdani" style="display:block;color:inherit;">
-      <div class="proj-row">
-        <div class="proj-num">05 / MAMDANI</div>
-        <div class="proj-name"><em>Organized:</em> The Case for People-First Politics</div>
-        <div class="proj-desc">An edited volume on how the campaign actually worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a>, <a href="https://www.newyorker.com/news/new-york-journal/the-woman-who-made-the-machine-that-made-zohran-mamdani" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule);">Tascha Van Auken</a>, and seven other contributors.</div>
-      </div>
-    </a>
-  </div>
-</section>
-
 <!-- Section marker: Publications -->
 <div class="section-marker-label" style="background:var(--cream-2);">
-  <div class="sml-tag" style="color:#15616d;">02 &middot; Publications</div>
+  <div class="sml-tag" style="color:#15616d;">01 &middot; Publications</div>
   <div class="sml-strip" data-tiles
        data-cols="22" data-rows="1" data-seed="402" data-density="1.0"
        data-bg="#e6dcc2"
@@ -979,7 +929,7 @@
 
 <!-- Section marker: Press -->
 <div class="section-marker-label">
-  <div class="sml-tag" style="color:#b84a2e;">03 · Press</div>
+  <div class="sml-tag" style="color:#b84a2e;">02 &middot; Press</div>
   <div class="sml-strip" data-tiles
        data-cols="22" data-rows="1" data-seed="403" data-density="1.0"
        data-bg="#f1ead7"
@@ -1026,7 +976,7 @@
 
 <!-- Section marker: Engage -->
 <div class="section-marker-label">
-  <div class="sml-tag" style="color:#15616d;">04 &middot; Engage</div>
+  <div class="sml-tag" style="color:#15616d;">03 &middot; Engage</div>
   <div class="sml-strip" data-tiles
        data-cols="22" data-rows="1" data-seed="414" data-density="1.0"
        data-bg="#f1ead7"

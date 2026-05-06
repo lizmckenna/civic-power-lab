@@ -56,6 +56,29 @@
   .stream-nav-inner { display: flex; gap: 24px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
   .stream-nav a { color: var(--mute); padding-bottom: 2px; border-bottom: 1px solid transparent; }
   .stream-nav a:hover { color: var(--cobalt); border-color: var(--cobalt); }
+
+  /* === STREAMS TEASER (top of research page) === */
+  .streams-teaser { padding: 64px 0 48px; border-bottom: 1px solid var(--rule); background: var(--paper); }
+  .streams-teaser .section-head { margin-bottom: 32px; }
+  .streams-teaser .stream-row {
+    display: grid;
+    grid-template-columns: 120px 280px 1fr;
+    gap: 32px;
+    padding: 26px 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+    transition: background .15s;
+    cursor: pointer;
+  }
+  .streams-teaser .stream-row:last-child { border-bottom: 1px solid var(--rule); }
+  .streams-teaser .stream-row:hover { background: var(--cream-2); }
+  .streams-teaser .s-num { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.12em; color: var(--cobalt); }
+  .streams-teaser .s-name { font-family: var(--font-display); font-size: 22px; line-height: 1.2; }
+  .streams-teaser .s-desc { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  @media (max-width: 900px) {
+    .streams-teaser .stream-row { grid-template-columns: 80px 1fr; gap: 12px; }
+    .streams-teaser .s-desc { grid-column: 2; }
+  }
 </style>
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
@@ -95,6 +118,40 @@
     </div>
   </div>
 </nav>
+
+<!-- STREAMS TEASER -->
+<section class="streams-teaser">
+  <div class="container">
+    <div class="section-head">
+      <h2>Streams of research.</h2>
+    </div>
+    <a href="#polis" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
+      <div class="s-num">01 / POLIS</div>
+      <div class="s-name">Participation, Organizing &amp; Local Influence</div>
+      <div class="s-desc">38 groups, 10 states, five years. The first large-N dataset built to study organizing, not (only) mobilizing.</div>
+    </a>
+    <a href="#agency" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
+      <div class="s-num">02 / AGENCY</div>
+      <div class="s-name">The architecture of collective agency</div>
+      <div class="s-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With Marshall Ganz and Emily Lin.</div>
+    </a>
+    <a href="#civic" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
+      <div class="s-num">03 / PERCEPTION</div>
+      <div class="s-name">The Civic Perception Project</div>
+      <div class="s-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With Dorothy Manevich and Yvette Bailey-Emberson.</div>
+    </a>
+    <a href="#donors" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
+      <div class="s-num">04 / DONORS</div>
+      <div class="s-name">Between Donors and Democracy</div>
+      <div class="s-desc">A pre-registered list experiment embedded in a national survey of civic professionals, testing whose definition of success they actually endorse. With Christian Caballero and Jae Yeon Kim.</div>
+    </a>
+    <a href="#mamdani" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
+      <div class="s-num">05 / MAMDANI</div>
+      <div class="s-name"><em>Organized:</em> The Case for People-First Politics</div>
+      <div class="s-desc">An edited volume on how the campaign actually worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With Marshall Ganz, Tascha Van Auken, and seven other contributors.</div>
+    </a>
+  </div>
+</section>
 
 <!-- 01 POLIS (HEADLINER) -->
 <section class="project cobalt" id="polis">
