@@ -29,19 +29,20 @@
   .project-methods ul { padding-left: 18px; margin: 0; }
   .project-methods li { margin-bottom: 6px; }
   .project-side { background: var(--paper); border: 1px solid var(--rule); padding: 24px; font-size: 14px; }
-  .project-side.cobalt { background: #081d4e; color: var(--cream); border-color: #081d4e; }
-  .project-side.cobalt .mono { color: #b8c5e8; }
+  .project-side.cobalt { background: var(--terracotta); color: var(--cream); border-color: var(--terracotta); }
+  .project-side.cobalt .mono { color: #f5e3d8; }
   .project-side dl { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
   .project-side dt { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 4px; }
-  .project-side.cobalt dt { color: #b8c5e8; }
+  .project-side.cobalt dt { color: #f5e3d8; }
   .project-side dd { margin: 0; font-family: var(--font-display); font-size: 16px; line-height: 1.3; }
-  .project-tiles { height: 100px; margin-top: 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; }
+  .project-tiles { display: none; }
 
-  .polis-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,.22); margin-top: 32px; }
+  .polis-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,.22); margin-top: 32px; }
   @media (max-width: 700px) { .polis-stats { grid-template-columns: repeat(2, 1fr); } }
   .polis-stats .s { padding: 22px 18px; border-right: 1px solid rgba(255,255,255,.22); border-bottom: 1px solid rgba(255,255,255,.22); }
-  .polis-stats .s:last-child { border-right: none; }
-  .polis-stats .n { font-family: var(--font-display); font-size: clamp(30px, 3.2vw, 44px); color: var(--cream); line-height: 1; margin-bottom: 6px; }
+  .polis-stats .s:nth-child(3n) { border-right: none; }
+  @media (max-width: 700px) { .polis-stats .s:nth-child(3n) { border-right: 1px solid rgba(255,255,255,.22); } .polis-stats .s:nth-child(2n) { border-right: none; } }
+  .polis-stats .n { font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); color: var(--cream); line-height: 1; margin-bottom: 6px; }
   .polis-stats .l { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #b8c5e8; }
 
   .pub-list { border-top: 1px solid var(--ink); }
@@ -109,7 +110,7 @@
   <div class="container">
     <div class="stream-nav-inner">
       <span style="color:var(--ink);">Jump to →</span>
-      <a href="#polis" style="color:var(--cobalt);">01 · POLIS (headliner)</a>
+      <a href="#polis" style="color:var(--cobalt);">01 · POLIS</a>
       <a href="#agency">02 · Agency</a>
       <a href="#civic">03 · Civic Perception</a>
       <a href="#donors">04 · Donors &amp; Democracy</a>
@@ -132,23 +133,23 @@
     </a>
     <a href="#agency" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
       <div class="s-num">02 / AGENCY</div>
-      <div class="s-name">The architecture of collective agency</div>
-      <div class="s-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With Marshall Ganz and Emily Lin.</div>
+      <div class="s-name">Collective agency</div>
+      <div class="s-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Emily Lin</a>.</div>
     </a>
     <a href="#civic" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
       <div class="s-num">03 / PERCEPTION</div>
       <div class="s-name">The Civic Perception Project</div>
-      <div class="s-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With Dorothy Manevich and Yvette Bailey-Emberson.</div>
+      <div class="s-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Dorothy Manevich</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Yvette Bailey-Emberson</a>.</div>
     </a>
     <a href="#donors" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
       <div class="s-num">04 / DONORS</div>
       <div class="s-name">Between Donors and Democracy</div>
-      <div class="s-desc">A pre-registered list experiment embedded in a national survey of civic professionals, testing whose definition of success they actually endorse. With Christian Caballero and Jae Yeon Kim.</div>
+      <div class="s-desc">A pre-registered list experiment embedded in a national survey of civic professionals, surfacing the preferences staff hold about whose definition of success should guide the work. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Christian Caballero</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Jae Yeon Kim</a>.</div>
     </a>
     <a href="#mamdani" class="stream-row" style="display:grid;color:inherit;text-decoration:none;">
       <div class="s-num">05 / MAMDANI</div>
       <div class="s-name"><em>Organized:</em> The Case for People-First Politics</div>
-      <div class="s-desc">An edited volume on how the campaign actually worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With Marshall Ganz, Tascha Van Auken, and seven other contributors.</div>
+      <div class="s-desc">An edited volume on how the Mamdani campaign worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a>, <a href="https://www.newyorker.com/news/new-york-journal/the-woman-who-made-the-machine-that-made-zohran-mamdani" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule);">Tascha Van Auken</a>, and seven other contributors.</div>
     </a>
   </div>
 </section>
@@ -157,7 +158,7 @@
 <section class="project cobalt" id="polis">
   <div class="container">
     <div class="project-head">
-      <div class="project-idx">Stream 01 &middot; Headliner<br>Active</div>
+      <div class="project-idx">Stream 01<br>Active</div>
       <div class="project-title">
         <h2><a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SCLKL7" style="color:var(--cream);border-bottom:1px solid #f4c58a;">POLIS</a> &mdash; the first large-N dataset built to study organizing, not (only) mobilizing.</h2>
         <p class="lede">
@@ -170,10 +171,12 @@
           forms of participation unique to the groups.
         </p>
         <div class="polis-stats">
-          <div class="s"><div class="n">38</div><div class="l">Organizations</div></div>
-          <div class="s"><div class="n">10</div><div class="l">States</div></div>
-          <div class="s"><div class="n">5 yr</div><div class="l">Horizon</div></div>
-          <div class="s"><div class="n">~40k</div><div class="l">Participants</div></div>
+          <div class="s"><div class="n">38</div><div class="l">Partner<br>organizations</div></div>
+          <div class="s"><div class="n">10</div><div class="l">States<br>covered</div></div>
+          <div class="s"><div class="n">5 yr</div><div class="l">Research<br>horizon</div></div>
+          <div class="s"><div class="n">86,237</div><div class="l">Members &amp;<br>volunteers</div></div>
+          <div class="s"><div class="n">5,035,135</div><div class="l">Live person-to-person<br>conversations</div></div>
+          <div class="s"><div class="n">215,704</div><div class="l">Voter registration<br>forms processed</div></div>
         </div>
       </div>
     </div>
@@ -250,7 +253,7 @@
 <section class="project" id="agency">
   <div class="container">
     <div class="project-head">
-      <div class="project-idx">Stream 02<br>Active &middot; Under review</div>
+      <div class="project-idx">Stream 02<br>Active &middot; In progress</div>
       <div class="project-title">
         <h2>The architecture of collective agency.</h2>
         <p class="lede">
@@ -370,7 +373,7 @@
           <dt>Sites</dt><dd>MN &middot; MO &middot; GA &middot; CA</dd>
           <dt>Methods</dt><dd>Semi-structured interviews &middot; Grounded coding</dd>
           <dt>Sample</dt><dd>State + municipal legislators (50+ planned)</dd>
-          <dt>Status</dt><dd>Interviews through May 2026 &middot; Coding summer 2026 &middot; Working paper early 2027</dd>
+          <dt>Status</dt><dd>Interviews through May 2026 &middot; Coding summer 2026 &middot; Working paper winter 2026</dd>
         </dl>
       </aside>
     </div>
@@ -478,8 +481,8 @@
         <p>
           Embedded ethnographic fieldwork from day one of the campaign;
           longform interviews with campaign leadership, coalition partners,
-          and supervolunteers; previously unreleased DSA and campaign data
-          on volunteer recruitment, turf assignment, and door-level contact;
+          and supervolunteers; campaign data on volunteer recruitment, turf
+          assignment, and door-level contact;
           and the contributors' own participant-observation in campaign
           leadership and as field leads, organizers, and trainers. No outside
           team has been granted this access.
@@ -614,14 +617,6 @@
           <span class="venue">Perspectives on Politics</span>
         </div>
         <div class="pub-type">Article</div>
-      </div>
-      <div class="pub-item">
-        <div class="pub-year">2026</div>
-        <div class="pub-title">
-          POLIS Database (Participation, Organizing, and Local Influence Study).
-          <span class="venue"><a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SCLKL7" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);">Harvard Dataverse</a></span>
-        </div>
-        <div class="pub-type">Data</div>
       </div>
     </div>
   </div>
