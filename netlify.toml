@@ -43,3 +43,7 @@
   from = "/thanks"
   to = "/thanks.html"
   status = 200
+[[redirects]]
+  from = "/subscribe"
+  to = "/subscribe.html"
+  status = 200
