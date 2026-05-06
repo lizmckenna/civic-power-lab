@@ -5,7 +5,7 @@
 <title>Research, Civic Power Lab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=15">
+<link rel="stylesheet" href="assets/shared.css?v=16">
 <style>
   .project { padding: 88px 0; border-bottom: 1px solid var(--rule); position: relative; }
   .project.alt { background: var(--cream-2); }
@@ -62,8 +62,8 @@
   .streams-teaser { padding: 64px 0 48px; border-bottom: 1px solid var(--rule); background: var(--paper); }
   .streams-teaser .section-head { margin-bottom: 32px; }
   .streams-teaser .stream-row {
-    display: grid !important;
-    grid-template-columns: 120px 260px minmax(0, 1fr) !important;
+    display: flex;
+    flex-wrap: nowrap;
     gap: 32px;
     padding: 26px 0;
     border-top: 1px solid var(--rule);
@@ -75,14 +75,14 @@
   }
   .streams-teaser .stream-row:last-child { border-bottom: 1px solid var(--rule); }
   .streams-teaser .stream-row:hover { background: var(--cream-2); }
-  .streams-teaser .s-num { grid-column: 1; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.12em; color: var(--cobalt); }
-  .streams-teaser .s-name { grid-column: 2; font-family: var(--font-display); font-size: 22px; line-height: 1.2; }
-  .streams-teaser .s-desc { grid-column: 3; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .streams-teaser .s-num { flex: 0 0 110px; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.12em; color: var(--cobalt); }
+  .streams-teaser .s-name { flex: 0 0 240px; font-family: var(--font-display); font-size: 22px; line-height: 1.2; }
+  .streams-teaser .s-desc { flex: 1 1 auto; min-width: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
   @media (max-width: 900px) {
-    .streams-teaser .stream-row { grid-template-columns: 80px minmax(0, 1fr) !important; gap: 12px; }
-    .streams-teaser .s-num { grid-column: 1; }
-    .streams-teaser .s-name { grid-column: 2; }
-    .streams-teaser .s-desc { grid-column: 1 / -1; }
+    .streams-teaser .stream-row { flex-wrap: wrap; gap: 8px 16px; }
+    .streams-teaser .s-num { flex: 0 0 80px; }
+    .streams-teaser .s-name { flex: 1 1 auto; }
+    .streams-teaser .s-desc { flex: 1 1 100%; }
   }
 </style>
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
