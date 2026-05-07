@@ -67,11 +67,6 @@
                   <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--headline-em);margin-top:2px;">Harvard Kennedy School</div>
                 </div>
               </div>
-              <p style="max-width:42ch;font-size:14px;line-height:1.6;color:rgba(241,234,215,0.78);">
-                A mixed-methods research lab studying democracy, civil society,
-                and the organizational practices that make collective action
-                powerful (or fragile).
-              </p>
             </div>
             <div>
               <h4>Site</h4>
