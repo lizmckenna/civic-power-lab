@@ -5,7 +5,7 @@
 <title>Research, Civic Power Lab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=17">
+<link rel="stylesheet" href="assets/shared.css?v=18">
 <style>
   .project { padding: 88px 0; border-bottom: 1px solid var(--rule); position: relative; }
   .project.alt { background: var(--cream-2); }
@@ -126,6 +126,13 @@
         <div class="rp-img"><img src="uploads/research/collab.jpg" alt="Lab collaboration session" loading="lazy"></div>
         <figcaption>Collaborator working session</figcaption>
       </figure>
+      <figure>
+        <div class="rp-img"><img src="uploads/press/ppc.jpg" alt="Andrew Crespo, Liz McKenna, and Setti Warren at the IOP" loading="lazy"></div>
+        <figcaption>
+          Crespo, McKenna &amp; Warren &middot; IOP<br>
+          <span style="text-transform:none;letter-spacing:0;font-family:var(--font-body);font-style:italic;color:var(--ink-2);">on Marshall Ganz's <a href="https://global.oup.com/academic/product/people-power-change-9780197569009?cc=us&amp;lang=en&amp;" target="_blank" rel="noopener" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);">People Power Change</a> (OUP 2024)</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </header>
@@ -133,12 +140,13 @@
 <style>
   .research-photo-pair {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-top: 40px;
-    max-width: 620px;
+    max-width: 940px;
   }
-  @media (max-width: 700px) { .research-photo-pair { grid-template-columns: 1fr; max-width: 360px; } }
+  @media (max-width: 800px) { .research-photo-pair { grid-template-columns: 1fr 1fr; max-width: 620px; } }
+  @media (max-width: 500px) { .research-photo-pair { grid-template-columns: 1fr; max-width: 360px; } }
   .research-photo-pair figure { margin: 0; }
   .research-photo-pair .rp-img {
     aspect-ratio: 4/3;
@@ -158,6 +166,7 @@
     text-transform: uppercase;
     color: var(--mute);
     margin-top: 10px;
+    line-height: 1.4;
   }
 </style>
 
@@ -370,7 +379,7 @@
           <dt>Sites</dt><dd>Portland, OR &middot; Milwaukee, WI</dd>
           <dt>Methods</dt><dd>Pre-post surveys &middot; Network analysis &middot; Participant observation</dd>
           <dt>Partners</dt><dd>ACLU of Oregon &middot; WiLD Project</dd>
-          <dt>Status</dt><dd>Under review</dd>
+          <dt>Status</dt><dd>In progress</dd>
         </dl>
       </aside>
     </div>
@@ -436,25 +445,6 @@
     </div>
   </div>
   <div class="project-tiles" data-tiles data-cols="18" data-rows="1" data-seed="22" data-density="0.88" data-bg="#ebe1cb" data-colors="#c24e2a,#1a3a8f" data-motifs="half,doubleArc,squiggle,dots"></div>
-</section>
-
-<!-- INTERSTITIAL: People Power Change at IOP -->
-<section style="padding:64px 0;background:var(--paper);border-bottom:1px solid var(--rule);">
-  <div class="container">
-    <figure style="margin:0 auto;max-width:760px;">
-      <div style="aspect-ratio:16/9;overflow:hidden;border:1px solid var(--rule);">
-        <img src="uploads/press/ppc.jpg"
-             alt="Andrew Crespo, Liz McKenna, and Setti Warren at the IOP discussing People Power Change"
-             style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(6%) contrast(1.02);"
-             loading="lazy">
-      </div>
-      <figcaption style="font-family:var(--font-display);font-size:15px;line-height:1.5;color:var(--ink-2);margin-top:14px;text-align:center;max-width:60ch;margin-left:auto;margin-right:auto;">
-        Andrew Crespo, Liz McKenna, and Setti Warren at the IOP discussing Marshall Ganz's latest book,
-        <a href="https://global.oup.com/academic/product/people-power-change-9780197569009?cc=us&amp;lang=en&amp;" target="_blank" rel="noopener" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);"><em>People Power Change</em></a>
-        (Oxford University Press, 2024).
-      </figcaption>
-    </figure>
-  </div>
 </section>
 
 <!-- 04 DONORS -->
@@ -526,6 +516,15 @@
       <div class="project-idx" style="color:var(--olive);border-color:var(--olive);">Stream 05<br>Active &middot; Edited volume in progress</div>
       <div class="project-title">
         <h2><em>Organized:</em> The Mamdani Campaign and the Case for People-First Politics.</h2>
+        <figure style="float:right;width:140px;margin:0 0 16px 24px;">
+          <img src="uploads/research/zohran.jpg"
+               alt="Zohran for NYC"
+               style="width:100%;height:auto;display:block;border-radius:18px;border:1px solid var(--rule);filter:grayscale(4%) contrast(1.02);"
+               loading="lazy">
+          <figcaption style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-top:8px;text-align:center;">
+            Zohran for NYC
+          </figcaption>
+        </figure>
         <p class="lede">
           In summer 2025, a candidate polling at 0.8 percent five months
           earlier won the Democratic primary for NYC mayor, then took the
@@ -535,20 +534,9 @@
           downstream consequence of a decade of organizing infrastructure
           rebuilt block by block.
         </p>
-        <p style="margin-top:18px;">
-          <a href="https://lizmckenna.github.io/mamdani-field-lead-survey/" target="_blank" rel="noopener" style="display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cobalt);border:1px solid var(--cobalt);padding:10px 18px;text-decoration:none;">Read the field-lead zine &rarr;</a>
+        <p style="margin-top:18px;clear:both;">
+          <a href="https://lizmckenna.github.io/mamdani-field-lead-survey/" target="_blank" rel="noopener" style="display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cobalt);border:1px solid var(--cobalt);padding:10px 18px;text-decoration:none;">Read the field-lead survey &rarr;</a>
         </p>
-        <figure style="margin:28px 0 0;max-width:280px;">
-          <div style="aspect-ratio:4/5;overflow:hidden;border:1px solid var(--rule);">
-            <img src="uploads/research/zohran.jpg"
-                 alt="Zohran Mamdani for NYC"
-                 style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(6%) contrast(1.02);"
-                 loading="lazy">
-          </div>
-          <figcaption style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-top:10px;">
-            Zohran for NYC
-          </figcaption>
-        </figure>
       </div>
     </div>
     <div class="project-body">
@@ -592,7 +580,7 @@
           <dt>Site</dt><dd>New York City</dd>
           <dt>Methods</dt><dd>Embedded ethnography &middot; Interviews &middot; Canvass data &middot; Network analysis</dd>
           <dt>Status</dt><dd>First draft June 2026 &middot; Harvard book workshop summer 2026</dd>
-          <dt>Companion</dt><dd><a href="https://lizmckenna.github.io/mamdani-field-lead-survey/" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule);">Field-lead zine</a></dd>
+          <dt>Companion</dt><dd><a href="https://lizmckenna.github.io/mamdani-field-lead-survey/" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule);">Field-lead survey</a></dd>
         </dl>
       </aside>
     </div>
