@@ -5,7 +5,7 @@
 <title>About, Civic Power Lab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=15">
+<link rel="stylesheet" href="assets/shared.css?v=16">
 <style>
   .about-hero {
     padding: 80px 0 48px;
@@ -55,7 +55,7 @@
   .person { display: flex; flex-direction: column; }
   .person-portrait {
     aspect-ratio: 1;
-    border-radius: 50%;
+    border-radius: 18px;
     overflow: hidden;
     background: var(--paper);
     border: 1px solid var(--rule);
@@ -84,7 +84,7 @@
     object-fit: cover;
     object-position: center 22%;
     display: block;
-    border-radius: 50%;
+    border-radius: 18px;
     filter: grayscale(8%) contrast(1.02);
     border: 1px solid var(--rule);
   }
@@ -158,7 +158,7 @@
     align-items: start;
   }
   @media (max-width: 800px) { .partner-row { grid-template-columns: 64px 1fr; } .partner-row > :last-child { grid-column: 2; } }
-  .partner-mark { aspect-ratio: 1; background: var(--paper); border: 1px solid var(--rule); overflow: hidden; border-radius: 50%; }
+  .partner-mark { aspect-ratio: 1; background: var(--paper); border: 1px solid var(--rule); overflow: hidden; border-radius: 14px; }
   .partner-row h4 { font-family: var(--font-display); font-size: 22px; line-height: 1.15; margin-bottom: 4px; font-weight: 500; }
   .partner-row .loc { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 12px; }
   .partner-row p { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin: 0; }
@@ -227,10 +227,10 @@
       organizational practices that make collective action powerful (or
       fragile).
     </p>
-    <figure style="margin:32px 0 0;max-width:100%;">
+    <figure style="margin:32px 0 0;max-width:680px;">
       <img src="uploads/about/crm.jpg"
            alt="Civil rights movement protest in Washington, D.C., August 28, 1963"
-           style="width:100%;height:auto;display:block;border:1px solid var(--rule);filter:grayscale(8%) contrast(1.02);"
+           style="width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:14px;filter:grayscale(8%) contrast(1.02);"
            loading="lazy">
       <figcaption style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-top:12px;">
         Civil rights movement protest in Washington, D.C. &middot; August 28, 1963
@@ -371,11 +371,11 @@
     <div class="team-grid">
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/joy-cushman.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name"><a href="https://www.dpifund.org/people/joy-cushman" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);">Joy Cushman</a></div><div class="person-role">Collaborator</div><p class="person-bio">Research Program Director, DPI Fund. Co-author of the 2025 <a href="https://www.wechoose.us/s/civic-power-report" target="_blank" rel="noopener" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);">Civic Power</a> and 2023 <a href="https://www.dpifund.org/research" target="_blank" rel="noopener" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);">Power Metrics</a> reports.</p></div>
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/matt-duell.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Matt Duell</div><div class="person-role">Collaborator</div><p class="person-bio">Data Strategist, State Power Fund. Ph.D. in Political Science, Stony Brook.</p></div>
-      <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/katrina-gamble.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 75%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Katrina Gamble</div><div class="person-role">Collaborator</div><p class="person-bio">Partner at Sojourn Strategies. Ph.D. in Political Science, Emory University.</p></div>
+      <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/katrina-gamble.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Katrina Gamble</div><div class="person-role">Collaborator</div><p class="person-bio">Partner at Sojourn Strategies. Ph.D. in Political Science, Emory University.</p></div>
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/marshall-ganz.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Marshall Ganz</div><div class="person-role">Collaborator</div><p class="person-bio"><a href="https://marshallganz.scholars.harvard.edu/" target="_blank" rel="noopener" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);">Senior Lecturer in Public Policy, HKS</a>.</p></div>
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/miriam-mckinney-gray.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Miriam McKinney Gray</div><div class="person-role">Collaborator</div><p class="person-bio">Senior Data Analyst, DPI.</p></div>
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/prentiss-haney.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Prentiss Haney</div><div class="person-role">Collaborator</div><p class="person-bio">Former Co-Executive Director, Ohio Organizing Collaborative.</p></div>
-      <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/tianyi-hu.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 0%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Tianyi Hu</div><div class="person-role">Collaborator</div><p class="person-bio">Senior Data Analyst, DPI.</p></div>
+      <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/tianyi-hu.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Tianyi Hu</div><div class="person-role">Collaborator</div><p class="person-bio">Senior Data Analyst, DPI.</p></div>
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/maggie-hughes.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Maggie Hughes</div><div class="person-role">Collaborator</div><p class="person-bio">Ph.D., MIT Media Lab.</p></div>
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/cris-pereira-de-araujo.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Cristina Pereira de Araujo</div><div class="person-role">Collaborator</div><p class="person-bio">Professor of Urban Studies, Federal University of Pernambuco.</p></div>
       <div class="person"><div class="person-portrait" style="background:transparent;border:1px solid var(--rule);overflow:hidden;"><img src="uploads/team/miya-woolfalk.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(8%) contrast(1.02);"></div><div class="person-name">Miya Woolfalk</div><div class="person-role">Collaborator</div><p class="person-bio">Principal at MW Strategies; Former Director of Research, Analyst Institute. Ph.D. in Government, Harvard FAS.</p></div>
@@ -501,17 +501,6 @@
       </div>
     </div>
 
-    <figure style="margin:0 0 40px;">
-      <div style="aspect-ratio:16/9;overflow:hidden;border:1px solid var(--rule);max-width:920px;">
-        <img src="uploads/press/ppc.jpg"
-             alt="Pro-Democracy Campaign convening"
-             style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(6%) contrast(1.02);"
-             loading="lazy">
-      </div>
-      <figcaption style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-top:12px;">
-        Pro-Democracy Campaign convening
-      </figcaption>
-    </figure>
   </div>
 
   <div class="collab-grid">
