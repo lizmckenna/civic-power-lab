@@ -5,7 +5,7 @@
 <title>Work with us, Civic Power Lab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=16">
+<link rel="stylesheet" href="assets/shared.css?v=17">
 <style>
   .intake-hero {
     padding: 64px 0 48px;
@@ -82,7 +82,8 @@
 
   /* Forms */
   .form-wrap {
-    padding: 64px 0 96px;
+    padding-top: 64px;
+    padding-bottom: 96px;
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 64px;
@@ -554,6 +555,7 @@
             <label><input type="checkbox" name="role-of-interest" value="PhD student at Harvard"><span>PhD student at Harvard<small>Looking for advising or lab affiliation.</small></span></label>
             <label><input type="checkbox" name="role-of-interest" value="Postdoctoral fellow"><span>Postdoctoral fellow</span></label>
             <label><input type="checkbox" name="role-of-interest" value="Visiting scholar (sabbatical/fellowship)"><span>Visiting scholar (sabbatical / fellowship)</span></label>
+            <label><input type="checkbox" name="role-of-interest" value="Software Developer / Engineer"><span>Software Developer / Engineer<small>Forward-deployed engineer, full-stack, or platform work on Groundwork.</small></span></label>
           </div>
         </div>
       </div>
@@ -581,7 +583,7 @@
         <div class="form-section-title">Section 4 <span>/ Skills</span></div>
         <div class="form-section-desc">We care about methods <em>and</em> field experience. Both count.</div>
         <div class="field">
-          <label>Methods you're fluent in (or learning)<span style="color:var(--mute);font-weight:400;"> (optional)</span></label>
+          <label>Methods you're fluent in<span style="color:var(--mute);font-weight:400;"> (optional)</span></label>
           <div class="checks">
             <label><input type="checkbox" name="method" value="Qualitative interviewing"><span>Qualitative interviewing</span></label>
             <label><input type="checkbox" name="method" value="Ethnography/fieldwork"><span>Ethnography / fieldwork</span></label>
@@ -593,6 +595,24 @@
             <label><input type="checkbox" name="method" value="Agentic AI / LLM-assisted research"><span>Agentic AI / LLM-assisted research</span></label>
             <label><input type="checkbox" name="method" value="Something else"><span>Something else (describe below)</span></label>
           </div>
+        </div>
+        <div class="field">
+          <label>Engineering / tooling<span style="color:var(--mute);font-weight:400;"> (optional &middot; for Software Developer / Engineer applicants)</span></label>
+          <span class="hint">Pick what you've shipped real work in. We'll go deeper in the interview.</span>
+          <div class="checks">
+            <label><input type="checkbox" name="tech-stack" value="TypeScript / JavaScript"><span>TypeScript / JavaScript</span></label>
+            <label><input type="checkbox" name="tech-stack" value="Python"><span>Python</span></label>
+            <label><input type="checkbox" name="tech-stack" value="React / Next.js"><span>React / Next.js</span></label>
+            <label><input type="checkbox" name="tech-stack" value="Node.js"><span>Node.js</span></label>
+            <label><input type="checkbox" name="tech-stack" value="PostgreSQL / SQL"><span>PostgreSQL / SQL</span></label>
+            <label><input type="checkbox" name="tech-stack" value="Cloud / DevOps (AWS, GCP, Vercel)"><span>Cloud / DevOps (AWS, GCP, Vercel)</span></label>
+            <label><input type="checkbox" name="tech-stack" value="Data engineering / ETL"><span>Data engineering / ETL</span></label>
+            <label><input type="checkbox" name="tech-stack" value="Forward-deployed / embedded with users"><span>Forward-deployed / embedded with users</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label>GitHub (or similar)<span style="color:var(--mute);font-weight:400;"> (optional)</span></label>
+          <input name="github" type="url" placeholder="https://github.com/yourhandle">
         </div>
         <div class="field">
           <label>Organizing, movement, or campaign experience (if any)<span style="color:var(--mute);font-weight:400;"> (optional)</span></label>
