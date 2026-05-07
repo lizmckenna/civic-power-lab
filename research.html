@@ -5,7 +5,7 @@
 <title>Research, Civic Power Lab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=16">
+<link rel="stylesheet" href="assets/shared.css?v=17">
 <style>
   .project { padding: 88px 0; border-bottom: 1px solid var(--rule); position: relative; }
   .project.alt { background: var(--cream-2); }
@@ -20,7 +20,7 @@
   .project-idx { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cobalt); padding-top: 14px; border-top: 2px solid var(--cobalt); }
   .project-title h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1.0; margin-bottom: 20px; }
   .project-title .lede { font-family: var(--font-display); font-size: 19px; line-height: 1.45; color: var(--ink-2); max-width: 60ch; }
-  .project-body { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; }
+  .project-body { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; align-items: start; }
   @media (max-width: 900px) { .project-body { grid-template-columns: 1fr; } }
   .project-methods { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
   .project-methods h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); font-weight: 400; margin: 24px 0 8px; }
@@ -62,27 +62,37 @@
   .streams-teaser { padding: 64px 0 48px; border-bottom: 1px solid var(--rule); background: var(--paper); }
   .streams-teaser .section-head { margin-bottom: 32px; }
   .streams-teaser .stream-row {
-    display: flex;
-    flex-wrap: nowrap;
+    position: relative;
+    display: grid;
+    grid-template-columns: 110px 240px minmax(0, 1fr);
     gap: 32px;
     padding: 26px 0;
     border-top: 1px solid var(--rule);
     align-items: baseline;
     transition: background .15s;
     cursor: pointer;
-    color: inherit;
-    text-decoration: none;
   }
   .streams-teaser .stream-row:last-child { border-bottom: 1px solid var(--rule); }
   .streams-teaser .stream-row:hover { background: var(--cream-2); }
-  .streams-teaser .s-num { flex: 0 0 110px; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.12em; color: var(--cobalt); }
-  .streams-teaser .s-name { flex: 0 0 240px; font-family: var(--font-display); font-size: 22px; line-height: 1.2; }
-  .streams-teaser .s-desc { flex: 1 1 auto; min-width: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+  .streams-teaser .s-num { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.12em; color: var(--cobalt); white-space: nowrap; }
+  .streams-teaser .s-name { font-family: var(--font-display); font-size: 22px; line-height: 1.2; }
+  .streams-teaser .s-desc {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+  }
+  .streams-teaser .stretched-link {
+    position: absolute; inset: 0; z-index: 1;
+    text-indent: -9999px; overflow: hidden;
+  }
+  .streams-teaser .s-desc a { position: relative; z-index: 2; color: inherit; border-bottom: 1px solid var(--rule); }
   @media (max-width: 900px) {
-    .streams-teaser .stream-row { flex-wrap: wrap; gap: 8px 16px; }
-    .streams-teaser .s-num { flex: 0 0 80px; }
-    .streams-teaser .s-name { flex: 1 1 auto; }
-    .streams-teaser .s-desc { flex: 1 1 100%; }
+    .streams-teaser .stream-row { grid-template-columns: 80px minmax(0, 1fr); gap: 8px 16px; }
+    .streams-teaser .s-desc { grid-column: 1 / -1; }
   }
 </style>
 <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -109,8 +119,8 @@
     </div>
     <div class="research-photo-pair">
       <figure>
-        <div class="rp-img"><img src="uploads/research/research.jpg" alt="Lab research session" loading="lazy"></div>
-        <figcaption>Research in progress</figcaption>
+        <div class="rp-img"><img src="uploads/research/research.jpg" alt="Fieldnotes" loading="lazy"></div>
+        <figcaption>Fieldnotes</figcaption>
       </figure>
       <figure>
         <div class="rp-img"><img src="uploads/research/collab.jpg" alt="Lab collaboration session" loading="lazy"></div>
@@ -126,9 +136,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
     margin-top: 40px;
-    max-width: 1100px;
+    max-width: 620px;
   }
-  @media (max-width: 700px) { .research-photo-pair { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .research-photo-pair { grid-template-columns: 1fr; max-width: 360px; } }
   .research-photo-pair figure { margin: 0; }
   .research-photo-pair .rp-img {
     aspect-ratio: 4/3;
@@ -171,31 +181,36 @@
     <div class="section-head">
       <h2>Streams of research.</h2>
     </div>
-    <a href="#polis" class="stream-row">
+    <div class="stream-row">
       <div class="s-num">01 / POLIS</div>
       <div class="s-name">Participation, Organizing &amp; Local Influence</div>
       <div class="s-desc">38 groups, 10 states, five years. The first large-N dataset built to study organizing, not (only) mobilizing.</div>
-    </a>
-    <a href="#agency" class="stream-row">
+      <a href="#polis" class="stretched-link">POLIS</a>
+    </div>
+    <div class="stream-row">
       <div class="s-num">02 / AGENCY</div>
       <div class="s-name">Collective agency</div>
-      <div class="s-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Emily Lin</a>.</div>
-    </a>
-    <a href="#civic" class="stream-row">
+      <div class="s-desc">Two-day organizing workshops in Portland and Milwaukee produced measurable shifts in motivation, strategic confidence, and the structure of participants' networks. With <a href="about.html#team">Marshall Ganz</a> and <a href="about.html#team">Emily Lin</a>.</div>
+      <a href="#agency" class="stretched-link">Agency</a>
+    </div>
+    <div class="stream-row">
       <div class="s-num">03 / PERCEPTION</div>
       <div class="s-name">The Civic Perception Project</div>
-      <div class="s-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Dorothy Manevich</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Yvette Bailey-Emberson</a>.</div>
-    </a>
-    <a href="#donors" class="stream-row">
+      <div class="s-desc">How state and municipal legislators read the people pressuring them. Twenty-six interviews complete in MN and MO; GA and CA fielding through spring 2026. With <a href="about.html#team">Dorothy Manevich</a> and <a href="about.html#team">Yvette Bailey-Emberson</a>.</div>
+      <a href="#civic" class="stretched-link">Civic Perception</a>
+    </div>
+    <div class="stream-row">
       <div class="s-num">04 / DONORS</div>
       <div class="s-name">Between Donors and Democracy</div>
-      <div class="s-desc">A pre-registered list experiment embedded in a national survey of civic professionals, surfacing the preferences staff hold about whose definition of success should guide the work. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Christian Caballero</a> and <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Jae Yeon Kim</a>.</div>
-    </a>
-    <a href="#mamdani" class="stream-row">
+      <div class="s-desc">A pre-registered list experiment embedded in a national survey of civic professionals, surfacing the preferences staff hold about whose definition of success should guide the work. With <a href="about.html#team">Christian Caballero</a> and <a href="about.html#team">Jae Yeon Kim</a>.</div>
+      <a href="#donors" class="stretched-link">Donors</a>
+    </div>
+    <div class="stream-row">
       <div class="s-num">05 / MAMDANI</div>
       <div class="s-name"><em>Organized:</em> The Case for People-First Politics</div>
-      <div class="s-desc">An edited volume on how the Mamdani campaign worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a>, <a href="https://www.newyorker.com/news/new-york-journal/the-woman-who-made-the-machine-that-made-zohran-mamdani" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule);">Tascha Van Auken</a>, and seven other contributors.</div>
-    </a>
+      <div class="s-desc">An edited volume on how the Mamdani campaign worked: 104,400 volunteers, three million doors, and a decade of organizing infrastructure most press coverage missed. With <a href="about.html#team">Marshall Ganz</a>, <a href="https://www.newyorker.com/news/new-york-journal/the-woman-who-made-the-machine-that-made-zohran-mamdani" target="_blank" rel="noopener">Tascha Van Auken</a>, and seven other contributors.</div>
+      <a href="#mamdani" class="stretched-link">Mamdani</a>
+    </div>
   </div>
 </section>
 
@@ -276,7 +291,7 @@
       <aside class="project-side cobalt">
         <div class="mono" style="margin-bottom:16px;">Stream Brief</div>
         <dl>
-          <dt>Lead</dt><dd>E. McKenna &amp; collaborators</dd>
+          <dt>Lead</dt><dd>McKenna &amp; collaborators</dd>
           <dt>Network</dt><dd>38 orgs &middot; 10 states</dd>
           <dt>Methods</dt><dd>Admin data &middot; Ethnography &middot; Network</dd>
           <dt>Status</dt><dd>Active &middot; Y2 of 5</dd>
@@ -341,9 +356,8 @@
 
         <h3>The argument</h3>
         <p>
-          Collective agency is not a fixed individual property. It is a
-          relational capacity that organizations can deliberately cultivate
-          through specific, repeatable practices. The paper is part of a
+          Collective agency is a relational capacity that organizations
+          can deliberately cultivate through specific, repeatable practices. The paper is part of a
           broader effort, with <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a>, to bring emotion and
           relationships back into social-movement theory, where over-rationalist
           accounts of strategy have crowded them out.
@@ -352,7 +366,7 @@
       <aside class="project-side">
         <div class="mono" style="margin-bottom:16px;">Stream Brief</div>
         <dl>
-          <dt>Authors</dt><dd><a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Emily Lin</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">E. McKenna</a></dd>
+          <dt>Authors</dt><dd><a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Emily Lin</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">McKenna</a></dd>
           <dt>Sites</dt><dd>Portland, OR &middot; Milwaukee, WI</dd>
           <dt>Methods</dt><dd>Pre-post surveys &middot; Network analysis &middot; Participant observation</dd>
           <dt>Partners</dt><dd>ACLU of Oregon &middot; WiLD Project</dd>
@@ -392,8 +406,7 @@
 
         <h3>What we're finding</h3>
         <p>
-          Across nearly every interview, the same pattern: <strong>organizing beats
-          mobilizing</strong>. Legislators report listening more to two or three
+          Across nearly every interview, legislators report listening more to two or three
           in-depth contacts from informed constituents in their own district
           than to fifty form emails from across the state. The constituents
           who move them are personally affected by the issue, well-informed,
@@ -413,7 +426,7 @@
       <aside class="project-side">
         <div class="mono" style="margin-bottom:16px;">Stream Brief</div>
         <dl>
-          <dt>Co-PIs</dt><dd><a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Dorothy Manevich</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Yvette Bailey-Emberson</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">E. McKenna</a></dd>
+          <dt>Co-PIs</dt><dd><a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Dorothy Manevich</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Yvette Bailey-Emberson</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">McKenna</a></dd>
           <dt>Sites</dt><dd>MN &middot; MO &middot; GA &middot; CA</dd>
           <dt>Methods</dt><dd>Semi-structured interviews &middot; Grounded coding</dd>
           <dt>Sample</dt><dd>State + municipal legislators (50+ planned)</dd>
@@ -423,6 +436,25 @@
     </div>
   </div>
   <div class="project-tiles" data-tiles data-cols="18" data-rows="1" data-seed="22" data-density="0.88" data-bg="#ebe1cb" data-colors="#c24e2a,#1a3a8f" data-motifs="half,doubleArc,squiggle,dots"></div>
+</section>
+
+<!-- INTERSTITIAL: People Power Change at IOP -->
+<section style="padding:64px 0;background:var(--paper);border-bottom:1px solid var(--rule);">
+  <div class="container">
+    <figure style="margin:0 auto;max-width:760px;">
+      <div style="aspect-ratio:16/9;overflow:hidden;border:1px solid var(--rule);">
+        <img src="uploads/press/ppc.jpg"
+             alt="Andrew Crespo, Liz McKenna, and Setti Warren at the IOP discussing People Power Change"
+             style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(6%) contrast(1.02);"
+             loading="lazy">
+      </div>
+      <figcaption style="font-family:var(--font-display);font-size:15px;line-height:1.5;color:var(--ink-2);margin-top:14px;text-align:center;max-width:60ch;margin-left:auto;margin-right:auto;">
+        Andrew Crespo, Liz McKenna, and Setti Warren at the IOP discussing Marshall Ganz's latest book,
+        <a href="https://global.oup.com/academic/product/people-power-change-9780197569009?cc=us&amp;lang=en&amp;" target="_blank" rel="noopener" style="color:var(--cobalt);border-bottom:1px solid var(--cobalt);"><em>People Power Change</em></a>
+        (Oxford University Press, 2024).
+      </figcaption>
+    </figure>
+  </div>
 </section>
 
 <!-- 04 DONORS -->
@@ -476,7 +508,7 @@
       <aside class="project-side">
         <div class="mono" style="margin-bottom:16px;">Stream Brief</div>
         <dl>
-          <dt>Authors</dt><dd><a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Christian Caballero</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Jae Yeon Kim</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">E. McKenna</a></dd>
+          <dt>Authors</dt><dd><a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Christian Caballero</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Jae Yeon Kim</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">McKenna</a></dd>
           <dt>Methods</dt><dd>List experiment &middot; Survey &middot; Follow-up interviews</dd>
           <dt>Sampling frame</dt><dd>112,779 civic opportunity organizations</dd>
           <dt>Status</dt><dd>Pre-registered</dd>
@@ -506,6 +538,17 @@
         <p style="margin-top:18px;">
           <a href="https://lizmckenna.github.io/mamdani-field-lead-survey/" target="_blank" rel="noopener" style="display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cobalt);border:1px solid var(--cobalt);padding:10px 18px;text-decoration:none;">Read the field-lead zine &rarr;</a>
         </p>
+        <figure style="margin:28px 0 0;max-width:280px;">
+          <div style="aspect-ratio:4/5;overflow:hidden;border:1px solid var(--rule);">
+            <img src="uploads/research/zohran.jpg"
+                 alt="Zohran Mamdani for NYC"
+                 style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(6%) contrast(1.02);"
+                 loading="lazy">
+          </div>
+          <figcaption style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-top:10px;">
+            Zohran for NYC
+          </figcaption>
+        </figure>
       </div>
     </div>
     <div class="project-body">
@@ -544,7 +587,7 @@
       <aside class="project-side">
         <div class="mono" style="margin-bottom:16px;">Volume Brief</div>
         <dl>
-          <dt>Editor</dt><dd>E. McKenna</dd>
+          <dt>Editor</dt><dd>McKenna</dd>
           <dt>Contributors</dt><dd><a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Marshall Ganz</a> &middot; <a href="https://www.newyorker.com/news/new-york-journal/the-woman-who-made-the-machine-that-made-zohran-mamdani" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid var(--rule);">Tascha Van Auken</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Patrick Hunter</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Daniel Napsha</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Noah Johnson</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Zainab Azim</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Sarah Merchant</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Raza Gillani</a> &middot; <a href="about.html#team" style="color:inherit;border-bottom:1px solid var(--rule);">Emily S. Lin</a></dd>
           <dt>Site</dt><dd>New York City</dd>
           <dt>Methods</dt><dd>Embedded ethnography &middot; Interviews &middot; Canvass data &middot; Network analysis</dd>
