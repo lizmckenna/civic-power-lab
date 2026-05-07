@@ -5,7 +5,7 @@
 <title>Practice, Civic Power Lab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=16">
+<link rel="stylesheet" href="assets/shared.css?v=17">
 <style>
   .p-head { padding: 88px 0; border-bottom: 1px solid var(--rule); position: relative; }
   .p-head.alt { background: var(--cream-2); }
@@ -58,20 +58,21 @@
   .practice-top-grid {
     display: flex;
     justify-content: center;
-    max-width: 720px;
+    max-width: 880px;
     margin: 0 auto;
   }
-  .boulos-thumbs-figure { margin: 0; }
+  .boulos-thumbs-figure { margin: 0; width: 100%; }
   .boulos-thumbs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
+  .boulos-thumbs .bt-cell-wrap { margin: 0; }
   .boulos-thumbs .bt-cell {
     aspect-ratio: 3/4;
     background: var(--cream-2);
     border: 1px solid var(--rule);
-    border-radius: 6px;
+    border-radius: 12px;
     overflow: hidden;
   }
   .boulos-thumbs .bt-cell img {
@@ -79,18 +80,18 @@
     object-fit: contain; display: block;
     background: var(--cream-2);
   }
-  .boulos-thumbs-figure figcaption {
-    font-family: var(--font-display);
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--ink-2);
-    margin-top: 14px;
+  .boulos-thumbs .bt-cell-wrap figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-top: 10px;
     text-align: center;
-    max-width: 60ch;
-    margin-left: auto; margin-right: auto;
+    line-height: 1.4;
   }
   @media (max-width: 600px) {
-    .boulos-thumbs { grid-template-columns: repeat(2, 1fr); }
+    .boulos-thumbs { grid-template-columns: 1fr; }
   }
 
   /* === FIELDWORK CAROUSEL === */
@@ -155,21 +156,36 @@
   </div>
 </header>
 
-<!-- BOULOS THUMB COLLAGE + REBECCA -->
+<!-- FIELDWORK CAROUSEL (now top of page) -->
 <section style="padding:56px 0;border-bottom:1px solid var(--rule);background:var(--paper);">
   <div class="container">
-    <div class="eyebrow" style="margin-bottom:18px;">Field</div>
-    <div class="practice-top-grid">
-      <figure class="boulos-thumbs-figure">
-        <div class="boulos-thumbs">
-          <div class="bt-cell"><img src="uploads/practice/boulos1.jpg" alt="With Guilherme Boulos" loading="lazy"></div>
-          <div class="bt-cell"><img src="uploads/practice/boulos2.jpg" alt="With Guilherme Boulos" loading="lazy"></div>
-          <div class="bt-cell"><img src="uploads/practice/boulos3.jpg" alt="With Guilherme Boulos" loading="lazy"></div>
-          <div class="bt-cell"><img src="uploads/practice/boulos4.jpg" alt="With Guilherme Boulos" loading="lazy"></div>
-        </div>
-        <figcaption>
-          In conversation with <strong>Guilherme Boulos</strong> (leader of Brazil's Homeless Workers' Movement (MTST); Minister of the General Secretariat of the Presidency).
-        </figcaption>
+    <div class="eyebrow" style="margin-bottom:14px;">In the Field</div>
+    <h2 style="margin-bottom:6px;">In the Field.</h2>
+    <p style="font-family:var(--font-display);font-size:18px;color:var(--ink-2);margin:0 0 28px;">Where research meets organizing.</p>
+    <div class="field-carousel">
+      <figure>
+        <div class="fc-img"><img src="uploads/practice/clergy.jpg" alt="Minnesota Clergy fieldwork" loading="lazy"></div>
+        <figcaption>Minnesota Clergy</figcaption>
+      </figure>
+      <figure>
+        <div class="fc-img"><img src="uploads/practice/nyc.jpg" alt="New York City fieldwork" loading="lazy"></div>
+        <figcaption>New York City</figcaption>
+      </figure>
+      <figure>
+        <div class="fc-img"><img src="uploads/practice/isaiah.jpg" alt="ISAIAH Vigil, Twin Cities" loading="lazy"></div>
+        <figcaption>ISAIAH Vigil &middot; Twin Cities</figcaption>
+      </figure>
+      <figure>
+        <div class="fc-img"><img src="uploads/practice/stcharles.jpg" alt="St. Charles, Missouri fieldwork" loading="lazy"></div>
+        <figcaption>St. Charles &middot; Missouri</figcaption>
+      </figure>
+      <figure>
+        <div class="fc-img"><img src="uploads/practice/carnaval.jpg" alt="Carnaval fieldwork, Brazil" loading="lazy"></div>
+        <figcaption>Carnaval &middot; Brazil</figcaption>
+      </figure>
+      <figure>
+        <div class="fc-img"><img src="uploads/practice/bahia.jpg" alt="Bahia fieldwork, Brazil" loading="lazy"></div>
+        <figcaption>Bahia &middot; Brazil</figcaption>
       </figure>
     </div>
   </div>
@@ -201,45 +217,6 @@
           the organizations using it, and governed by them too.
         </p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FIELDWORK CAROUSEL -->
-<section style="padding:64px 0;border-bottom:1px solid var(--rule);background:var(--paper);">
-  <div class="container">
-    <div class="section-head" style="margin-bottom:28px;">
-      <div>
-        <div class="eyebrow">Fieldwork</div>
-        <h2>Where the research and the practice happen.</h2>
-      </div>
-      <span class="mono">Selected sites</span>
-    </div>
-    <div class="field-carousel">
-      <figure>
-        <div class="fc-img"><img src="uploads/practice/clergy.jpg" alt="Minnesota Clergy fieldwork" loading="lazy"></div>
-        <figcaption>Minnesota Clergy</figcaption>
-      </figure>
-      <figure>
-        <div class="fc-img"><img src="uploads/practice/nyc.jpg" alt="New York City fieldwork" loading="lazy"></div>
-        <figcaption>NYC</figcaption>
-      </figure>
-      <figure>
-        <div class="fc-img"><img src="uploads/practice/isaiah.jpg" alt="ISAIAH Twin Cities" loading="lazy"></div>
-        <figcaption>ISAIAH &middot; Twin Cities</figcaption>
-      </figure>
-      <figure>
-        <div class="fc-img"><img src="uploads/practice/stcharles.jpg" alt="St. Charles, Missouri fieldwork" loading="lazy"></div>
-        <figcaption>St. Charles &middot; Missouri</figcaption>
-      </figure>
-      <figure>
-        <div class="fc-img"><img src="uploads/practice/carnaval.jpg" alt="Carnaval fieldwork, Brazil" loading="lazy"></div>
-        <figcaption>Carnaval &middot; Brazil</figcaption>
-      </figure>
-      <figure>
-        <div class="fc-img"><img src="uploads/practice/bahia.jpg" alt="Bahia fieldwork, Brazil" loading="lazy"></div>
-        <figcaption>Bahia &middot; Brazil</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -439,13 +416,41 @@
   <div class="p-tiles" data-tiles data-cols="22" data-rows="1" data-seed="621" data-density="1.0" data-bg="#f1ead7" data-colors="#b84a2e,#d9a636" data-motifs="tri" data-rotate-pattern="mirror" data-color-pattern="sequence"></div>
 </section>
 
+<!-- BOULOS CONVERSATION -->
+<section style="padding:64px 0;border-bottom:1px solid var(--rule);background:var(--paper);">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom:14px;">Field conversation</div>
+    <div class="practice-top-grid">
+      <figure class="boulos-thumbs-figure">
+        <p style="font-family:var(--font-display);font-size:15px;line-height:1.5;color:var(--ink-2);margin:0 0 18px;text-align:center;max-width:62ch;margin-left:auto;margin-right:auto;">
+          In conversation with <strong>Guilherme Boulos</strong> (leader of Brazil's Homeless Workers' Movement (MTST); Minister of the General Secretariat of the Presidency).
+        </p>
+        <div class="boulos-thumbs">
+          <figure class="bt-cell-wrap">
+            <div class="bt-cell"><img src="uploads/practice/boulos1.jpg" alt="Daí a gente partiu" loading="lazy"></div>
+            <figcaption><em>Daí a gente partiu</em></figcaption>
+          </figure>
+          <figure class="bt-cell-wrap">
+            <div class="bt-cell"><img src="uploads/practice/boulos2.jpg" alt="Fazendo um debate" loading="lazy"></div>
+            <figcaption><em>Fazendo um debate</em></figcaption>
+          </figure>
+          <figure class="bt-cell-wrap">
+            <div class="bt-cell"><img src="uploads/practice/boulos3.jpg" alt="Desurbano" loading="lazy"></div>
+            <figcaption><em>Desurbano</em></figcaption>
+          </figure>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- DPI / CIVIC POWER COLLABORATIONS -->
 <section class="p-head" id="dpi">
   <div class="container">
     <div class="p-row">
       <div class="p-idx">Program 03<br>Ongoing · Field-facing</div>
       <div class="p-title">
-        <h2>Civic power &amp; field collaborations.</h2>
+        <h2>Practice-based research network.</h2>
         <p class="p-lede">
           Our practice arm runs through a set of long-standing collaborations,
           with intermediaries, funders, and civic-tech organizations, to help
