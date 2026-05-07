@@ -5,7 +5,7 @@
 <title>Research, Civic Power Lab</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=20">
+<link rel="stylesheet" href="assets/shared.css?v=21">
 <style>
   .project { padding: 88px 0; border-bottom: 1px solid var(--rule); position: relative; }
   .project.alt { background: var(--cream-2); }
@@ -57,6 +57,38 @@
   .stream-nav-inner { display: flex; gap: 24px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
   .stream-nav a { color: var(--mute); padding-bottom: 2px; border-bottom: 1px solid transparent; }
   .stream-nav a:hover { color: var(--cobalt); border-color: var(--cobalt); }
+
+  /* === MAMDANI logo + lede flow === */
+  .mamdani-flow {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    align-items: start;
+    margin-top: 24px;
+  }
+  @media (max-width: 700px) {
+    .mamdani-flow { grid-template-columns: 1fr; gap: 16px; }
+    .mamdani-logo { max-width: 220px; }
+  }
+  .mamdani-logo { margin: 0; }
+  .mamdani-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+    border: 1px solid var(--rule);
+    filter: grayscale(4%) contrast(1.02);
+  }
+  .mamdani-logo figcaption {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-top: 8px;
+    text-align: center;
+  }
+  .mamdani-flow .lede { margin: 0; }
 
   /* === STREAMS TEASER (top of research page) === */
   .streams-teaser { padding: 64px 0 48px; border-bottom: 1px solid var(--rule); background: var(--paper); }
@@ -533,26 +565,25 @@
     <div class="project-head">
       <div class="project-idx" style="color:var(--olive);border-color:var(--olive);">Stream 05<br>Active &middot; Edited volume in progress</div>
       <div class="project-title">
-        <figure style="float:left;width:240px;margin:6px 28px 12px 0;shape-outside:margin-box;">
-          <img src="uploads/research/zohran.jpg"
-               alt="Zohran for NYC"
-               style="width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--rule);filter:grayscale(4%) contrast(1.02);"
-               loading="lazy">
-          <figcaption style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--mute);margin-top:8px;text-align:center;">
-            Zohran for NYC
-          </figcaption>
-        </figure>
         <h2><em>Organized:</em> The Mamdani Campaign and the Case for People-First Politics.</h2>
-        <p class="lede" style="margin-top:20px;">
-          In summer 2025, a candidate polling at 0.8 percent five months
-          earlier won the Democratic primary for NYC mayor, then took the
-          general by a margin no one forecast, turning out more voters than
-          the city had seen in fifty years. We had embedded access from day
-          one. The book argues this was not charisma or virality but the
-          downstream consequence of a decade of organizing infrastructure
-          rebuilt block by block.
-        </p>
-        <p style="margin-top:18px;clear:both;">
+        <div class="mamdani-flow">
+          <figure class="mamdani-logo">
+            <img src="uploads/research/zohran.jpg"
+                 alt="Zohran for NYC"
+                 loading="lazy">
+            <figcaption>Zohran for NYC</figcaption>
+          </figure>
+          <p class="lede">
+            In summer 2025, a candidate polling at 0.8 percent five months
+            earlier won the Democratic primary for NYC mayor, then took the
+            general by a margin no one forecast, turning out more voters than
+            the city had seen in fifty years. We had embedded access from day
+            one. The book argues this was not charisma or virality but the
+            downstream consequence of a decade of organizing infrastructure
+            rebuilt block by block.
+          </p>
+        </div>
+        <p style="margin-top:24px;clear:both;">
           <a href="https://lizmckenna.github.io/mamdani-field-lead-survey/" target="_blank" rel="noopener" style="display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cobalt);border:1px solid var(--cobalt);padding:10px 18px;text-decoration:none;">Read the field-lead survey &rarr;</a>
         </p>
       </div>
