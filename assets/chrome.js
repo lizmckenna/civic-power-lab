@@ -92,7 +92,7 @@
               <ul style="color:rgba(241,234,215,0.78);">
                 <li>79 JFK Street</li>
                 <li>Cambridge, MA 02138</li>
-                <li style="margin-top:12px;"><a href="mailto:emckenna@hks.harvard.edu">civicpowerlab@hks.harvard.edu</a></li>
+                <li style="margin-top:12px;"><a href="mailto:jessica_de_simone@hks.harvard.edu">civicpowerlab@hks.harvard.edu</a></li>
               </ul>
             </div>
           </div>
