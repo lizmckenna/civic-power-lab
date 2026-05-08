@@ -3,11 +3,11 @@
 
 (function(){
   const NAV_LINKS = [
-    { href: 'research.html', label: 'Research' },
-    { href: 'practice.html', label: 'Practice' },
-    { href: 'teaching.html', label: 'Teaching' },
-    { href: 'press.html', label: 'Press' },
-    { href: 'about.html', label: 'About' },
+    { href: '/research.html', label: 'Research' },
+    { href: '/practice.html', label: 'Practice' },
+    { href: '/teaching.html', label: 'Teaching' },
+    { href: '/press.html', label: 'Press' },
+    { href: '/about.html', label: 'About' },
   ];
 
   function currentPage() {
@@ -20,13 +20,13 @@
     if (!host) return;
     const cur = currentPage();
     const links = NAV_LINKS.map(l =>
-      `<a href="${l.href}" class="${cur === l.href ? 'active' : ''}">${l.label}</a>`
+      `<a href="${l.href}" class="${l.href.endsWith('/' + cur) ? 'active' : ''}">${l.label}</a>`
     ).join('');
 
     host.outerHTML = `
       <nav class="nav">
         <div class="nav-inner">
-          <a href="index.html" class="brand">
+          <a href="/" class="brand">
             <span class="brand-mark" data-mark data-size="48"></span>
             <span class="brand-name">
               <b>Civic Power Lab</b>
@@ -35,7 +35,7 @@
           </a>
           <div class="nav-links">
             ${links}
-            <a href="connect.html" class="nav-cta">Work with us</a>
+            <a href="/connect.html" class="nav-cta">Work with us</a>
           </div>
           <button class="nav-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">Menu</button>
         </div>
@@ -71,20 +71,20 @@
             <div>
               <h4>Site</h4>
               <ul>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="practice.html">Practice</a></li>
-                <li><a href="teaching.html">Teaching</a></li>
-                <li><a href="press.html">Press</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="/research.html">Research</a></li>
+                <li><a href="/practice.html">Practice</a></li>
+                <li><a href="/teaching.html">Teaching</a></li>
+                <li><a href="/press.html">Press</a></li>
+                <li><a href="/about.html">About</a></li>
               </ul>
             </div>
             <div>
               <h4>Engage</h4>
               <ul>
-                <li><a href="connect.html#partner">Partner with us</a></li>
-                <li><a href="connect.html#ra">Join as RA / postdoc</a></li>
-                <li><a href="connect.html#list">Email list</a></li>
-                <li><a href="about.html#team">Team &amp; collaborators</a></li>
+                <li><a href="/connect.html#partner">Partner with us</a></li>
+                <li><a href="/connect.html#ra">Join as RA / postdoc</a></li>
+                <li><a href="/connect.html#list">Email list</a></li>
+                <li><a href="/about.html#team">Team &amp; collaborators</a></li>
               </ul>
             </div>
             <div>
