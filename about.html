@@ -72,11 +72,12 @@
   /* === FACULTY DIRECTOR BIO === */
   .bio-grid {
     display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 72px;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
     align-items: start;
   }
-  @media (max-width: 900px) { .bio-grid { grid-template-columns: 1fr; gap: 32px; } }
+  @media (max-width: 900px) { .bio-grid { grid-template-columns: 1fr; gap: 24px; } }
+  @media (max-width: 900px) { .bio-portrait { max-width: 220px; } }
   .bio-portrait { position: sticky; top: 96px; }
   .bio-portrait img {
     width: 100%;
@@ -84,7 +85,7 @@
     object-fit: cover;
     object-position: center 22%;
     display: block;
-    border-radius: 18px;
+    border-radius: 14px;
     filter: grayscale(8%) contrast(1.02);
     border: 1px solid var(--rule);
   }
