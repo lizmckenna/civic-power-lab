@@ -78,8 +78,10 @@
     max-width: 900px;
     margin: 0 auto;
   }
-  @media (max-width: 900px) { .bio-grid { grid-template-columns: 1fr; gap: 24px; } }
-  @media (max-width: 900px) { .bio-portrait { max-width: 260px; } }
+  @media (max-width: 900px) {
+    .bio-grid { grid-template-columns: 1fr; gap: 24px; }
+    .bio-portrait { max-width: 260px; position: static !important; top: auto; }
+  }
   .bio-portrait { position: sticky; top: 96px; }
   .bio-portrait img {
     width: 100%;
@@ -99,6 +101,7 @@
     text-transform: uppercase;
     border-top: 1px solid var(--rule);
     padding-top: 12px;
+    text-align: center;
   }
   .bio-text p {
     font-size: 16px;
