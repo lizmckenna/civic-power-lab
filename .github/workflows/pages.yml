@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'organized/**'
+      - 'mamdani-book/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -32,9 +32,29 @@ jobs:
         with:
           enablement: true
 
+      # The book lives at /mamdani-book/, so stage it under that path and
+      # point the Pages root at it rather than serving it from the root.
+      - name: Stage site
+        run: |
+          mkdir -p _site/mamdani-book
+          cp -R mamdani-book/. _site/mamdani-book/
+          touch _site/.nojekyll
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+          <meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=./mamdani-book/">
+          <link rel="canonical" href="https://lizmckenna.github.io/civic-power-lab/mamdani-book/">
+          <title>Organized — The Mamdani Campaign and the Case for People-First Politics</title>
+          </head>
+          <body><p><a href="./mamdani-book/">Continue to Organized</a></p></body>
+          </html>
+          HTML
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: organized
+          path: _site
 
       - id: deployment
         uses: actions/deploy-pages@v4
