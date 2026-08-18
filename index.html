@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=22">
+<link rel="stylesheet" href="assets/shared.css?v=23">
 
 <!-- SCHEME SYSTEM
      Six Seigensha-principled palettes. Each defines paper, two network colors,
@@ -224,11 +224,11 @@
   .hero-flag .flag-label {
     display: block;
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.16em;
+    font-size: 13px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--cobalt);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: 500;
   }
   .hero-flag.warm { border-left-color: var(--terracotta); }
@@ -267,20 +267,23 @@
   }
   .headliner .flag {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-size: 13px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--headline-em);
-    padding: 5px 11px;
+    padding: 5px 12px;
     border: 1px solid var(--headline-em);
     display: inline-block;
     background: transparent;
+    font-weight: 500;
   }
   .headliner .proj-meta {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--headline-mute);
+    font-weight: 500;
   }
   .headliner h2 {
     color: var(--headline-text);
@@ -314,11 +317,12 @@
   }
   .take-box .take-label {
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.18em;
+    font-size: 12px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--headline-em);
     margin-bottom: 10px;
+    font-weight: 500;
   }
   .take-box .take-text {
     font-family: var(--font-display);
@@ -754,10 +758,9 @@
         <div class="take-box">
           <div class="take-label">What it lets us see</div>
           <div class="take-text">
-            Most civic datasets measure <em>mobilizing</em> (who showed up,
-            who voted). POLIS measures the slower, relational work that
-            happens between elections: the part scholars and practitioners
-            know matters, but nobody has the data to study at scale.
+            POLIS captures the slower relational work that happens between
+            elections, at daily resolution, across 38 organizations in 10
+            states.
           </div>
         </div>
 
@@ -766,7 +769,7 @@
         </div>
       </div>
       <div>
-        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--headline-em);margin-bottom:18px;">The network, by the numbers</div>
+        <div style="font-family:var(--font-mono);font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--headline-em);margin-bottom:18px;">The database, so far</div>
         <div class="headliner-stats">
           <div class="hstat"><div class="n">38</div><div class="l">Partner<br>organizations</div></div>
           <div class="hstat"><div class="n">10</div><div class="l">US states<br>covered</div></div>
@@ -799,12 +802,12 @@
     </div>
     <div class="ph-grid">
       <div>
-        <h2>Most civic CRMs are designed for mobilizing. <em>Groundwork is designed for organizing.</em></h2>
+        <h2>Groundwork is a CRM for organizers, built around the practices that hold a base together over years.</h2>
         <p class="lede">
-          An opinionated, open-source organizing platform built around the
-          practices that turn participation into power: one-to-ones,
-          leadership development, team formation, retention, and the
-          relational work between elections.
+          We're building it with the organizations that use it. The platform
+          tracks the day-to-day work of organizing: one-to-ones, leadership
+          development, team formation, and the long relational work between
+          elections.
         </p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
           <a href="https://lizmckenna.github.io/groundwork/memo.html" target="_blank" rel="noopener" class="btn">Read the memo &rarr;</a>

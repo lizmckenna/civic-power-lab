@@ -37,7 +37,9 @@
 
   --font-display: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
   --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  /* Label face — Work Sans uppercase-tracked for kickers, meta, eyebrow labels.
+     Historically named --font-mono; kept the var name to avoid a global rename. */
+  --font-mono: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --maxw: 1340px;
   --gutter: clamp(20px, 4vw, 48px);
@@ -75,18 +77,32 @@ h3 { font-size: clamp(20px, 1.8vw, 26px); line-height: 1.2; }
 
 p { text-wrap: pretty; }
 
-.mono {
+/* Label treatment.
+   Everywhere the site uses --font-mono (kickers, eyebrows, meta labels, tags),
+   render as Work Sans uppercase-tracked at a comfortable reading size.
+   Matches the nav's Work Sans while staying distinct via case + tracking. */
+.mono, .mono-lg, .eyebrow,
+.brand-name small, .btn, .section-head .label, .card .card-foot, .tag,
+.footer h4, .footer-colophon .fc-label,
+.section-marker-label .sml-tag,
+.flag, .ph-flag, .proj-meta, .take-label,
+.press-item .outlet, .press-item .date,
+.engage-cell .arrow, .research-teaser .proj-num,
+.hero-mark-row .meta, .s-num, .s-flag,
+[style*="var(--font-mono)"] {
   font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.mono {
+  font-size: 13.5px;
   color: var(--mute);
 }
 
 .mono-lg {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  font-size: 15px;
   color: var(--mute);
 }
 
