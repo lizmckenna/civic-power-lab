@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/shared.css?v=25">
+<link rel="stylesheet" href="assets/shared.css?v=26">
 
 <!-- SCHEME SYSTEM
      Six Seigensha-principled palettes. Each defines paper, two network colors,
@@ -145,21 +145,22 @@
     display: grid;
     grid-template-columns: 1.35fr 1fr;
     gap: 56px;
-    align-items: end;
+    align-items: center;
     padding-bottom: 56px;
   }
   @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
 
   .hero h1 {
-    font-size: clamp(44px, 6.5vw, 104px);
-    line-height: 0.92;
+    font-family: var(--font-body);
+    font-size: clamp(40px, 5.6vw, 90px);
+    line-height: 0.98;
     letter-spacing: -0.03em;
-    font-weight: 400;
+    font-weight: 700;
   }
   .hero h1 em {
-    font-style: italic;
+    font-style: normal;
     color: var(--cobalt);
-    font-weight: 400;
+    font-weight: 700;
   }
   .pre-h1 {
     font-family: var(--font-mono);
@@ -704,18 +705,18 @@
           On why most first-time civic participants act once, then don't return, and what organizations can do about it.
           <a href="https://dash.harvard.edu/entities/publication/85daf13e-e939-47ed-819b-5ad4b728d32d" target="_blank" rel="noopener">Read on DASH &rarr;</a>
         </div>
+        <div class="hero-flag warm">
+          <span class="flag-label">New Practice &middot; Groundwork</span>
+          A field-owned relational organizing platform, built by and for
+          organizers (an alternative to investor-owned tooling).
+          <a href="#practice-headline">Read the brief &rarr;</a>
+        </div>
         <div class="hero-flag">
           <span class="flag-label">New Research &middot; POLIS</span>
           Individual-level, longitudinal data across 38+ civic organizations
           in 10 U.S. states; built to measure the organizational work
           that converts civic participation into durable political power.
           <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SCLKL7" target="_blank" rel="noopener">View on Harvard Dataverse &rarr;</a>
-        </div>
-        <div class="hero-flag warm">
-          <span class="flag-label">New Practice &middot; Groundwork</span>
-          A field-owned relational organizing platform, built by and for
-          organizers (an alternative to investor-owned tooling).
-          <a href="#practice-headline">Read the brief &rarr;</a>
         </div>
       </div>
     </div>
