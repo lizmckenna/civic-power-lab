@@ -4,10 +4,10 @@
 
 :root {
   /* paper / field */
-  --cream: #f1ead7;
-  --cream-2: #e5dcc0;
-  --paper: #f1ead7;
-  --rule: #ccbf9f;
+  --cream: #ffffff;
+  --cream-2: #f6f2e8;
+  --paper: #ffffff;
+  --rule: #d9d3c1;
 
   /* ink */
   --ink: #141c1f;
