@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Should we build this together?</title>
+<style>
+  :root { --ink:#141C1F; --mute:#5E6F74; --teal:#15616D; --deep:#0D3D45; --terra:#B84A2E; --gold:#D9A636; --cream:#FBFCF7; --cream2:#EEF0E6; --rule:#D3D7C6; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--cream); color:var(--ink); font-family: "Gill Sans", "Gill Sans MT", "Avenir Next", Avenir, Helvetica, Arial, sans-serif; line-height:1.4; }
+  .band { height:10px; background:linear-gradient(90deg, var(--deep) 0 34%, var(--teal) 34% 67%, var(--gold) 67%); }
+  main { max-width:640px; margin:0 auto; padding:28px 20px 60px; }
+  .kick { font-family: Georgia, serif; font-style:italic; color:var(--terra); font-size:15px; margin:0 0 6px; }
+  h1 { font-size:34px; line-height:1.08; margin:0 0 18px; letter-spacing:-0.01em; }
+  p.setup { font-size:17px; margin:0 0 26px; }
+  p.setup b { color:var(--teal); }
+  fieldset { border:0; padding:0; margin:0 0 22px; }
+  legend { font-weight:700; font-size:19px; margin-bottom:10px; padding:0; }
+  .opts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .opt { position:relative; }
+  .opt input { position:absolute; opacity:0; inset:0; }
+  .opt label { display:block; text-align:center; padding:18px 12px; border:2px solid var(--rule); border-radius:12px; background:var(--cream2); font-size:22px; font-weight:700; cursor:pointer; }
+  .opt input:checked + label { border-color:var(--teal); background:var(--teal); color:var(--cream); }
+  .opt input:focus-visible + label { outline:3px solid var(--gold); }
+  label.small { display:block; font-weight:700; font-size:16px; margin-bottom:6px; }
+  .hint { font-family: Georgia, serif; font-style:italic; color:var(--mute); font-size:14px; margin:0 0 8px; }
+  input[type=text], textarea { width:100%; font:inherit; font-size:16px; padding:12px; border:1.5px solid var(--rule); border-radius:10px; background:#fff; }
+  textarea { min-height:84px; resize:vertical; }
+  button { width:100%; font:inherit; font-size:19px; font-weight:700; padding:16px; border:0; border-radius:12px; background:var(--terra); color:var(--cream); cursor:pointer; margin-top:6px; }
+  button:disabled { opacity:.6; }
+  .done { display:none; padding:26px; border-radius:14px; background:var(--deep); color:var(--cream); font-size:19px; }
+  .done b { color:var(--gold); }
+  footer { margin-top:40px; font-family: Georgia, serif; font-style:italic; color:var(--mute); font-size:13px; }
+  .hp { display:none; }
+</style>
+</head>
+<body>
+<div class="band"></div>
+<main>
+  <p class="kick">MLD-371 · Class 8 · a quick vote</p>
+  <h1>Should we build this together?</h1>
+  <p class="setup">Tonight every team is writing an AI adoption policy for one organization. Thousands of civil society organizations face the same decisions with no template, no peers to compare against, and no record of what others chose. <b>We could build that record.</b> A public site where organizations post their policies (de-identified where needed), say which AI capabilities they use most, name their concerns and how much each one worries them (member privacy, HIPAA, labor, cost, accuracy, vendor lock-in), and download a policy template sized for an organization like theirs. The class would seed it with tonight's drafts.</p>
+
+  <form id="vote" name="mld371-vote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks">
+    <input type="hidden" name="form-name" value="mld371-vote">
+    <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+
+    <fieldset>
+      <legend>Should we make this as a collective class project?</legend>
+      <div class="opts">
+        <div class="opt"><input type="radio" id="yes" name="vote" value="Yes" required><label for="yes">Yes</label></div>
+        <div class="opt"><input type="radio" id="no" name="vote" value="No"><label for="no">No</label></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <label class="small" for="why">What would make it useful, or what would you change?</label>
+      <p class="hint">Optional, one line is plenty.</p>
+      <textarea id="why" name="comment"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <label class="small" for="name">Want to work on it with me? Leave your name.</label>
+      <p class="hint">Optional.</p>
+      <input type="text" id="name" name="name" autocomplete="name">
+    </fieldset>
+
+    <button type="submit" id="go">Cast my vote</button>
+  </form>
+
+  <div class="done" id="done"><b>Thanks.</b> Results go up on the screen at the end of the studio.</div>
+
+  <footer>MLD-371 · AI and Civil Society · Harvard Kennedy School</footer>
+</main>
+<script>
+  const f = document.getElementById('vote');
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('go'); btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const body = new URLSearchParams(new FormData(f)).toString();
+      const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+      if (!r.ok) throw new Error(r.status);
+      f.style.display = 'none'; document.getElementById('done').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Try again';
+    }
+  });
+</script>
+</body>
+</html>
